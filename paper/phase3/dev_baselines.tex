@@ -1,0 +1,21 @@
+% Requires \usepackage{booktabs}; exploratory dev baseline results only.
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llrrr}
+\toprule
+Direction & Condition & BLEU & chrF++ & COMET \\
+\midrule
+En$\to$Tl & Unsplit & 35.436 & 60.054 & 84.735 \\
+En$\to$Tl & Split & 35.820 & 60.665 & 85.086 \\
+Tl$\to$En & Unsplit & 50.806 & 69.374 & 87.734 \\
+Tl$\to$En & Split & 50.641 & 69.495 & 87.787 \\
+En$\to$Es & Unsplit & 27.924 & 53.484 & 86.171 \\
+En$\to$Es & Split & 28.231 & 53.913 & 86.463 \\
+Es$\to$En & Unsplit & 32.882 & 59.306 & 87.400 \\
+Es$\to$En & Split & 32.949 & 59.713 & 87.543 \\
+\bottomrule
+\end{tabular}
+\caption{NLLB 200 3.3B on FLORES+ dev, $n=997$ per direction. COMET is native score $\times100$. Sentence split is the primary baseline; unsplit is diagnostic. No LLM post editing or devtest results are shown.}
+\label{tab:phase3-dev-baselines}
+\end{table}

@@ -1,0 +1,42 @@
+{
+  "generation_run_sha256": "f4a3af94ba1e72fddc14a8986924fc23e00ae2884dc8d51800ad79e43a6a0563",
+  "input_file_hashes": {
+    "nllb3.3b_eng_Latn_tgl_Latn_dev_unsplit_control.jsonl": "4a17a36f513a5eb90b05d3192179124605bd99c65902bdbdd7bf5463ef091f9f",
+    "nllb3.3b_eng_Latn_tgl_Latn_dev_sentence_split.jsonl": "d6617cb4b12dc23203326970cc5db9d217be6cdfc658e2b4c3eb59f67e252176",
+    "nllb3.3b_tgl_Latn_eng_Latn_dev_unsplit_control.jsonl": "e218625b96cffb539f42e368a26c025b400a457c3f6d35a9625e97de9478abd0",
+    "nllb3.3b_tgl_Latn_eng_Latn_dev_sentence_split.jsonl": "8a0924a378738010fdb13f4a0a5eaa7da8bbda30d3bcc4fa526c26c50c47a3f4",
+    "nllb3.3b_eng_Latn_spa_Latn_dev_unsplit_control.jsonl": "575b6519738da932ae6dc9520f61b6c4ac5db669b81121d304e18b2df81bf43c",
+    "nllb3.3b_eng_Latn_spa_Latn_dev_sentence_split.jsonl": "34b1d8f011d4addeae4dda7049ac58fea35a9beb8d07dd8d0201665f088d0a42",
+    "nllb3.3b_spa_Latn_eng_Latn_dev_unsplit_control.jsonl": "a0eda958cf61561208ebff752bc54b10d41a8b996251b8c02cf1bf7684a840c3",
+    "nllb3.3b_spa_Latn_eng_Latn_dev_sentence_split.jsonl": "291c5e9ca8c0fdbf7108bfeb7949f793939e1cbf66f35238b4165819e95ce088"
+  },
+  "comet_model": "Unbabel/wmt22-comet-da",
+  "comet_revision": "2760a223ac957f30acfb18c8aa649b01cf1d75f2",
+  "comet_batch_size": 64,
+  "length_batching": true,
+  "mc_dropout": 0,
+  "num_workers": 2,
+  "float32_matmul_precision": "highest",
+  "bootstrap_resamples": 10000,
+  "bootstrap_seed": 42,
+  "bootstrap_method": "paired percentile CI for mean COMET difference",
+  "difference_orientation": "sentence_split minus current_unsplit",
+  "comet_report_scale": "native score multiplied by 100",
+  "bleu": "13a; mixed case; exponential smoothing",
+  "chrf": "char_order=6; word_order=2; beta=2",
+  "environment": {
+    "python": "3.11.17",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "unbabel-comet": "2.2.7",
+    "numpy": "1.26.4",
+    "sacrebleu": "2.6.0",
+    "huggingface-hub": "0.36.0",
+    "pytorch-lightning": "2.6.6",
+    "torchmetrics": "0.10.3",
+    "sentencepiece": "0.2.2",
+    "gpu": "NVIDIA A100-SXM4-80GB"
+  },
+  "resolved_packages_sha256": "52f966f428b0bfc22815e578630400c7b5def5c54f622bc3a703b14a84952d8a",
+  "evaluator_script_sha256": "9e123a23f430c3d3f2159dda2dfd0ce63031978001447a2349871ac72481369d"
+}

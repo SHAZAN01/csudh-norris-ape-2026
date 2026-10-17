@@ -1,0 +1,17 @@
+{
+  "as_of": "2026-10-17",
+  "phase3_complete": false,
+  "baseline_generation": "verified_complete_dev_only",
+  "baseline_evaluation": "verified_complete_dev_only",
+  "post_editing_code": "implemented_synthetic_tests_passed",
+  "retrieval_real_data_execution": "pending_evidence",
+  "llama_smoke": "pending_evidence",
+  "llama_full_pilot": "pending_evidence",
+  "gpt_pilot": "pending_API_access_and_runner",
+  "protocol_freeze": false,
+  "devtest_scored_in_phase3": false,
+  "github_remote_publication": "not_verified",
+  "source_note": "Historical stage_status.json retained in original evidence ZIP; this file reflects Report 3 scope.",
+  "generation_sha256": "f4a3af94ba1e72fddc14a8986924fc23e00ae2884dc8d51800ad79e43a6a0563",
+  "evaluation_sha256": "6d6e94fc2a8d3d8f34d4a1b4d5cddedc139ba4ce278cc1518277093dbefb3b08"
+}

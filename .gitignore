@@ -2,3 +2,23 @@
    *.jsonl
    __pycache__/
    .env
+
+# NORRIS_PHASE3_PRIVATE_ARTIFACTS
+/data/
+/outputs/
+*.jsonl
+*.faiss
+*.npy
+*.safetensors
+*.ckpt
+*.bin
+*.pt
+*.pth
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.venv*/
+.ipynb_checkpoints/
+.DS_Store
