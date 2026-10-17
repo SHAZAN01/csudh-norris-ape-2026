@@ -1,0 +1,59 @@
+{
+  "status": "generation_complete_metrics_pending",
+  "run_spec_sha256": "f4a3af94ba1e72fddc14a8986924fc23e00ae2884dc8d51800ad79e43a6a0563",
+  "directions": {
+    "eng_Latn->tgl_Latn": {
+      "rows_per_condition": 997,
+      "archived_unsplit_exact_matches": 997,
+      "archived_unsplit_differences": 0,
+      "multi_sentence_items": 104,
+      "split_outputs_different_from_current_control": 96,
+      "unsplit_inference_seconds": 71.98132538100025,
+      "fragment_inference_seconds": 32.008181896000224,
+      "file_sha256": {
+        "nllb3.3b_eng_Latn_tgl_Latn_dev_unsplit_control.jsonl": "4a17a36f513a5eb90b05d3192179124605bd99c65902bdbdd7bf5463ef091f9f",
+        "nllb3.3b_eng_Latn_tgl_Latn_dev_sentence_split.jsonl": "d6617cb4b12dc23203326970cc5db9d217be6cdfc658e2b4c3eb59f67e252176"
+      }
+    },
+    "tgl_Latn->eng_Latn": {
+      "rows_per_condition": 997,
+      "archived_unsplit_exact_matches": 997,
+      "archived_unsplit_differences": 0,
+      "multi_sentence_items": 104,
+      "split_outputs_different_from_current_control": 93,
+      "unsplit_inference_seconds": 58.77319587100148,
+      "fragment_inference_seconds": 26.177035565000097,
+      "file_sha256": {
+        "nllb3.3b_tgl_Latn_eng_Latn_dev_unsplit_control.jsonl": "e218625b96cffb539f42e368a26c025b400a457c3f6d35a9625e97de9478abd0",
+        "nllb3.3b_tgl_Latn_eng_Latn_dev_sentence_split.jsonl": "8a0924a378738010fdb13f4a0a5eaa7da8bbda30d3bcc4fa526c26c50c47a3f4"
+      }
+    },
+    "eng_Latn->spa_Latn": {
+      "rows_per_condition": 997,
+      "archived_unsplit_exact_matches": 997,
+      "archived_unsplit_differences": 0,
+      "multi_sentence_items": 104,
+      "split_outputs_different_from_current_control": 85,
+      "unsplit_inference_seconds": 63.401537768999816,
+      "fragment_inference_seconds": 28.561804497999674,
+      "file_sha256": {
+        "nllb3.3b_eng_Latn_spa_Latn_dev_unsplit_control.jsonl": "575b6519738da932ae6dc9520f61b6c4ac5db669b81121d304e18b2df81bf43c",
+        "nllb3.3b_eng_Latn_spa_Latn_dev_sentence_split.jsonl": "34b1d8f011d4addeae4dda7049ac58fea35a9beb8d07dd8d0201665f088d0a42"
+      }
+    },
+    "spa_Latn->eng_Latn": {
+      "rows_per_condition": 997,
+      "archived_unsplit_exact_matches": 997,
+      "archived_unsplit_differences": 0,
+      "multi_sentence_items": 109,
+      "split_outputs_different_from_current_control": 103,
+      "unsplit_inference_seconds": 60.01196463099994,
+      "fragment_inference_seconds": 27.146071388998735,
+      "file_sha256": {
+        "nllb3.3b_spa_Latn_eng_Latn_dev_unsplit_control.jsonl": "a0eda958cf61561208ebff752bc54b10d41a8b996251b8c02cf1bf7684a840c3",
+        "nllb3.3b_spa_Latn_eng_Latn_dev_sentence_split.jsonl": "291c5e9ca8c0fdbf7108bfeb7949f793939e1cbf66f35238b4165819e95ce088"
+      }
+    }
+  },
+  "this_invocation_wall_seconds": 381.0649333260003
+}
