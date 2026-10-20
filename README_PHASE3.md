@@ -1,34 +1,25 @@
-# Norris Phase 3 progress
+# Norris Phase 3 — measured development pilots
 
-Report date: 17 October 2026. **Phase 3 is open; the protocol is not frozen.**
+Updated 19 October 2026. Empirical pilot work is complete; Phase 3 sign-off and
+protocol freeze remain pending. Main devtest experiments have not started.
 
-The sentence split NLLB baseline was generated and evaluated on **dev only**.
-Candidate prompts, retrieval and a Llama runner are implemented and locally tested.
-Actual LaBSE indexing and Llama smoke/full pilot evidence are still pending.
-No LLM post editing improvement or Phase 3 devtest result is claimed.
-
-- [Report 3](docs/phase3/Norris_Phase_Report_3.pdf)
+- [Updated Report 3 PDF](docs/phase3/Norris_Phase_Report_3.pdf)
 - [Editable report](docs/phase3/Norris_Phase_Report_3.docx)
 - [Markdown report](docs/phase3/Norris_Phase_Report_3.md)
-- [Current status](config/phase3/status.json)
-- [Execution and next steps](docs/phase3/RUNBOOK.md)
-- [Numeric baseline evidence](docs/phase3/evidence/evaluation/dev_baseline_metrics.json)
+- [All 24 pilot conditions](docs/phase3/evidence/pilot/pilot_condition_results.csv)
+- [Independent numeric audit](docs/phase3/evidence/pilot/independent_numeric_audit.json)
+- [Measured candidate configuration](config/phase3/Reviewed_Candidate_Configuration.json)
+- [ICAI overlap review](docs/phase3/ORIGINALITY_OVERLAP_AUDIT.md)
+- [Development manuscript](paper/README.md)
+- [Remaining actions](docs/phase3/RUNBOOK.md)
 
-## Run next in Colab Pro
+Actual retrieval, 24 smoke outcomes, and 1,200 full outcomes per editor are evidenced.
+The same 100 aligned IDs are repeated over conditions: 2,400 outcomes are not
+2,400 independent sentences. GPT one-shot English→Tagalog gains 1.463 COMET points
+(descriptive 95% dev interval [0.710,2.396]); Llama reason-then-edit falls back on
+227/400 outcomes and GPT on 8/400. All planned outcomes remain in the results.
 
-Open `notebooks/phase3/02_prompts_retrieval_llama.ipynb` on an A100 80 GB.
-Keep the existing Drive root `/content/drive/MyDrive/norris`.
-Use Colab Secrets for `HF_TOKEN`; never paste tokens into notebook source.
-Run all cells to prepare retrieval and run the **24 output smoke check**.
-The default notebook does not run the full 1,200 output Llama pilot.
-Inspect the downloaded smoke evidence before proceeding to the full stage.
-The separate resume evaluator notebook validates and reuses completed scores.
-
-No NLLB regeneration is needed. Raw FLORES text, generations, vectors, weights and
-credentials must stay out of Git. This update contains numeric score caches only.
-
-## Scope
-
-English ↔ Tagalog and English ↔ standard Spanish, four directions, three strategies.
-No external human raters; no heritage Spanish or dialect specific claim.
-Use the existing ICNLP Overleaf manuscript project. ICAI work is separate.
+Next: PI overlap/contract review, final freeze and acceptance, then Phases 4/5.
+Use the existing shared ICNLP Overleaf project, with IEEEtran rather than the
+ACL assumption in the older role text. No new project is needed. Raw benchmark
+text, full generations, model weights, keys and private API records remain excluded.

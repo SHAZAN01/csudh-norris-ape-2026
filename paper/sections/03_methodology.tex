@@ -1,0 +1,21 @@
+\section{Methodology}
+\subsection{Frozen NMT baseline}
+The draft model is \texttt{facebook/nllb-200-3.3B}. The primary condition translates source sentence fragments independently and rejoins the target fragments with one space. The unsplit condition remains a diagnostic reference. Segmentation uses \texttt{pysbd} 0.3.4 with character spans and \texttt{clean=False}; Tagalog uses English rules as a documented heuristic. Dev-reviewed abbreviation and continuation safeguards accompany these rules, as recorded in Report 3's baseline evidence. Concatenation must recover the original source exactly before translation. This establishes lossless source segmentation, not preservation of cross-sentence context.
+
+The completed development baseline uses FP16, four beams, no sampling, early stopping, length penalty 1.0, batch size 32, and maximum length 512. Inputs are checked for length rather than silently truncated. Single-fragment items reuse the control hypothesis. All 3,988 current unsplit hypotheses match the archived Phase 2 outputs. The archived generation specification and output hashes are available, although the original split-generation cell was not recovered in this review.
+
+\subsection{Editors and shared constraints}
+The editors are the original \texttt{Meta-Llama-3-8B-Instruct} checkpoint and the dated \texttt{gpt-4o-mini-2024-07-18} snapshot~\cite{meta2024,openai2024}. Llama 3.1 is not substituted. Both receive the source, target language, and NMT draft. The shared instruction makes the source authoritative, requires preservation of source-supported names, numbers, dates, and meaning, and discourages stylistic rewriting. An accurate, natural, grammatical draft should be returned unchanged. Input strings are delimited as data.
+
+\subsection{Prompting strategies}
+\textbf{Zero-shot} returns one JSON field, \texttt{edited\_translation}. \textbf{Retrieved one-shot} adds one solved development example, containing its source, NMT draft, and gold target, before the same query. Query references are absent. \textbf{Reason-then-edit} requests a diagnostic array followed by the final translation in a separate field. Diagnostics use six categories: mistranslation, omission, unsupported addition, morphosyntax mismatch, named-entity corruption, or no correction needed (\texttt{NONE}). Categories must be unique; \texttt{NONE} must occur alone; each note contains at most 25 whitespace-separated words. Full prompt bytes and schemas are retained in the candidate manifest.
+
+\subsection{Retrieval and leakage controls}
+LaBSE embeds the 997 development sources for each of three source languages into normalized 768-dimensional float32 vectors. Exact FAISS inner-product search ranks cosine similarity, with sentence-ID tie breaking. All 100 pilot IDs are excluded from every demonstration pool, leaving 897 candidate IDs before duplicate-source exclusions. Exact source duplicates are also excluded. The selected demonstration may expose its own development reference; the current query reference and quality scores never enter the prompt. All 400 pilot retrieval links were independently reconstructed from the saved vectors. The held-out retrieval pool policy must be recorded at freeze; it is not silently inferred from this pilot exclusion rule.
+
+\subsection{Structural validity and fallback}
+vLLM guided decoding and API structured output constrain JSON structure. Pydantic checks additional semantic contract rules after generation. Parsing success, schema validity, and usable completion are distinct. An invalid or unfinished response retains its raw record and returns the unchanged NMT draft for evaluation. Content failures are neither repaired nor selectively regenerated. The operative system output is
+\begin{equation}
+\hat{y}_i=\begin{cases}e_i,&\text{if the response passes the output contract},\\b_i,&\text{otherwise},\end{cases}
+\end{equation}
+where $b_i$ is the baseline and $e_i$ the extracted edit. Contract acceptance does not imply factual correctness. The evaluated condition includes this fallback policy.

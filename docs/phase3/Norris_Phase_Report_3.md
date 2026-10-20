@@ -1,218 +1,271 @@
-# Norris Research Project Phase Report 3
+# Norris Phase Report 3
 
-Development Baselines and Post Editing Pilot Preparation
+Development pilots and acceptance review
 
-Project: Evaluating Large Language Models as Post Editors for English–Tagalog and English–Spanish Translation
+Principal Investigator  Dr Benyamin Ahmadnia
+Graduate Research Assistant  Shazan Ansar Mohammed
+Reporting update  19 October 2026
+Repository  github.com/SHAZAN01/csudh-norris-ape-2026
 
-Principal Investigator: Dr. Benyamin Ahmadnia
-Graduate Research Assistant: Shazan Ansar Mohammed
-Reporting period: October 16–17, 2026
-Repository: https://github.com/SHAZAN01/csudh-norris-ape-2026
+Empirical pilot work complete  Final protocol freeze and Phase 3 sign off pending
 
-### Executive summary
+## Executive summary
 
-The dev baseline experiment is complete and its COMET results have been audited. Sentence splitting changed 377 of 3,988 translations and increased mean COMET in all four directions. The paired confidence interval includes zero for Tagalog to English; improvement in that direction remains inconclusive. These are baseline diagnostics, not evidence of an LLM post editing gain.
+Both development pilots are complete and evaluated: 100 aligned dev IDs across four directions and three strategies for each of two post-editors, giving 2,400 system outcomes. Actual retrieval, Llama smoke/full generation, GPT-4o Mini inference, quality scoring and failure analysis are now evidenced. The independent audit reproduced the 24 metric rows and paired intervals from raw text and audited numeric score caches.
 
-The three candidate prompt strategies, strict output schemas, retrieval builder and resumable Llama runner are implemented and locally tested. Evidence of actual LaBSE indexing, Llama smoke generation and the full post editing pilot has not yet been supplied. Phase 3 therefore remains open and the protocol is not frozen. This report records verified progress and the remaining completion criteria.
+GPT retrieved one-shot achieved the largest En-to-Tl pilot gain: +1.463 COMET points, with a descriptive 95% interval of [+0.710, +2.396]. This is a dev diagnostic, not a confirmatory finding. Llama reason-then-edit returned usable output on only 173/400 items; the other 227 used the predeclared baseline fallback. GPT reason-then-edit used fallback on 8/400 items. These failures remain in all reported results.
 
-**Required item checklist**
+The supplied ICAI paper confirms substantive overlap in frozen-NMT anchoring and semantic exemplar retrieval. Norris should be positioned as a distinct empirical extension, with those shared components cited as prior work. This comparison is now complete and is brought to the PI before freeze, as requested. No main devtest experiment or protocol freeze is declared here.
 
-| Item | Current status |
-|---|---|
-| Dev integrity and segmentation | Verified |
-| Split baseline generation and evaluation | Complete on dev only |
-| Three prompts and output schemas | Implemented and locally tested |
-| LaBSE and FAISS retrieval | Builder prepared; runtime evidence pending |
-| Llama pilot | Runner prepared; execution evidence pending |
-| GPT 4o Mini pilot | Pending API access and implementation |
-| Protocol freeze | Not declared |
-| GitHub update | Prepared for publication; not pushed here |
+| Acceptance item | Evidence status |
+| --- | --- |
+| Actual dev retrieval | Complete and independently checked |
+| Llama smoke and full pilot | 24 smoke and 1,200 full outcomes accounted for |
+| GPT pilot | Exact dated snapshot; 1,200 outcomes accounted for |
+| Quality and failure analysis | Complete; 24 rows independently reproduced |
+| ICAI comparison | Complete; substantial shared methods disclosed |
+| Freeze and main experiment | Pending PI review of overlap and protocol disposition |
 
-The current update covers Norris only. The separate ICAI work is outside this report. No external human raters are included, following the PI’s September 24 feedback.
+## 1  Development design and baseline continuity
 
-## 1 Data Integrity and Sentence Segmentation
+The same seed-42 sample of 100 aligned FLORES+ dev IDs is used in every model and strategy. This is balanced by condition count, not by baseline-quality strata. The 2,400 outcomes are repeated system observations on 100 aligned IDs in four directions; they are not 2,400 independent source sentences. The supplied workflow remains dev only. The 1,012-item devtest partition is reserved for the main experiment.
 
-All development work used FLORES+ dev: 997 aligned sentence IDs in each of four directions. Source and reference alignment, nonempty drafts and manifest checksums passed. English, Spanish and Tagalog source texts comprise 2,991 unique source language records. No devtest file was opened or scored during this Phase 3 workflow. The older Phase 2 devtest generations remain separate and unscored.
+FLORES+ revision 5fec6c13f9e5a4db2f745d4ec0d7c9721ddc4f06 is retained. The dataset configuration fil_Latn maps to NLLB tgl_Latn. Standard Spanish is the comparator; the benchmark does not support claims about heritage, dialectal, code-switched or Los Angeles community Spanish.
 
-The FLORES+ revision is pinned. Tagalog uses the dataset configuration fil_Latn and the NLLB language code tgl_Latn. These names are intentionally different and must not be replaced with tag_Latn.
+### Earlier split versus unsplit comparison
 
-### Segmentation method
+| Direction | Split COMET | Delta points | 95% dev interval |
+| --- | --- | --- | --- |
+| En to Tl | 85.086 | +0.351 | [+0.216, +0.497] |
+| Tl to En | 87.787 | +0.053 | [-0.019, +0.130] |
+| En to Es | 86.463 | +0.292 | [+0.143, +0.448] |
+| Es to En | 87.543 | +0.142 | [+0.061, +0.232] |
 
-The candidate uses pysbd 0.3.4 with clean=False and character spans. English and Spanish use their corresponding rule sets; Tagalog uses English rules as a documented heuristic. Source characters and whitespace must reconstruct exactly before translation. Independent fragment translations are then joined with a single space; reconstruction guarantees source preservation, not translation completeness.
+These earlier figures use all 997 dev items per direction and are retained from the audited baseline report. Tagalog-to-English remains inconclusive because its interval includes zero. The sentence-split condition remains the PI-approved primary baseline and the unsplit condition remains diagnostic. These segmentation gains are separate from LLM post-editing gains.
 
-**Final candidate source counts**
+### Split baseline on the actual pilot sample
 
-| Source | Items | Multi sentence | Fragments |
-|---|---|---|---|
-| English | 997 | 104 | 1,104 |
-| Tagalog | 997 | 104 | 1,104 |
-| Spanish | 997 | 109 | 1,109 |
+| Direction | BLEU | chrF++ | COMET | Below .80 | At least .90 |
+| --- | --- | --- | --- | --- | --- |
+| En to Tl | 35.884 | 60.632 | 84.442 | 19 | 22 |
+| Tl to En | 46.957 | 67.821 | 87.118 | 12 | 45 |
+| En to Es | 27.694 | 54.086 | 86.076 | 11 | 21 |
+| Es to En | 29.780 | 58.116 | 87.829 | 3 | 28 |
 
-The Spanish Jr. safeguard corrected items 31 and 159 in candidate v2. Candidate v3 then changed exactly seven reviewed source language items relative to v2: English 187, 641 and 960; Tagalog 641, 956 and 960; Spanish 641. These changes merge a clock abbreviation before a weekday, the Tagalog abbreviation atbp., and detached parenthetical or citation continuations. All 12 synthetic boundary tests and lossless reconstruction checks passed.
+COMET is reported as native score x100. Quality pools use the original baseline native segment scores, fixed before post-editing. The new evaluator rechecked all 400 pilot baselines; maximum absolute deviation from archived scores was 5.96 x 10^-7 native, below the configured 10^-5 tolerance. The full 997-item baseline was not regenerated.
 
-### Translation controls
+## 2  GPT 4o Mini development results
 
-NLLB 200 3.3B used FP16, batch size 32, four beams, max_length 512, length penalty 1.0, early stopping and no sampling. Inputs were not silently truncated. The same run generated an unsplit control and the split condition. For single segment sources, the split condition reuses the control hypothesis; only multi sentence fragments require additional inference.
+Model gpt-4o-mini-2024-07-18 returned 1,200 distinct response IDs and the expected model identifier on every row. All 1,200 outputs parsed; 1,192 were usable. Each table row includes all 100 planned items, including baseline fallback.
 
-All 997 unsplit hypotheses per direction exactly reproduced the archived Phase 2 hypotheses: 3,988 matches and zero differences. A prior small smoke run had one mismatch; the full control resolves the observed reproducibility check, but does not isolate the cause of that earlier mismatch.
+| Dir | Strategy | BLEU | chrF++ | COMET | Delta | 95% dev CI | FB |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| En to Tl | Zero shot | 36.910 | 61.240 | 85.203 | +0.761 | [+0.147, +1.608] | 0 |
+| En to Tl | One shot | 37.757 | 62.087 | 85.905 | +1.463 | [+0.710, +2.396] | 0 |
+| En to Tl | Reason edit | 36.052 | 60.822 | 84.698 | +0.255 | [-0.726, +1.259] | 3 |
+| Tl to En | Zero shot | 47.144 | 68.470 | 87.988 | +0.870 | [+0.396, +1.425] | 0 |
+| Tl to En | One shot | 46.989 | 68.790 | 88.158 | +1.039 | [+0.471, +1.662] | 0 |
+| Tl to En | Reason edit | 47.408 | 68.467 | 87.736 | +0.617 | [+0.154, +1.169] | 4 |
+| En to Es | Zero shot | 28.672 | 54.627 | 86.741 | +0.664 | [+0.238, +1.216] | 0 |
+| En to Es | One shot | 28.260 | 54.475 | 86.695 | +0.619 | [-0.077, +1.295] | 0 |
+| En to Es | Reason edit | 27.946 | 54.180 | 86.077 | +0.001 | [-0.251, +0.298] | 1 |
+| Es to En | Zero shot | 30.297 | 58.418 | 87.846 | +0.018 | [-0.182, +0.194] | 0 |
+| Es to En | One shot | 29.821 | 58.671 | 88.131 | +0.303 | [-0.048, +0.698] | 0 |
+| Es to En | Reason edit | 29.486 | 57.846 | 87.601 | -0.228 | [-0.591, +0.084] | 0 |
 
-## 2 Verified Development Baseline Results
+Delta is edited minus split baseline in COMET points. FB is the fallback count out of 100. Confidence intervals use 10,000 paired percentile bootstrap resamples with seed 42; no confirmatory p-values or multiplicity-adjusted claims are made on dev.
 
-COMET 22 is the primary metric. BLEU and chrF++ are secondary. All scores below come from the completed evaluation artifact. COMET is reported as the native score multiplied by 100; differences use sentence split minus current unsplit. Each condition has 997 items per direction.
+The strongest En-to-Tl point estimate is retrieved one-shot (+1.463). Both Tagalog directions show positive zero-shot and one-shot point estimates, but the sample does not establish a universal resource-level advantage. Spanish-to-English changes are small and its three intervals include zero. Strategy superiority requires the predeclared main comparisons; overlapping or separate baseline intervals are not a strategy-vs-strategy test.
 
-**Table 1 Baseline metric values**
+A post hoc influence check removes dev item 983 only for diagnosis: En-to-Tl one-shot changes from +1.463 to +1.151 points over the remaining 99 items. The primary result retains all 100. This single terminology case materially affects several strategies; it does not justify deleting the item or tuning on devtest.
 
-| Direction | Condition | BLEU | chrF++ | COMET |
-|---|---|---|---|---|
-| En to Tl | Unsplit | 35.436 | 60.054 | 84.735 |
-| En to Tl | Split | 35.820 | 60.665 | 85.086 |
-| Tl to En | Unsplit | 50.806 | 69.374 | 87.734 |
-| Tl to En | Split | 50.641 | 69.495 | 87.787 |
-| En to Es | Unsplit | 27.924 | 53.484 | 86.171 |
-| En to Es | Split | 28.231 | 53.913 | 86.463 |
-| Es to En | Unsplit | 32.882 | 59.306 | 87.400 |
-| Es to En | Split | 32.949 | 59.713 | 87.543 |
+## 3  Llama development results
 
-**Table 2 Paired COMET differences in points**
+Model meta-llama/Meta-Llama-3-8B-Instruct generated 1,200 outcomes on an A100 80 GB. Zero-shot and one-shot were usable on all 400 items each. Reason-then-edit was usable on 173/400, with 227 baseline fallbacks. The model checkpoint, prompt version and validation policy were retained from the reviewed candidate v2.
 
-| Direction | All items | 95% interval | Multi n | Multi delta |
-|---|---|---|---|---|
-| En to Tl | +0.351 | [+0.216, +0.497] | 104 | +3.363 |
-| Tl to En | +0.053 | [-0.019, +0.130] | 104 | +0.508 |
-| En to Es | +0.292 | [+0.143, +0.448] | 104 | +2.797 |
-| Es to En | +0.142 | [+0.061, +0.232] | 109 | +1.301 |
+| Dir | Strategy | BLEU | chrF++ | COMET | Delta | 95% dev CI | FB |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| En to Tl | Zero shot | 34.201 | 58.363 | 84.348 | -0.094 | [-1.158, +1.071] | 0 |
+| En to Tl | One shot | 33.799 | 59.280 | 84.529 | +0.087 | [-0.997, +1.303] | 0 |
+| En to Tl | Reason edit | 34.222 | 59.139 | 83.806 | -0.637 | [-1.405, +0.389] | 39 |
+| Tl to En | Zero shot | 45.269 | 66.959 | 87.131 | +0.013 | [-0.456, +0.500] | 0 |
+| Tl to En | One shot | 45.659 | 66.896 | 87.471 | +0.352 | [-0.115, +0.932] | 0 |
+| Tl to En | Reason edit | 45.224 | 66.686 | 86.574 | -0.544 | [-0.959, -0.217] | 62 |
+| En to Es | Zero shot | 27.125 | 53.821 | 86.431 | +0.355 | [-0.037, +0.797] | 0 |
+| En to Es | One shot | 27.381 | 53.815 | 86.527 | +0.450 | [-0.050, +0.979] | 0 |
+| En to Es | Reason edit | 26.558 | 53.267 | 85.864 | -0.212 | [-0.570, +0.153] | 65 |
+| Es to En | Zero shot | 29.776 | 57.955 | 87.636 | -0.192 | [-0.553, +0.128] | 0 |
+| Es to En | One shot | 29.942 | 57.590 | 87.783 | -0.046 | [-0.476, +0.384] | 0 |
+| Es to En | Reason edit | 29.202 | 57.240 | 87.267 | -0.562 | [-1.025, -0.192] | 61 |
 
-Intervals use 10,000 paired percentile bootstrap resamples with seed 42. They are descriptive dev diagnostics; no confirmatory p values or multiplicity adjusted claims are made. The full precision values and multi sentence confidence intervals accompany the repository evidence.
+Reason-then-edit has negative point estimates in all four directions. The Tl-to-En and Es-to-En dev intervals exclude zero on the negative side, but these remain exploratory and are not the main experiment. The estimate describes the complete operational condition, including its failures and fallback. It does not isolate an intrinsic effect of reasoning from the effect of strict diagnostic validation.
 
-English to Tagalog, English to Spanish and Spanish to English have positive intervals excluding zero. Tagalog to English has a smaller positive point estimate with an interval spanning zero; its BLEU also decreases slightly. Sentence splitting is retained as the PI approved primary baseline, while the unsplit condition remains available for diagnostic analysis.
+Low observed editing under reason-then-edit cannot be interpreted as successful restraint: 56.75% of those jobs fell back to the baseline. Reporting only usable responses would condition on model success and produce a selected sample. The report therefore keeps all planned items in its primary population.
 
-The larger multi sentence effects localize the change to the subset exposed to segmentation. They do not show that every changed output improved or that every omission was repaired. Cross sentence consistency may still worsen. No LLM post editing results are reported in this table.
+The En-to-Tl one-shot mean is +0.087 points with a wide interval. Its leave-item-983-out diagnostic becomes -0.285 points. This illustrates sensitivity in a 100-item pilot and supports keeping the full main-evaluation design rather than declaring an early strategy winner.
 
-## 3 Quality Checks and Compute Accounting
+## 4  Validity failures and execution accounting
 
-**Table 3 Output changes and COMET change bands**
+| Model | Strategy | N | JSON parse | Usable | Fallback |
+| --- | --- | --- | --- | --- | --- |
+| GPT Mini | Zero shot | 400 | 400 | 400 | 0 |
+| GPT Mini | One shot | 400 | 400 | 400 | 0 |
+| GPT Mini | Reason edit | 400 | 400 | 392 | 8 |
+| Llama 3 | Zero shot | 400 | 400 | 400 | 0 |
+| Llama 3 | One shot | 400 | 400 | 400 | 0 |
+| Llama 3 | Reason edit | 400 | 399 | 173 | 227 |
 
-| Direction | Text changed | Increase | Within band | Decrease |
-|---|---|---|---|---|
-| En to Tl | 96 | 41 | 949 | 7 |
-| Tl to En | 93 | 19 | 968 | 10 |
-| En to Es | 85 | 33 | 955 | 9 |
-| Es to En | 103 | 27 | 961 | 9 |
+All failures occurred in reason-then-edit. JSON structure and diagnostic semantics are distinct checks: vLLM or API structured decoding supplies a JSON contract; Pydantic checks unique categories, NONE exclusivity, note length and nonempty translations afterward. Neither mechanism guarantees factual correctness of a diagnostic or translation.
 
-Increase means native COMET delta > 0.02; decrease means delta < −0.02; the middle band includes both endpoints. The threshold corresponds to 2 COMET points, not 0.02 reported points. Totals are 120 increases, 3,833 within band and 35 decreases. The middle band is not a count of unchanged translations: 3,611 hypotheses are textually identical, and 222 changed hypotheses fall within the band.
+| Failure screen on unusable responses | Llama | GPT |
+| --- | --- | --- |
+| Repeated diagnostic category | 184 | 8 |
+| Empty or over 25 word diagnostic note | 45 | 0 |
+| NONE combined with another category | 23 | 0 |
+| Diagnostic count outside one to six | 3 | 0 |
+| Unparseable JSON | 1 | 0 |
+| Non stop finish reason | 1 | 0 |
 
-**Table 4 Baseline quality pools for later pilot analysis**
+The screens overlap, so these rows must not be added to obtain the failure total. The one Llama unparseable response also ended abnormally. No invalid content was repaired or selectively regenerated. All raw completions and baseline fallback outcomes remain in the evidence.
 
-| Direction | COMET below 0.80 | COMET at least 0.90 |
-|---|---|---|
-| En to Tl | 187 | 237 |
-| Tl to En | 75 | 387 |
-| En to Es | 119 | 277 |
-| Es to En | 53 | 283 |
+One GPT response used NONE while changing only the spacing in half- miler to half-miler (Tl-to-En item 549). It passed the existing structural validators and is reported as an instruction-consistency flag, not retroactively reclassified as a fallback. No acceptance rule was changed after observing the outputs.
 
-These are dev baseline pool sizes, not pilot outcomes or human quality judgments. The sampling plan is uniform across aligned IDs, so it is balanced by direction and strategy rather than by baseline quality.
+### Cost and reproducibility
 
-### Efficient use of the A100
+The GPT pilot used 643,126 input tokens and 53,095 output tokens, with no cached input tokens and no recorded retries. Applying the recorded uncached rates gives an estimated token charge of $0.1283259, approximately $0.13, not an invoice or total account purchase. Six server system_fingerprint values occurred within the same dated model snapshot; they are retained in the audit. Seed and temperature settings do not establish bit-identical server behavior.
 
-Generation produced 7,976 final records: 997 IDs × four directions × two conditions. This count is not the number of independent model sequences. Logged inference totaled 368.06 seconds and invocation wall time was 381.06 seconds, approximately 6 minutes 21 seconds, on an A100 80 GB. Model download and loading before the invocation are excluded. Amortized item times are not isolated request latency.
+The 1,200 Llama records contain 78 unique generation batches with summed logged batch wall time of 249.83 seconds, including reused smoke records. The latest full invocation logged 96.98 seconds of model initialization separately. GPT median request wall time was 1,057 ms. GPT request latency and Llama batch-amortized timing are different measures and are not compared as isolated per-item speeds.
 
-Evaluation scored all 3,988 control triplets and only the 377 changed split triplets, reusing scores for identical source, hypothesis and reference triplets. This required 4,365 scored triplets rather than 7,976. The rechecked original COMET scores matched the archived scores exactly in every direction.
+## 5  Editing harm and preservation screens
 
-### Independent audit scope
+Improved means native COMET delta > +0.02; harmed means delta < -0.02; the inclusive middle band is [-0.02, +0.02]. A native difference of 0.02 is 2 reported COMET points. Textual editing is measured separately. These metric bands are not human quality labels or equivalence tests.
 
-The supplied evidence supports verification of configuration and cache hashes, per item COMET means, all item paired intervals and change bands. The uploaded evidence does not contain the raw translation JSONL files, so BLEU and chrF++ have not been independently rescored here; their reported values and signatures are retained from the provenance checked Colab evaluator. Source subgroup membership is recorded in the generation evidence; subgroup intervals were not independently reconstructed from raw rows here.
+| Model | Strategy | Edited | Improve | Band | Harm | Protect over | Rate |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| GPT Mini | Zero shot | 143 | 38 | 354 | 8 | 3/116 | 2.59% |
+| GPT Mini | One shot | 320 | 67 | 314 | 19 | 6/116 | 5.17% |
+| GPT Mini | Reason edit | 97 | 26 | 354 | 20 | 3/116 | 2.59% |
+| Llama 3 | Zero shot | 260 | 37 | 331 | 32 | 9/116 | 7.76% |
+| Llama 3 | One shot | 326 | 49 | 314 | 37 | 11/116 | 9.48% |
+| Llama 3 | Reason edit | 158 | 8 | 344 | 48 | 16/116 | 13.79% |
 
-## 4 Post Editing Implementation
+Rows pool four directions descriptively, each with 400 outcomes. Protect-pool over-editing requires an original baseline score at least 0.90, a textual change, and native COMET loss exceeding 0.02. Each strategy has 116 protect observations across the four directions: En-to-Tl 22, Tl-to-En 45, En-to-Es 21 and Es-to-En 28. The rate shown uses all 116; the condition CSV also records the edited-protect denominator. No pooled inferential claim is made.
 
-Candidate prompt version candidate_v1_not_frozen implements all three roadmap strategies. The templates treat source text as the authority, require the requested target language, discourage stylistic rewriting and preserve names, numbers and dates. Accurate drafts should be returned unchanged. Source and draft strings are treated as data rather than executable instructions.
+Retrieved one-shot edits more often than zero-shot in both models. GPT one-shot has more metric-harmed items than GPT zero-shot (19 versus 8 out of 400), despite larger mean gains in several directions. Improvement and protection are separate outcomes; neither the mean nor the edit rate alone answers the over-editing question.
 
-### Prompt strategies and structured output
+| Heuristic screen across 1200 outcomes | Llama | GPT |
+| --- | --- | --- |
+| Digit multiset changed | 11 | 5 |
+| Baseline digit token newly absent | 6 | 2 |
+| Capitalized source token newly absent | 28 | 12 |
+| Target language mismatch flag | 0 | 0 |
+| Length ratio anomaly flag | 0 | 0 |
 
-Zero shot receives the current source and NLLB draft and returns edited_translation only. Retrieved one shot adds one solved dev demonstration containing its source, draft and gold translation. Reason then edit returns a diagnostics array before edited_translation, with brief observable error summaries separated from the translation.
+These are screening counts, not confirmed corruption rates. Three of Llama's six digit-loss flags and both GPT digit-loss flags arise from correcting the duplicated 100-foot-long [100 m] baseline in item 296 to 100-meter-long. Legitimate translated titles, transliteration, inflection and numeral scaling also trigger screens. Conversely, a predominantly English output may contain an untranslated word without a language-ID mismatch. Zero language/length flags do not establish zero semantic errors.
 
-The six allowed diagnostic categories are MISTRANSLATION, OMISSION, UNSUPPORTED_ADDITION, MORPHOSYNTAX_MISMATCH, NAMED_ENTITY_CORRUPTION and NONE. Notes are limited to 25 words each, categories cannot repeat, and NONE must appear alone. Pydantic validators reject empty translations, duplicate or extra keys and incoherent diagnostics. The runner distinguishes JSON parsing, schema validity and usable completion; a truncated response can parse successfully while remaining unusable.
+Only three Spanish-to-English pilot items lie below baseline COMET 0.80. Subgroup effects in that improve pool are consequently too sparse for broad conclusions. All numerical flags remain available for systematic source review in the evidence.
 
-vLLM supplies structural JSON constraints; Pydantic supplies post generation and cross field validation. These are separate mechanisms. Unusable outputs retain their raw record and fall back to the baseline, with no selective repair pass. Actual model compliance rates remain unmeasured.
+## 6  Source based case review
 
-### Retrieval and leakage controls
+The following cases were inspected from saved source, draft, completion and reference text. They illustrate mechanisms and metric limitations; they are not independent bilingual ratings or estimates of a population error frequency. All remain in the quantitative results.
 
-The builder encodes 997 dev sources per source language using normalized float32 LaBSE embeddings and exact FAISS IndexFlatIP cosine ranking. Top 1 is selected within the appropriate direction with a deterministic sentence ID tie break. Semantic similarity is measured; a separate syntactic similarity claim is not made.
+### Useful terminology correction  En to Tl item 983
 
-The same 100 seed 42 pilot IDs are used in all directions. All 100 IDs are excluded from every demonstration pool, leaving 897 candidate IDs before exact duplicate source exclusion. The current query reference and baseline quality scores never enter a model prompt. Only the retrieved nonpilot example may expose its own gold dev translation. Gold pilot references remain in a separate offline evaluation file.
+The source distinguishes bird flu from its formal name avian influenza. The baseline repeats trangkaso ng ibon for both. GPT zero-shot and one-shot restore avian influenza and gain 32.361 segment COMET points; Llama reason-then-edit gains 36.763. This case explains part of the pilot mean and is disclosed in the influence analysis.
 
-Prepared code saves embeddings, FAISS indexes, corpus maps, 400 retrieval links, 1,200 Llama jobs and configuration hashes. These are expected outputs of the builder; their creation on the real corpus is not yet verified. LaBSE and Llama revisions are resolved and pinned by the notebook before execution, rather than silently substituting a different model.
+### Name corruption despite a valid schema  Tl to En item 849
 
-## 5 Pilot Readiness and Technical Issues
+Llama reason-then-edit changes Hangi Meal to The Last Meal and asserts that a different name is correct. The saved baseline COMET is 0.916; the edited score is 0.776, a loss of 13.998 points. The response is schema-valid and belongs to the protect-pool over-edit count. Valid JSON and a plausible-looking diagnosis do not establish semantic fidelity.
 
-The supplied Colab notebook targets Meta Llama 3 8B Instruct, not Llama 3.1. It first prepares retrieval and then runs a 24 output smoke check: two distinct dev IDs × four directions × three strategies, including a multi sentence item. The full Llama pilot is 1,200 outputs. The notebook defaults to smoke execution; the full run requires the runner’s full stage after smoke review.
+### Unsupported placeholder  En to Es item 233
 
-Candidate generation settings are BF16 without quantization, temperature 0, top_p 1, top_k −1, seed 42 and a 1,024 output token cap. vLLM uses an 8,192 token context, GPU memory utilization 0.70, at most 16 concurrent sequences, prefix caching and eager execution to avoid compilation startup. These settings are prepared and dependency resolved; they are not yet validated by a successful GPU pilot.
+The source and draft retain Aleisk. A schema-valid Llama reason-then-edit response replaces it with [correct city name] after claiming that the source city is invalid. The output loses 9.213 COMET points. The visible placeholder shows that structural validity alone cannot establish a usable scientific translation in the ordinary linguistic sense; usable in the tables means operational validator acceptance.
 
-### Local validation completed
+### Digit corruption with a metric gain  En to Tl item 429
 
-Synthetic tests with Pydantic 2.12.3 passed for query reference isolation, permitted demonstration references, self exemplar rejection, all pilot IDs excluded, duplicate source rejection and deterministic tie breaking. Other checks cover JSON validation, diagnostics ordering, truncation fallback, two distinct smoke IDs, a 1,200 job fixture, checkpoint reuse and deliberate checksum corruption. All six notebook code cells compile and embedded source hashes match the prepared modules. No real post editor output was generated by these tests.
+Llama one-shot changes the source-backed area 23,764 to 27,874 square kilometres. This is a concrete unsupported numeric change, yet its COMET score increases by 0.950 points. A primary neural metric can miss a factual corruption; the preservation analysis is therefore necessary even when mean quality increases.
 
-### Issues and responses
+### Metric harm without obvious meaning loss  En to Es item 825
 
-An earlier segmentation assertion expected fewer changes than the seven reviewed corrections. The expected item set was corrected and the complete synthetic suite was rerun. Spanish Jr. and detached parentheticals were repaired before the full generation. Tagalog segmentation still uses a heuristic and remains a limitation.
+GPT one-shot rewrites a bajo costo as de manera económica and adds ya sea in an otherwise source-consistent sentence about low-cost travel. COMET falls by 21.483 points. Inspection does not reveal a clear semantic loss commensurate with that penalty. It is retained as a metric-harmed item and treated as a case requiring linguistic confirmation, not automatically called hallucination.
 
-The original Python 3.13 environment was retained for NLLB generation. COMET evaluation used an isolated Python 3.11 environment to avoid dependency conflicts. Retrieval and Llama preparation use separate pinned environments. Successful dependency resolution is recorded as setup validation, not proof that inference completed.
+### Meaning changing reinterpretation  Es to En item 81
 
-An earlier notebook label suggested a Phase 3 pilot despite containing Phase 2 code. The replacement notebooks now separate completed baseline evaluation from candidate retrieval and Llama execution. Hash checked checkpoints support resumption after a Colab disconnect; an unfinished batch may need recomputation.
+GPT zero-shot changes the source relationship prima del Velocirráptor from a cousin of the Velociraptor to prior to the Velociraptor. The relationship becomes temporal and COMET drops 6.057 points. This is an example of a fluent edit introducing a source interpretation error.
 
-Pending measurements include parse and schema success, usable output and fallback rates, latency, edit rate, over editing on strong drafts, number and entity preservation, target language errors, and COMET changes by direction and strategy. None is assigned an invented value in this report. GPT 4o Mini remains pending API access and its runner.
+## 7  Comparison with the final ICAI paper
 
-## 6 Completion Criteria and Next Phases
+The supplied 16-page paper is Large Language Model-Based Automatic Post-Editing for Test-Time Domain Adaptation in Neural Machine Translation, by Benyamin Ahmadnia, Shazan Mohammed, Sahar Hooshmand and Li Zhou. The comparison below uses its stated methods and experiments; its underlying datasets, code and reported results were not independently reproduced here.
 
-The next priority is to finish and analyze the dev pilot before freezing settings. Repeating NLLB generation or completed baseline scoring would spend A100 time without resolving the remaining question.
+| Dimension | ICAI paper | Norris study |
+| --- | --- | --- |
+| Objective and data | Four EN-to-DE domain-adaptation corpora; 20k/2k/2k split per corpus (p. 6). | En/Tl and En/Es in four directions; FLORES+ dev/devtest; gains and over-editing. |
+| Baseline and editors | OPUS-MT EN-DE and GPT-4 Turbo snapshot (pp. 4, 6-7). | Split NLLB-200 3.3B; GPT-4o Mini and Llama 3 8B. |
+| Substantive shared method | Frozen NMT anchor plus source-conditioned LLM editing; no extra training (pp. 3-4). | Same broad APE architecture; cite as established prior work. |
+| Substantive shared retrieval | Multilingual Sentence-BERT cosine top-3 exemplars (p. 4). | LaBSE/FAISS top-1 dev exemplar with pilot and duplicate-source exclusions. |
+| Prompt contrast | No exemplars; exemplars; exemplars plus a second terminology-verification call (pp. 4-7). | Zero shot; one shot; single-call diagnostic reason-then-edit. No domain cue or second verifier. |
+| Evaluation | BLEU, COMET, ablation BERTScore, human ratings and terminology/hallucination analysis (pp. 8-13). | COMET, BLEU, chrF++, protect-pool harm, schema/fallback accounting; no external raters. |
+| Research extension | Lower-resource pairs, NLLB and open LLMs identified as future work (p. 14). | Empirical extension addressing these axes, with explicit failure and over-editing measurement. |
 
-**Remaining Phase 3 milestones**
+The overlap is substantial at the level of NMT anchoring and semantic exemplar retrieval. A different encoder, exemplar count or output schema does not make retrieval-based APE a new invention. The separate overlap document provides a page-level crosswalk and proposed manuscript disclosure. J.UCS is excluded from the comparison as instructed.
 
-| Order | Action | Evidence needed |
-|---|---|---|
-| 1 | Run the prepared 24 output Llama smoke check | Model revisions, retrieval files, raw outputs and logs |
-| 2 | Review failures and run the 1,200 output Llama pilot | Complete hash checked records for every planned job |
-| 3 | Score and diagnose the pilot on dev | Quality, validity, edit and preservation summaries |
-| 4 | Complete GPT pilot when access is available | Equivalent 1,200 jobs or a documented PI approved deviation |
-| 5 | Freeze prompts and experimental settings | Versioned freeze manifest and unresolved issue disposition |
+Recommended positioning: Norris evaluates established APE components under a distinct four-direction, two-editor design with a stronger baseline, resource/direction analysis, strict failure accounting and protect-pool over-editing. It should not claim the first hybrid NMT-LLM pipeline, first semantic exemplar retrieval, or first training-free APE method. No direct numeric superiority comparison with ICAI is justified because data, models and evaluation differ.
 
-Pilot analysis should retain invalid generations in the accounting and report baseline fallback separately. Over editing should be evaluated on predeclared strong baseline pools, with both edit frequency and quality change. Name and number checks are heuristic flags requiring systematic source based review; they are not human evaluation or guaranteed error labels. Candidate revisions must remain logged rather than being chosen from devtest scores.
+## 8  Reviewed candidate configuration
 
-### Protocol freeze requirements
+The exact candidate snapshot is included as Reviewed_Candidate_Configuration.json. Its status is reviewed candidate pending PI decisions, and freeze_declared is false. No model, prompt, validation rule, fallback policy or sample was silently changed after the pilot.
 
-The freeze must record exact prompt bytes, schemas, model revisions, retrieval exclusions and tie breaking, decoding and chat template settings, output limits, stop rules, failure handling, sample IDs and scoring definitions. Prompt, retrieval and model decisions remain dev only. Phase 3 is complete only after pilot evidence and analyses are reviewed and the freeze is explicitly recorded. Any outstanding PI scope decisions must be documented rather than silently assumed resolved.
+| Setting | Measured configuration |
+| --- | --- |
+| Prompts | candidate_v2_explicit_diagnostics_not_frozen; exact system/instruction bytes and JSON schemas retained. |
+| Llama decoding | BF16, temperature 0, top_p 1, top_k -1, seed 42, output cap 1024, context 8192. |
+| Llama engine | vLLM 0.11.2, GPU utilization .70, up to 16 sequences, eager execution and prefix caching. |
+| GPT decoding | Exact gpt-4o-mini-2024-07-18; Chat Completions; strict JSON schema, temperature 0, top_p 1, seed 42, output cap 1024, store false. |
+| GPT execution | Four workers, four request starts per second; five HTTP retries allowed; none used. Transport uncertainty stops rather than repeating a possible paid call. |
+| Retrieval | 997 rows per source language, normalized float32 LaBSE, exact FAISS inner product/cosine, top-1, deterministic ID tie break; 100 pilot IDs excluded. |
+| Output policy | Reject duplicate JSON keys, schema failures, empty translations and abnormal completion. Retain raw output and use the unchanged baseline draft; no selective content repair. |
 
-### Phase 4 and Phase 5 according to the roadmap
+| Artifact | Pinned revision |
+| --- | --- |
+| NLLB-200 3.3B | 1a07f7d195896b2114afcb79b7b57ab512e7b43e |
+| LaBSE | 836121a0533e5664b21c7aacc5d22951f2b8b25b |
+| Llama 3 8B | 8afb486c1db24fe5011ec46dfbe5b5dccdb575c2 |
+| COMET-22 | 2760a223ac957f30acfb18c8aa649b01cf1d75f2 |
 
-After the freeze, Phase 4 runs the main experiment on the 1,012 held out devtest IDs in four directions, for two post editors and three strategies: 24,288 planned post editing outputs. This total assumes both model conditions remain approved and accessible. Use resumable checkpoints, track missing or failed jobs and keep the approved split baseline as the primary comparison with unsplit diagnostics retained.
+Generation and evaluation remain isolated environments. Llama used Python 3.11.17, torch metadata 2.9.0 and Transformers 4.57.1; evaluation used torch 2.6.0+cu124, Transformers 4.49.0, unbabel-comet 2.2.7, NumPy 1.26.4 and SacreBLEU 2.6.0. Full resolved requirements and the COMET encoder configuration commit are in the raw evidence.
 
-Phase 5 evaluates quality and failures using COMET as primary, BLEU and chrF++ as secondary, with the predeclared paired statistical analysis and comparison families. Main experiment inference and confirmatory analysis are still future work. Transfer reviewed methods and current dev tables into the existing ICNLP Overleaf project; do not describe future pilot results as completed findings.
+BLEU uses mixed case, 13a tokenization and exponential smoothing. chrF++ uses character order 6, word order 2 and beta 2. COMET native segment scores are retained alongside the x100 reporting scale. Source, hypothesis and reference determine every score-cache key together with the scoring configuration.
 
-## 7 Provenance and Repository Handoff
+## 9  Numerical audit and acceptance disposition
 
-The source evidence is the completed dev evaluation ZIP, its generation and evaluation manifests, four numeric per item score caches, evaluator source and resolved package list. Reports 1 and 2, the eight role instructions and September 24 PI feedback supplied the scope and next phase criteria. Report 3 updates the observed state; earlier repository content claims are not treated as proof of the current remote state.
+The independent audit completed the following checks. These checks support the numbers and provenance in this report; they do not turn automatic flags into gold linguistic judgments.
 
-**Pinned model and data revisions**
+• Prepared configuration and all preparation/code hashes; analysis signature
 
-| Artifact | Revision |
-|---|---|
-| FLORES+ | 5fec6c13f9e5a4db2f745d4ec0d7c9721ddc4f06 |
-| NLLB 200 3.3B | 1a07f7d195896b2114afcb79b7b57ab512e7b43e |
-| COMET 22 | 2760a223ac957f30acfb18c8aa649b01cf1d75f2 |
+• 1200 unique prompt jobs, 400 offline query rows, query-field/reference isolation
 
-Generation signature
-f4a3af94ba1e72fddc14a8986924fc23e00ae2884dc8d51800ad79e43a6a0563
-Evaluation signature
-6d6e94fc2a8d3d8f34d4a1b4d5cddedc139ba4ce278cc1518277093dbefb3b08
+• All 400 nearest-neighbor links independently reconstructed; all pilot IDs and duplicate sources excluded
 
-Generation used Python 3.13.15, torch 2.11.0+cu130 and Transformers 5.18.0. Evaluation used Python 3.11.17, torch 2.6.0+cu124, Transformers 4.49.0, unbabel comet 2.2.7, NumPy 1.26.4 and SacreBLEU 2.6.0. Exact evaluator settings and resolved packages are included with the evidence. BLEU uses mixed case, 13a tokenization and exponential smoothing; chrF++ uses character order 6, word order 2 and beta 2.
+• All 2400 raw-record hashes, prompt lineage, schema/fallback decisions; exact GPT snapshot; unique responses and usage accounting
 
-### What the GitHub update contains
+• 1492 exact source-hypothesis-reference score-cache keys; all segment deltas, preservation flags and baseline recheck
 
-The prepared update includes Report 3 in PDF, Word and Markdown; exact numeric dev evidence; the evaluator and candidate prompt, retrieval and Llama modules; clean Colab notebooks; validation scripts; a candidate status manifest; and LaTeX dev table material for the existing manuscript. Raw FLORES text, translation JSONL files, weights, embeddings, indexes and credentials are excluded.
+• All 24 condition means, counts, editing/harm/protect denominators, 10000-resample CIs, and BLEU/chrF++ values independently recomputed
 
-The original sentence split generation was run in Colab. Its specification and output hashes are retained, but the supplied evidence does not include the exact generation cell source; this update does not claim to archive that missing source. The evaluator source that produced the scores is preserved separately from the current resume evaluator.
+The audit independently recomputed BLEU and chrF++ from raw text, all 24 COMET means and paired intervals from the supplied segment scores, and the exact score-triplet alignment. It did not rerun neural COMET inference. The supplied Colab evaluator independently rechecked all 400 pilot baselines. Language-ID flags were retained from the pinned langdetect run rather than regenerated in this report review.
 
-The supplied Mac snapshot showed main at commit 35766b3 with only the scaffold tracked. The current remote could not be authenticated from this session. The update package creates a separate branch from fetched origin/main, preserves existing files when conflicts occur and does not commit or push automatically. A successful remote commit or pull request must be verified before claiming GitHub is updated.
+### Decisions brought to the PI before freeze
 
-Current conclusion: the split baseline is established and evaluated on dev; the post editing implementation is ready for runtime validation. Phase 3 completion, the protocol freeze and the main experiment remain pending.
+1. Review the substantial ICAI anchoring/retrieval overlap and the proposed contribution boundary, as required by the September 24 instruction. This is a disclosure and positioning decision; the current comparison does not claim the shared methods as new.
+
+2. Confirm the disposition of reason-then-edit. The recommended measured configuration retains candidate v2, all three strategies and the original strict fallback policy, with its high Llama failure rate prominently reported. If the diagnostic contract is redesigned or a condition is removed, document that decision and validate the affected dev conditions before freeze.
+
+After those items are resolved, record the final protocol configuration and its hashes, update the repository, and proceed under the PI's Phase 3 acceptance instructions. The approved-in-principle Phase 4/5 plan is not treated here as permission to start the main devtest run before those steps. No new main-experiment output, devtest score, Overleaf edit or remote repository commit is claimed in this report.
+
+### Artifacts and remaining limits
+
+The companion package contains the editable report, page-level ICAI audit, reviewed candidate snapshot, condition CSV, numeric segment scores, independent audit result and script, and a pilot LaTeX table for the existing ICNLP manuscript. The original 46 MB full-pilot evidence ZIP remains the authority for raw outputs and run logs. Store it privately; do not publish benchmark text or credentials.
+
+The current evidence establishes Norris-only run paths and provenance but does not include ICAI or TRACE-MT repositories for a byte-level cross-project audit. The earlier original split-generation cell was not recovered in this review; its documented specification and output hashes remain available from the baseline evidence. These source-archival limits are retained rather than described as resolved.
+
+Primary evidence analysis signature  9d6830a0b9c7cc97e2b372c78c2c700734fd5cf65ab30e6177e7ae8d531ddc90

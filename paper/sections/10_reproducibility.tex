@@ -1,0 +1,18 @@
+\section{Pinned Artifacts and Development Tables}
+The public companion is \url{https://github.com/SHAZAN01/csudh-norris-ape-2026}. The measured prompts are candidate v2, with their complete identifier, exact bytes, schemas, sample IDs, revisions, and hashes in the reviewed candidate JSON under \path{config/phase3/}. The current freeze flag is false. Historical ``GPT pending'' fields inside the pre-GPT preparation provenance are retained as historical bytes, not as the current execution status.
+
+Revision prefixes are listed below for readability; the manifest retains the complete immutable identifiers.
+\begin{center}\small
+\begin{tabular}{ll}\toprule
+Artifact & Revision prefix \\\midrule
+FLORES+ & \texttt{5fec6c13f9e5} \\
+NLLB-200 3.3B & \texttt{1a07f7d19589} \\
+LaBSE & \texttt{836121a0533e} \\
+Llama model/tokenizer & \texttt{8afb486c1db2} \\
+COMET & \texttt{2760a223ac95} \\\bottomrule
+\end{tabular}
+\end{center}
+
+Retrieval used sentence-transformers 3.4.1 and FAISS CPU 1.9.0; it does not require a GPU FAISS build. Llama generation used vLLM 0.11.2, torch 2.9.0, and Transformers 4.57.1. Evaluation used torch 2.6.0+cu124, Transformers 4.49.0, unbabel-comet 2.2.7, NumPy 1.26.4, and SacreBLEU 2.6.0. Generation and evaluation are isolated environments; they should not be represented as a single tested installation.
+
+The report's analysis signature begins \texttt{9d6830a0b9c7cc97}; the complete hash is recorded in the status manifest. Numeric audit artifacts contain all 24 conditions; the private original evidence contains raw completions and exact source/hypothesis/reference alignment. An audit script can reproduce lexical scoring from that evidence and check COMET aggregation without GPU inference.

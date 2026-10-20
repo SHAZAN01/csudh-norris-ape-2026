@@ -1,0 +1,15 @@
+\section{Discussion and Source-Based Error Review}
+\subsection{Validity is a measured part of the system}
+The diagnostic condition's contract is deliberately stricter than the plain translation schema. Its high Llama failure rate therefore concerns the joint model--prompt--validator system, rather than proving that explanations intrinsically impair translation. Filtering to accepted responses would change the sample in a model-dependent way. Retaining fallback outputs measures the deployable policy and prevents successful-response selection bias.
+
+The development evidence supports disclosing this limitation before finalizing the protocol. Retaining the measured condition preserves the planned comparison; revising the diagnostic contract would require a documented change and affected-condition revalidation on dev. The current manuscript does not resolve that decision on behalf of the PI.
+
+\subsection{Average quality and fidelity can disagree}
+Source-based cases expose different failure mechanisms. In English-to-Tagalog item 429, Llama one-shot changes the source-supported area 23,764 to 27,874 square kilometres, yet COMET rises by 0.950 points. This is a factual corruption that a positive metric delta fails to identify. In Tagalog-to-English item 849, an accepted Llama diagnostic response changes the name Hangi Meal to The Last Meal and loses 13.998 points. Valid JSON and a confident error explanation do not establish fidelity.
+
+Conversely, GPT one-shot's English-to-Spanish item 825 replaces \emph{a bajo costo} with \emph{de manera econ\'omica} in a source-consistent travel sentence, while COMET falls by 21.483 points. Inspection does not identify an obvious meaning loss commensurate with the penalty. We retain the metric flag and identify the need for linguistic confirmation; we do not label it a gold hallucination.
+
+Preservation screens also have false positives. Three Llama digit-loss flags and both GPT digit-loss flags arise from correcting a duplicated baseline expression in item 296 from ``100-foot-long [100 m]'' to ``100-meter-long.'' Transliterated names and valid numeral scaling trigger other screens. Zero language-mismatch flags do not imply zero semantic errors.
+
+\subsection{Influence and generalization}
+English-to-Tagalog item 983 distinguishes bird flu from the formal term avian influenza, whereas the baseline repeats the same Tagalog expression. GPT zero-shot and one-shot restore the distinction and gain 32.361 segment points. A post hoc leave-one-item-out diagnostic changes GPT one-shot's mean from +1.463 to +1.151 points and Llama one-shot's from +0.087 to -0.285. All 100 items remain in the primary results. This sensitivity discourages declaring an early strategy winner or adjusting held-out evaluation to favor the pilot.

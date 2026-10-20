@@ -6,20 +6,20 @@
 **Graduate research assistant:** Shazan Ansar Mohammed  
 **Institution:** California State University, Dominguez Hills  
 **Program:** Norris Research Program, Fall 2026  
-**Progress snapshot:** 17 October 2026
+**Progress snapshot:** 19 October 2026
 
-This project evaluates whether large language models can improve NLLB translations
-while avoiding unnecessary edits and meaning changes. The experiment compares
-zero shot, retrieved one shot and structured reason then edit strategies across
-English ↔ Tagalog and English ↔ standard Spanish.
+The sentence-split development baseline, actual LaBSE retrieval, Llama smoke run,
+and full Llama/GPT development pilots are complete. The same 100 aligned dev IDs
+produce **2,400 outcomes across four directions, three strategies and two editors**.
+All 24 condition summaries, fallback decisions and retrieval links were audited.
+**Phase 3 remains open: protocol freeze and PI sign-off are pending.** Main devtest
+experiments have not started. The manuscript in `paper/` reports development only.
 
-**Current conclusion:** the sentence split NLLB baseline has been generated and
-evaluated on dev. Candidate prompts, schemas, retrieval preparation and a Llama
-runner are implemented and locally tested. Real retrieval execution and Llama
-pilot evidence remain pending. **Phase 3 is open and the protocol is not frozen.**
-
-The results below measure the effect of baseline segmentation. They are not LLM
-post editing results. Devtest has not been opened or scored in Phase 3.
+GPT retrieved one-shot gains +1.463 COMET points into Tagalog (descriptive dev
+95% interval [+0.710, +2.396]). Llama reason-then-edit uses baseline fallback on
+227/400 outcomes, versus 8/400 for GPT. These failures remain in the results.
+The ICAI overlap review discloses shared anchoring/retrieval methods and positions
+Norris as an empirical extension; it is brought to the PI before freeze.
 
 ## Read first
 
@@ -30,23 +30,24 @@ post editing results. Devtest has not been opened or scored in Phase 3.
 - [Machine readable development metrics](docs/phase3/evidence/evaluation/dev_baseline_metrics.json)
 - [Candidate status manifest](config/phase3/status.json)
 - [Metric interpretation notes](docs/phase3/NUMERICAL_NOTES.md)
+- [ICNLP development manuscript PDF](paper/Norris_ICNLP_Development_Draft.pdf)
+- [Manuscript source and compilation guide](paper/README.md)
+- [Specific decisions before freeze](docs/phase3/PROTOCOL_DECISIONS_PENDING.md)
 
 ## What is complete
 
-| Work item | Evidence and current state |
+| Work item | Current state |
 |---|---|
-| Phase 2 data and original NLLB baseline | Earlier reported work; original outputs remain on Drive |
-| Dev data integrity | 997 aligned, nonempty records per direction; source checksums verified |
-| Lossless source segmentation | Final candidate tested; all 2,991 source language records reconstruct exactly |
-| Split and control generation | 7,976 final records across four directions and two conditions |
-| Baseline evaluation | COMET, BLEU and chrF++ recorded on dev; paired COMET diagnostics audited |
-| Prompt and schema code | Three candidate strategies implemented and tested with synthetic fixtures |
-| Retrieval implementation | LaBSE/FAISS builder implemented; real corpus execution evidence pending |
-| Llama implementation | Resumable runner and 24 output smoke notebook prepared; execution evidence pending |
-| Full pilot and analysis | Still to execute and evaluate |
-| GPT 4o Mini | API access and runner remain pending |
-| Protocol freeze | Not declared |
-| Main devtest experiment | Future Phase 4 work after freeze |
+| Split/unsplit dev baseline | Complete: 997 items per direction and condition |
+| Dev retrieval preparation | Complete: three LaBSE indexes; all 400 pilot links checked |
+| Llama smoke/full pilot | Complete: 24 smoke outcomes accounted for within the 1,200 full outcomes |
+| GPT-4o Mini pilot | Complete: 1,200 outcomes with the exact dated snapshot |
+| Quality and failure analysis | Complete: all 24 conditions, failures and preservation screens |
+| ICAI comparison | Complete; PI review before freeze pending |
+| Report 3 | Updated PDF, DOCX and Markdown with measured results |
+| Manuscript | Modular IEEEtran development draft, pilot tables and source verification |
+| Protocol freeze / Phase 3 acceptance | Pending PI decisions and final configuration record |
+| Main devtest experiment / analysis | Future Phases 4 and 5; not executed |
 
 ## Study design and data boundaries
 
@@ -217,7 +218,7 @@ independently reconstructed from the numeric caches alone.
 
 ## Candidate post editing system
 
-**Prompt version:** `candidate_v1_not_frozen`.
+**Measured prompt version:** `candidate_v2_explicit_diagnostics_not_frozen`.
 
 | Strategy | Model context | Required response |
 |---|---|---|
@@ -259,17 +260,17 @@ references and baseline metric scores never enter prompts. Only the retrieved
 nonpilot demonstration may expose its own gold dev translation. Pilot gold
 references are stored separately for offline evaluation.
 
-The preparation code is designed to save three embedding arrays and indexes,
+The completed preparation saved three embedding arrays and indexes,
 corpus maps, 400 retrieval links, 400 offline evaluation rows and 1,200 Llama
-jobs, with checksums. These are planned real corpus outputs; their creation has
-not yet been evidenced by a returned execution bundle.
+jobs, with checksums. These outputs are present in the returned full-pilot evidence bundle; all
+400 links were independently reconstructed during report review.
 
 ### Candidate Llama settings
 
 | Setting | Candidate value |
 |---|---|
 | Model | `meta-llama/Meta-Llama-3-8B-Instruct` |
-| Model revision | Resolved and pinned by the notebook before execution |
+| Model revision | `8afb486c1db24fe5011ec46dfbe5b5dccdb575c2` |
 | Precision | BF16; no quantization |
 | Sampling | Temperature 0; top_p 1; top_k −1; seed 42 |
 | Output cap | 1,024 tokens |
@@ -305,35 +306,30 @@ retained. `docs/phase3/evidence/code/generating_evaluator_source.py` is the **sc
 the missing translation generator. The package therefore does not claim complete
 source archival for that earlier generation step.
 
-## Run next in Colab Pro
+## Development pilot results and reproduction
 
-1. Open `notebooks/phase3/02_prompts_retrieval_llama.ipynb` in Colab.
-2. Select an **A100 80 GB** runtime and retain the existing Drive root
-   `/content/drive/MyDrive/norris`.
-3. Grant the notebook access to the Colab Secret `HF_TOKEN` for the authorized
-   model account. Do not print or commit the token.
-4. Run cells in order. The notebook restores its tested embedded source,
-   installs separate environments, validates the saved baselines, pins model
-   revisions and prepares retrieval/jobs.
-5. Its default execution is the **24 output smoke stage**: two distinct dev IDs
-   × four directions × three strategies, including a multi sentence item.
-6. Retain the downloaded `Norris_Phase3_Llama_Smoke_Evidence_<runsha>.zip`.
-   Review revisions, retrieval exclusions, raw completions, token limits,
-   JSON/schema/usable counts, fallbacks and logs.
-7. After reviewing the smoke evidence, run the saved runner with the exact
-   pointer shown by the notebook and `--stage full` to produce the 1,200 output
-   Llama pilot. The default notebook does not run that full stage automatically.
+The pilot runs are complete. Do not rerun an old notebook merely because its
+historical stage text says “pending.” No further GPU run is needed to review
+Report 3. Start with `docs/phase3/evidence/pilot/pilot_condition_results.csv` and
+`independent_numeric_audit.json`. COMET is native score ×100; the exact baseline
+for these conditions is the 100-ID sample, not the full 997-ID dev corpus.
 
-The original Python 3.13 NLLB generation environment and Python 3.11 COMET
-environment were different. Retrieval and vLLM also use separate environments.
-Use the notebook's recorded installations rather than installing all packages
-into Colab's base environment. Dependency resolution passed locally; real GPU
-pilot execution remains to be validated.
+The exact measured pilot code is in `src/phase3/post_editing/`. `gpt_pilot.py`
+implements the dated API snapshot with resumable records, four workers, four
+request starts/sec, explicit transient HTTP retries and halt-on-uncertain-call
+behavior. `analyze_pilots.py` scores both complete dev pilots. Their original
+CLI/pointer layout is preserved; use `--help` before reproducing the private run.
+Neither is a completed main-devtest execution engine.
 
-Completed NLLB generation and baseline evaluation do not need repeating to
-start the pilot. Load models sequentially and use checkpoint resumption after
-interruptions. Completed matching records are reused; an interrupted unfinished
-batch may require recomputation. No pilot duration is asserted without run logs.
+To reproduce the independent audit, extract the original private full evidence
+ZIP, install `config/phase3/audit_requirements.txt` in an isolated environment,
+then run `python tests/phase3/audit_full_pilot.py /path/to/extracted/evidence`.
+This recomputes lexical metrics and checks COMET caches/aggregation; it does not
+rerun neural COMET inference. Raw evidence is intentionally not in this public
+repository. Numeric-only condition summaries and 2,400 segment-score rows are public.
+
+For the manuscript: `python scripts/update_manuscript_tables.py --check`, then
+`python src/analysis/audit_manuscript.py`. See `paper/README.md` for compilation.
 
 ## Local verification
 
@@ -355,31 +351,24 @@ These checks are not a successful LaBSE indexing run or Llama experiment.
 
 ## Remaining Phase 3 acceptance criteria
 
-- [x] Validate dev alignment and source integrity.
-- [x] Review segmentation and generate the split and unsplit controls.
-- [x] Evaluate and audit the development baseline comparison.
-- [x] Implement candidate prompt, schema, retrieval and Llama generation code.
-- [x] Complete synthetic validation and dependency resolution checks.
-- [ ] Capture actual dev retrieval/index preparation evidence.
-- [ ] Execute and review all 24 Llama smoke outputs.
-- [ ] Execute the full 1,200 output Llama pilot.
-- [ ] Implement and run pilot quality and failure analysis.
-- [ ] Complete the GPT pilot when access is available, or record a PI approved scope deviation.
-- [ ] Review unresolved failures and record any candidate revisions.
-- [ ] Freeze prompts, schemas and experimental settings explicitly.
-- [ ] Update Report 3 with the actual pilot results before labeling Phase 3 complete.
+- [x] Verify alignment, source segmentation, split/unsplit dev results.
+- [x] Implement and execute candidate-v2 retrieval and all three strategies.
+- [x] Review 24 Llama smoke outcomes and both full 1,200-outcome pilots.
+- [x] Complete measured quality, failure and preservation analysis.
+- [x] Compare the supplied final ICAI paper and document shared methodology.
+- [x] Update Report 3 with measured pilot evidence and the exact candidate.
+- [ ] PI review of the substantial ICAI overlap and proposed contribution boundary.
+- [ ] Decide the diagnostic-contract disposition, with dev revalidation if changed.
+- [ ] Record final prompt/schema/model/retrieval/evaluation/code hashes and freeze.
+- [ ] Obtain Phase 3 acceptance before the main devtest study.
 
-Pilot analysis must report parse, schema and usable output rates; fallback;
-edit frequency; COMET changes; over editing on strong baseline pools; number
-and name preservation flags; target language flags; and latency with its
-measurement definition. Heuristic flags are not gold error labels. Keep failed
-outputs in the accounting and distinguish baseline fallback from model success.
-
-The freeze must identify exact prompt bytes, schemas, model/tokenizer revisions,
-retrieval policy, sample IDs, decoding and chat template settings, output limits,
-stop and failure rules, environments and analysis definitions. Model or prompt
-choices must remain based on dev. Outstanding PI scope decisions must be
-documented rather than silently treated as resolved.
+The measured condition retains failures and baseline fallback. A redesigned
+contract, removed condition or changed metric policy must be documented before
+freeze, with affected dev validation. The original roadmap's fastText screen
+differs from the measured langdetect pilot; chrF++ uses word order 2 (the old
+word-order-1 label was inconsistent). These differences are disclosed rather
+than silently changing the measured evidence. The held-out contrast and
+multiplicity plan and exact retrieval eligibility must be recorded before scoring.
 
 ## Next phases according to the roadmap
 
@@ -387,14 +376,14 @@ documented rather than silently treated as resolved.
 |---|---|---|
 | 4 | Main devtest generation using the frozen system matrix and resumable execution | Future work |
 | 5 | Primary COMET analysis, secondary lexical metrics, paired statistics and systematic failure analysis | Future work |
-| 6 | Manuscript integration in the existing ICNLP Overleaf project | Current verified methods may be drafted; full results pending |
-| 7 | Numerical manuscript audit, figures and reviewer response preparation | Future work |
-| 8 | Final environment capture, repository sanitization and handoff | Future work |
+| 6 | Manuscript integration in the existing ICNLP Overleaf project | IEEEtran development draft complete locally; live sync requires access |
+| 7 | Numerical manuscript audit, figures and reviewer response preparation | Development checks and internal memo prepared; main-results audit pending |
+| 8 | Final environment capture, repository sanitization and handoff | Current public update checked; final release pending |
 
 The planned Phase 4 matrix is 1,012 devtest IDs × four directions × two post
 editors × three strategies = **24,288 post editing outputs**, conditional on
 the final approved model matrix and access. The API target in the roadmap is
-`gpt-4o-mini-2024-07-18`; no API execution is claimed here. The current Llama
+`gpt-4o-mini-2024-07-18`; both API and Llama dev execution are now evidenced. The current Llama
 pilot runner is not the complete Phase 4 multi backend execution engine.
 
 Use the **existing ICNLP Overleaf project**. Transfer reviewed methods and the
@@ -419,8 +408,9 @@ Generation ran with Python 3.13.15, torch 2.11.0+cu130 and Transformers 5.18.0.
 Evaluation ran with Python 3.11.17, torch 2.6.0+cu124, Transformers 4.49.0,
 unbabel comet 2.2.7, NumPy 1.26.4 and SacreBLEU 2.6.0. Both used an A100 80 GB.
 The evidence includes resolved evaluation packages and exact metric settings.
-LaBSE and Llama runtime revisions remain pending until the prepared notebook
-resolves and records them. Do not invent commit IDs for unexecuted preparation.
+LaBSE revision is `836121a0533e5664b21c7aacc5d22951f2b8b25b`; Llama revision
+is `8afb486c1db24fe5011ec46dfbe5b5dccdb575c2`. The current measured configuration
+and isolated environment versions are in `config/phase3/Reviewed_Candidate_Configuration.json`.
 
 ## Data and repository policy
 

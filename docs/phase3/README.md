@@ -1,6 +1,8 @@
 # Phase 3 report and evidence
 
-Read `Norris_Phase_Report_3.pdf` for the progress report and `RUNBOOK.md` for the
-remaining completion criteria. `config/phase3/status.json` is the current state.
-The original source evidence ZIP has a historical stage_status.json which is
-superseded by this dated report. No changes are made to archived metrics.
+The 19 October Report 3 supersedes the earlier 17 October pending-pilot report.
+Both full pilots and their analysis are complete. The final freeze and Phase 3
+sign-off remain pending the documented PI decisions. Existing baseline evidence
+is retained unchanged. New numeric-only pilot evidence is under `evidence/pilot/`.
+The original raw evidence ZIP remains private and is required for the full audit.
+See `RUNBOOK.md`, the overlap review and `config/phase3/status.json` for next steps.

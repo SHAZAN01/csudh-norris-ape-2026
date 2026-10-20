@@ -1,0 +1,5 @@
+# Keep numeric CSV exports portable across operating systems.
+*.csv text eol=lf
+# Preserve the upstream IEEE template files, including their inherited whitespace.
+paper/IEEEtran.cls -text -whitespace
+paper/IEEEtran.bst -text -whitespace

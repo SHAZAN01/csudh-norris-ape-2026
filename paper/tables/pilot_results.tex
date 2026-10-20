@@ -1,0 +1,38 @@
+\begin{table*}[t]
+\centering\small
+\caption{Development pilot results. Each row uses all 100 planned items, including fallback. COMET (C) and differences ($\Delta$) are reported on the native $\times100$ scale. Intervals are descriptive paired 95\% development intervals; no main-experiment significance is claimed. Zero/One/Reason denote zero-shot, retrieved one-shot, and reason-then-edit.}
+\label{tab:pilot}
+\begin{tabular}{llrrrrrr}
+\toprule
+Direction & Strategy & BLEU & chrF++ & C & $\Delta$C & 95\% dev interval & Fallback \\
+\midrule
+\multicolumn{8}{l}{\textbf{GPT-4o Mini}}\\
+En$\to$Tl & Zero & 36.910 & 61.240 & 85.203 & +0.761 & [+0.147, +1.608] & 0 \\
+En$\to$Tl & One & 37.757 & 62.087 & 85.905 & +1.463 & [+0.710, +2.396] & 0 \\
+En$\to$Tl & Reason & 36.052 & 60.822 & 84.698 & +0.255 & [-0.726, +1.259] & 3 \\
+Tl$\to$En & Zero & 47.144 & 68.470 & 87.988 & +0.870 & [+0.396, +1.425] & 0 \\
+Tl$\to$En & One & 46.989 & 68.790 & 88.158 & +1.039 & [+0.471, +1.662] & 0 \\
+Tl$\to$En & Reason & 47.408 & 68.467 & 87.736 & +0.617 & [+0.154, +1.169] & 4 \\
+En$\to$Es & Zero & 28.672 & 54.627 & 86.741 & +0.664 & [+0.238, +1.216] & 0 \\
+En$\to$Es & One & 28.260 & 54.475 & 86.695 & +0.619 & [-0.077, +1.295] & 0 \\
+En$\to$Es & Reason & 27.946 & 54.180 & 86.077 & +0.001 & [-0.251, +0.298] & 1 \\
+Es$\to$En & Zero & 30.297 & 58.418 & 87.846 & +0.018 & [-0.182, +0.194] & 0 \\
+Es$\to$En & One & 29.821 & 58.671 & 88.131 & +0.303 & [-0.048, +0.698] & 0 \\
+Es$\to$En & Reason & 29.486 & 57.846 & 87.601 & -0.228 & [-0.591, +0.084] & 0 \\
+\midrule
+\multicolumn{8}{l}{\textbf{Llama 3 8B Instruct}}\\
+En$\to$Tl & Zero & 34.201 & 58.363 & 84.348 & -0.094 & [-1.158, +1.071] & 0 \\
+En$\to$Tl & One & 33.799 & 59.280 & 84.529 & +0.087 & [-0.997, +1.303] & 0 \\
+En$\to$Tl & Reason & 34.222 & 59.139 & 83.806 & -0.637 & [-1.405, +0.389] & 39 \\
+Tl$\to$En & Zero & 45.269 & 66.959 & 87.131 & +0.013 & [-0.456, +0.500] & 0 \\
+Tl$\to$En & One & 45.659 & 66.896 & 87.471 & +0.352 & [-0.115, +0.932] & 0 \\
+Tl$\to$En & Reason & 45.224 & 66.686 & 86.574 & -0.544 & [-0.959, -0.217] & 62 \\
+En$\to$Es & Zero & 27.125 & 53.821 & 86.431 & +0.355 & [-0.037, +0.797] & 0 \\
+En$\to$Es & One & 27.381 & 53.815 & 86.527 & +0.450 & [-0.050, +0.979] & 0 \\
+En$\to$Es & Reason & 26.558 & 53.267 & 85.864 & -0.212 & [-0.570, +0.153] & 65 \\
+Es$\to$En & Zero & 29.776 & 57.955 & 87.636 & -0.192 & [-0.553, +0.128] & 0 \\
+Es$\to$En & One & 29.942 & 57.590 & 87.783 & -0.046 & [-0.476, +0.384] & 0 \\
+Es$\to$En & Reason & 29.202 & 57.240 & 87.267 & -0.562 & [-1.025, -0.192] & 61 \\
+\bottomrule
+\end{tabular}
+\end{table*}
