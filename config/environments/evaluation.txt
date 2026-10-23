@@ -1,0 +1,14 @@
+# torch==2.6.0 from https://download.pytorch.org/whl/cu124 first
+torch==2.6.0
+unbabel-comet==2.2.7
+transformers==4.49.0
+huggingface-hub==0.36.0
+numpy==1.26.4
+sacrebleu==2.6.0
+torchmetrics==0.10.3
+setuptools==80.9.0
+langdetect==1.0.9
+pydantic==2.12.3
+rapidfuzz==3.10.1
+pysbd==0.3.4
+matplotlib==3.9.2

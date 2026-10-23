@@ -428,3 +428,17 @@ Candidate post editing artifacts are created under
 Report 3 and this README are progress records. Update their measurements only
 from returned, auditable run evidence; do not mark pilot execution or Phase 3
 completion from code preparation alone.
+
+## Update — 23 October 2026: Phase 3 revision, freeze, Phases 4–5 (code ready; runs pending)
+
+Following the PI's 22 October acceptance message:
+
+* **ICAI boundary approved.** Frozen-NMT anchoring and semantic exemplar retrieval are cited as prior methodology, not Norris contributions.
+* **Reason-then-edit revised (dev only).** Minimal contract `rte_v3` (`diagnosis` → `edited_translation`) with a predeclared reliability gate; see `docs/phase3/RTE_CONTRACT_REVISION.md`. Rerun both models with `notebooks/phase3/03_rte_v3_revalidation_and_freeze.ipynb`.
+* **Freeze.** `src/freeze/build_freeze_manifest.py` writes `config/frozen/protocol_freeze.json` only after the gate and the splitter dev gates pass.
+* **Phase 4.** `src/baselines/generate_devtest_baseline.py` (S0 devtest, gated), `src/post_editing/prepare_main_jobs.py`, `src/post_editing/run_main_experiments.py` (AsyncOpenAI + vLLM, SQLite ledger + durable records, resumable, no repeat of uncertain paid calls), `src/post_editing/phase4_summary.py`; notebook `notebooks/phase4/01_devtest_main_run.ipynb`.
+* **Phase 5.** `src/evaluation/evaluate_main_experiments.py` + `norris_stats.py` (centered paired bootstrap, Holm families F1/F2), `src/analysis/generate_main_figures.py`; notebook `notebooks/phase5/01_evaluate_main.ipynb`.
+* **Tests (no GPU/API):** `tests/frozen/test_protocol.py`, `tests/phase4/test_engine_offline.py`, `tests/phase5/test_stats.py`, `tests/phase5/test_evaluator_synthetic.py`.
+* **Manuscript** restructured for 5 pages around the held-out experiment (`paper/README.md`); schedule in `docs/SCHEDULE_AND_REPORTS.md`; runbook in `docs/phase4/RUNBOOK.md`.
+
+No devtest output has been generated or scored at this commit.
