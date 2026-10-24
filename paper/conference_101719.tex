@@ -5,9 +5,10 @@
 \usepackage[hidelinks]{hyperref}
 % ---- Draft controls. \pending marks text that MUST be written from Phase 4/5 evidence.
 % The manuscript audit fails while any \pending remains. Set \finaltrue only for submission.
+\emergencystretch=1.5em
 \newif\iffinal \finalfalse
 \newcommand{\pending}[1]{\textcolor{red}{\textbf{[PENDING: #1]}}}
-\newcommand{\draftstatus}{Working manuscript, 23 October 2026. Protocol frozen on development data; held-out (devtest) results pending Phases 4--5. Development pilot results are labelled as such.}
+\newcommand{\draftstatus}{Working manuscript, 24 October 2026. Protocol frozen on development data (24 October 2026); held-out devtest results pending Phases 4--5. Red [PENDING] markers show text that will be written only from held-out evidence.}
 \IfFileExists{generated/results_macros.tex}{\input{generated/results_macros}}{}
 \begin{document}
 \title{When Post-Editing Helps and When It Harms:\\Evaluating LLM Post-Editing of NMT for Tagalog and Spanish}
