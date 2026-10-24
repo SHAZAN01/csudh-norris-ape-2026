@@ -1,0 +1,600 @@
+{
+  "status": "rte_v3_dev_scored",
+  "analysis_sha256": "967c5362f9d18bf15a68ce6f7e6b764fa38914184262d22e20af52bf7e401fb3",
+  "gate": {
+    "llama3-8b": {
+      "fallbacks_total": 0,
+      "fallbacks_by_direction": {
+        "eng_Latn->tgl_Latn": 0,
+        "tgl_Latn->eng_Latn": 0,
+        "eng_Latn->spa_Latn": 0,
+        "spa_Latn->eng_Latn": 0
+      },
+      "passes": true
+    },
+    "gpt4o-mini": {
+      "fallbacks_total": 0,
+      "fallbacks_by_direction": {
+        "eng_Latn->tgl_Latn": 0,
+        "tgl_Latn->eng_Latn": 0,
+        "eng_Latn->spa_Latn": 0,
+        "spa_Latn->eng_Latn": 0
+      },
+      "passes": true
+    }
+  },
+  "gate_pass": true,
+  "gate_rule": "Operationally reliable iff, for EACH model, fallbacks <= 20/400 (5.0%) overall AND <= 10/100 in every direction. Declared before the rerun; operational only, never a quality criterion. COMET is not used to accept or reject the revised contract.",
+  "plain_v2_outcomes_reproduced": 1600,
+  "baseline_recheck_max_abs_native": 5.960464477539062e-07,
+  "groups_rte_v3": {
+    "llama3-8b/eng_Latn->tgl_Latn/reason-then-edit": {
+      "n": 100,
+      "json_parse_success": 100,
+      "schema_valid": 100,
+      "usable": 100,
+      "fallbacks": 0,
+      "text_edited": 93,
+      "edit_rate_pct": 93.0,
+      "COMET_points": 84.16159689426422,
+      "baseline_COMET_points": 84.44229847192764,
+      "delta_COMET_points": -0.28070157766342163,
+      "delta_COMET_95CI_points": [
+        -1.2726765513420104,
+        0.8971005097031594
+      ],
+      "improved": 12,
+      "within_band": 67,
+      "harmed": 21,
+      "protect_n": 22,
+      "edited_protect_n": 20,
+      "overedited_protect_n": 5,
+      "overedit_pct_all_protect": 22.727272727272727,
+      "overedit_pct_edited_protect": 25.0,
+      "improve_pool_n": 19,
+      "digit_change_flags": 0,
+      "digit_loss_flags": 0,
+      "capitalized_token_flags": 1,
+      "language_mismatch_flags": 0,
+      "language_unknown": 0,
+      "reference_language_mismatch_flags": 0,
+      "length_anomaly_flags": 0,
+      "NONE_with_text_change": "not_applicable_v3",
+      "latency_definition": "batch-amortized generation time; model initialization excluded",
+      "mean_latency_ms": 256.82767875124796,
+      "median_latency_ms": 224.87225356249496,
+      "BLEU": 33.25580129683494,
+      "chrFpp": 58.43848805259617,
+      "BLEU_signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+      "chrF_signature": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0",
+      "failure_classes": {
+        "usable": 100
+      },
+      "diagnosis_words_median": 23.0
+    },
+    "llama3-8b/tgl_Latn->eng_Latn/reason-then-edit": {
+      "n": 100,
+      "json_parse_success": 100,
+      "schema_valid": 100,
+      "usable": 100,
+      "fallbacks": 0,
+      "text_edited": 87,
+      "edit_rate_pct": 87.0,
+      "COMET_points": 85.93460649251938,
+      "baseline_COMET_points": 87.11834168434143,
+      "delta_COMET_points": -1.183735191822052,
+      "delta_COMET_95CI_points": [
+        -1.9403770238161087,
+        -0.44907906502485273
+      ],
+      "improved": 8,
+      "within_band": 70,
+      "harmed": 22,
+      "protect_n": 45,
+      "edited_protect_n": 38,
+      "overedited_protect_n": 15,
+      "overedit_pct_all_protect": 33.333333333333336,
+      "overedit_pct_edited_protect": 39.473684210526315,
+      "improve_pool_n": 12,
+      "digit_change_flags": 1,
+      "digit_loss_flags": 1,
+      "capitalized_token_flags": 1,
+      "language_mismatch_flags": 1,
+      "language_unknown": 0,
+      "reference_language_mismatch_flags": 0,
+      "length_anomaly_flags": 0,
+      "NONE_with_text_change": "not_applicable_v3",
+      "latency_definition": "batch-amortized generation time; model initialization excluded",
+      "mean_latency_ms": 185.01797357875034,
+      "median_latency_ms": 169.7433409375151,
+      "BLEU": 42.0965102028633,
+      "chrFpp": 64.44534177543592,
+      "BLEU_signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+      "chrF_signature": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0",
+      "failure_classes": {
+        "usable": 100
+      },
+      "diagnosis_words_median": 25.0
+    },
+    "llama3-8b/eng_Latn->spa_Latn/reason-then-edit": {
+      "n": 100,
+      "json_parse_success": 100,
+      "schema_valid": 100,
+      "usable": 100,
+      "fallbacks": 0,
+      "text_edited": 58,
+      "edit_rate_pct": 58.0,
+      "COMET_points": 85.4913969039917,
+      "baseline_COMET_points": 86.07629150152206,
+      "delta_COMET_points": -0.584894597530365,
+      "delta_COMET_95CI_points": [
+        -1.2064245656132697,
+        -0.04307782799005509
+      ],
+      "improved": 5,
+      "within_band": 82,
+      "harmed": 13,
+      "protect_n": 21,
+      "edited_protect_n": 10,
+      "overedited_protect_n": 2,
+      "overedit_pct_all_protect": 9.523809523809524,
+      "overedit_pct_edited_protect": 20.0,
+      "improve_pool_n": 11,
+      "digit_change_flags": 5,
+      "digit_loss_flags": 4,
+      "capitalized_token_flags": 1,
+      "language_mismatch_flags": 1,
+      "language_unknown": 0,
+      "reference_language_mismatch_flags": 1,
+      "length_anomaly_flags": 0,
+      "NONE_with_text_change": "not_applicable_v3",
+      "latency_definition": "batch-amortized generation time; model initialization excluded",
+      "mean_latency_ms": 189.73878608125233,
+      "median_latency_ms": 175.99033793749186,
+      "BLEU": 26.26829202280381,
+      "chrFpp": 52.97637026262715,
+      "BLEU_signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+      "chrF_signature": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0",
+      "failure_classes": {
+        "usable": 100
+      },
+      "diagnosis_words_median": 18.0
+    },
+    "llama3-8b/spa_Latn->eng_Latn/reason-then-edit": {
+      "n": 100,
+      "json_parse_success": 100,
+      "schema_valid": 100,
+      "usable": 100,
+      "fallbacks": 0,
+      "text_edited": 76,
+      "edit_rate_pct": 76.0,
+      "COMET_points": 86.87203359603882,
+      "baseline_COMET_points": 87.82868945598602,
+      "delta_COMET_points": -0.9566558599472046,
+      "delta_COMET_95CI_points": [
+        -1.432122576236725,
+        -0.5068166762590409
+      ],
+      "improved": 3,
+      "within_band": 81,
+      "harmed": 16,
+      "protect_n": 28,
+      "edited_protect_n": 21,
+      "overedited_protect_n": 6,
+      "overedit_pct_all_protect": 21.428571428571427,
+      "overedit_pct_edited_protect": 28.571428571428573,
+      "improve_pool_n": 3,
+      "digit_change_flags": 4,
+      "digit_loss_flags": 1,
+      "capitalized_token_flags": 1,
+      "language_mismatch_flags": 0,
+      "language_unknown": 0,
+      "reference_language_mismatch_flags": 0,
+      "length_anomaly_flags": 0,
+      "NONE_with_text_change": "not_applicable_v3",
+      "latency_definition": "batch-amortized generation time; model initialization excluded",
+      "mean_latency_ms": 175.66297755874984,
+      "median_latency_ms": 164.44187193749826,
+      "BLEU": 27.967214571564032,
+      "chrFpp": 56.64003648981462,
+      "BLEU_signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+      "chrF_signature": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0",
+      "failure_classes": {
+        "usable": 100
+      },
+      "diagnosis_words_median": 20.0
+    },
+    "gpt4o-mini/eng_Latn->tgl_Latn/reason-then-edit": {
+      "n": 100,
+      "json_parse_success": 100,
+      "schema_valid": 100,
+      "usable": 100,
+      "fallbacks": 0,
+      "text_edited": 32,
+      "edit_rate_pct": 32.0,
+      "COMET_points": 84.6034392118454,
+      "baseline_COMET_points": 84.44229847192764,
+      "delta_COMET_points": 0.16114073991775513,
+      "delta_COMET_95CI_points": [
+        -0.8069501414895057,
+        1.1455315843224516
+      ],
+      "improved": 8,
+      "within_band": 85,
+      "harmed": 7,
+      "protect_n": 22,
+      "edited_protect_n": 6,
+      "overedited_protect_n": 1,
+      "overedit_pct_all_protect": 4.545454545454546,
+      "overedit_pct_edited_protect": 16.666666666666668,
+      "improve_pool_n": 19,
+      "digit_change_flags": 0,
+      "digit_loss_flags": 0,
+      "capitalized_token_flags": 0,
+      "language_mismatch_flags": 0,
+      "language_unknown": 0,
+      "reference_language_mismatch_flags": 0,
+      "length_anomaly_flags": 0,
+      "NONE_with_text_change": "not_applicable_v3",
+      "latency_definition": "HTTP request wall time",
+      "mean_latency_ms": 1539.2354315000057,
+      "median_latency_ms": 1496.03252899999,
+      "BLEU": 36.02957007907911,
+      "chrFpp": 60.681616167883135,
+      "BLEU_signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+      "chrF_signature": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0",
+      "failure_classes": {
+        "usable": 100
+      },
+      "diagnosis_words_median": 11.0
+    },
+    "gpt4o-mini/tgl_Latn->eng_Latn/reason-then-edit": {
+      "n": 100,
+      "json_parse_success": 100,
+      "schema_valid": 100,
+      "usable": 100,
+      "fallbacks": 0,
+      "text_edited": 39,
+      "edit_rate_pct": 39.0,
+      "COMET_points": 87.86269152164459,
+      "baseline_COMET_points": 87.11834168434143,
+      "delta_COMET_points": 0.7443498373031616,
+      "delta_COMET_95CI_points": [
+        0.2094043329358101,
+        1.3776741698384283
+      ],
+      "improved": 14,
+      "within_band": 79,
+      "harmed": 7,
+      "protect_n": 45,
+      "edited_protect_n": 3,
+      "overedited_protect_n": 1,
+      "overedit_pct_all_protect": 2.2222222222222223,
+      "overedit_pct_edited_protect": 33.333333333333336,
+      "improve_pool_n": 12,
+      "digit_change_flags": 1,
+      "digit_loss_flags": 1,
+      "capitalized_token_flags": 0,
+      "language_mismatch_flags": 0,
+      "language_unknown": 0,
+      "reference_language_mismatch_flags": 0,
+      "length_anomaly_flags": 0,
+      "NONE_with_text_change": "not_applicable_v3",
+      "latency_definition": "HTTP request wall time",
+      "mean_latency_ms": 1311.3928786699898,
+      "median_latency_ms": 1258.723939499987,
+      "BLEU": 47.74734774369508,
+      "chrFpp": 68.481031300602,
+      "BLEU_signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+      "chrF_signature": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0",
+      "failure_classes": {
+        "usable": 100
+      },
+      "diagnosis_words_median": 15.0
+    },
+    "gpt4o-mini/eng_Latn->spa_Latn/reason-then-edit": {
+      "n": 100,
+      "json_parse_success": 100,
+      "schema_valid": 100,
+      "usable": 100,
+      "fallbacks": 0,
+      "text_edited": 17,
+      "edit_rate_pct": 17.0,
+      "COMET_points": 86.17574614286423,
+      "baseline_COMET_points": 86.07629150152206,
+      "delta_COMET_points": 0.09945464134216309,
+      "delta_COMET_95CI_points": [
+        -0.11816730499267576,
+        0.3903818070888519
+      ],
+      "improved": 3,
+      "within_band": 95,
+      "harmed": 2,
+      "protect_n": 21,
+      "edited_protect_n": 0,
+      "overedited_protect_n": 0,
+      "overedit_pct_all_protect": 0.0,
+      "overedit_pct_edited_protect": null,
+      "improve_pool_n": 11,
+      "digit_change_flags": 1,
+      "digit_loss_flags": 0,
+      "capitalized_token_flags": 0,
+      "language_mismatch_flags": 0,
+      "language_unknown": 0,
+      "reference_language_mismatch_flags": 1,
+      "length_anomaly_flags": 0,
+      "NONE_with_text_change": "not_applicable_v3",
+      "latency_definition": "HTTP request wall time",
+      "mean_latency_ms": 1324.076833879999,
+      "median_latency_ms": 1284.2500190000692,
+      "BLEU": 28.1434480830611,
+      "chrFpp": 54.172980251164425,
+      "BLEU_signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+      "chrF_signature": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0",
+      "failure_classes": {
+        "usable": 100
+      },
+      "diagnosis_words_median": 11.0
+    },
+    "gpt4o-mini/spa_Latn->eng_Latn/reason-then-edit": {
+      "n": 100,
+      "json_parse_success": 100,
+      "schema_valid": 100,
+      "usable": 100,
+      "fallbacks": 0,
+      "text_edited": 17,
+      "edit_rate_pct": 17.0,
+      "COMET_points": 87.68619912862778,
+      "baseline_COMET_points": 87.82868945598602,
+      "delta_COMET_points": -0.14249032735824585,
+      "delta_COMET_95CI_points": [
+        -0.40251208543777467,
+        0.11530826836824384
+      ],
+      "improved": 2,
+      "within_band": 93,
+      "harmed": 5,
+      "protect_n": 28,
+      "edited_protect_n": 2,
+      "overedited_protect_n": 1,
+      "overedit_pct_all_protect": 3.5714285714285716,
+      "overedit_pct_edited_protect": 50.0,
+      "improve_pool_n": 3,
+      "digit_change_flags": 0,
+      "digit_loss_flags": 0,
+      "capitalized_token_flags": 0,
+      "language_mismatch_flags": 0,
+      "language_unknown": 0,
+      "reference_language_mismatch_flags": 0,
+      "length_anomaly_flags": 0,
+      "NONE_with_text_change": "not_applicable_v3",
+      "latency_definition": "HTTP request wall time",
+      "mean_latency_ms": 1293.731078030005,
+      "median_latency_ms": 1241.787802499971,
+      "BLEU": 29.660279371439646,
+      "chrFpp": 57.946942824593876,
+      "BLEU_signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+      "chrF_signature": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0",
+      "failure_classes": {
+        "usable": 100
+      },
+      "diagnosis_words_median": 15.0
+    }
+  },
+  "pooled_rte_v3": {
+    "llama3-8b": {
+      "n": 400,
+      "text_edited": 314,
+      "improved": 28,
+      "harmed": 72,
+      "protect_n": 116,
+      "overedited_protect_n": 28
+    },
+    "gpt4o-mini": {
+      "n": 400,
+      "text_edited": 105,
+      "improved": 27,
+      "harmed": 21,
+      "protect_n": 116,
+      "overedited_protect_n": 3
+    }
+  },
+  "v2_vs_v3": [
+    {
+      "model": "llama3-8b",
+      "direction": "eng_Latn->tgl_Latn",
+      "v2_usable": 61,
+      "v2_fallbacks": 39,
+      "v2_text_edited": 60,
+      "v2_delta_COMET_points": -0.6365057528018951,
+      "v2_delta_COMET_95CI_points": [
+        -1.404879792034626,
+        0.3886583596467961
+      ],
+      "v2_harmed": 21,
+      "v2_overedited_protect_n": 5,
+      "v3_usable": 100,
+      "v3_fallbacks": 0,
+      "v3_text_edited": 93,
+      "v3_delta_COMET_points": -0.28070157766342163,
+      "v3_delta_COMET_95CI_points": [
+        -1.2726765513420104,
+        0.8971005097031594
+      ],
+      "v3_harmed": 21,
+      "v3_overedited_protect_n": 5
+    },
+    {
+      "model": "llama3-8b",
+      "direction": "tgl_Latn->eng_Latn",
+      "v2_usable": 38,
+      "v2_fallbacks": 62,
+      "v2_text_edited": 35,
+      "v2_delta_COMET_points": -0.5444139242172241,
+      "v2_delta_COMET_95CI_points": [
+        -0.9594269752502441,
+        -0.2169907659292223
+      ],
+      "v2_harmed": 9,
+      "v2_overedited_protect_n": 6,
+      "v3_usable": 100,
+      "v3_fallbacks": 0,
+      "v3_text_edited": 87,
+      "v3_delta_COMET_points": -1.183735191822052,
+      "v3_delta_COMET_95CI_points": [
+        -1.9403770238161087,
+        -0.44907906502485273
+      ],
+      "v3_harmed": 22,
+      "v3_overedited_protect_n": 15
+    },
+    {
+      "model": "llama3-8b",
+      "direction": "eng_Latn->spa_Latn",
+      "v2_usable": 35,
+      "v2_fallbacks": 65,
+      "v2_text_edited": 31,
+      "v2_delta_COMET_points": -0.2120568156242371,
+      "v2_delta_COMET_95CI_points": [
+        -0.5701415300369262,
+        0.15341113358736036
+      ],
+      "v2_harmed": 9,
+      "v2_overedited_protect_n": 1,
+      "v3_usable": 100,
+      "v3_fallbacks": 0,
+      "v3_text_edited": 58,
+      "v3_delta_COMET_points": -0.584894597530365,
+      "v3_delta_COMET_95CI_points": [
+        -1.2064245656132697,
+        -0.04307782799005509
+      ],
+      "v3_harmed": 13,
+      "v3_overedited_protect_n": 2
+    },
+    {
+      "model": "llama3-8b",
+      "direction": "spa_Latn->eng_Latn",
+      "v2_usable": 39,
+      "v2_fallbacks": 61,
+      "v2_text_edited": 32,
+      "v2_delta_COMET_points": -0.5618235468864441,
+      "v2_delta_COMET_95CI_points": [
+        -1.025476588308811,
+        -0.1922860309481621
+      ],
+      "v2_harmed": 9,
+      "v2_overedited_protect_n": 4,
+      "v3_usable": 100,
+      "v3_fallbacks": 0,
+      "v3_text_edited": 76,
+      "v3_delta_COMET_points": -0.9566558599472046,
+      "v3_delta_COMET_95CI_points": [
+        -1.432122576236725,
+        -0.5068166762590409
+      ],
+      "v3_harmed": 16,
+      "v3_overedited_protect_n": 6
+    },
+    {
+      "model": "gpt4o-mini",
+      "direction": "eng_Latn->tgl_Latn",
+      "v2_usable": 97,
+      "v2_fallbacks": 3,
+      "v2_text_edited": 32,
+      "v2_delta_COMET_points": 0.25524234771728516,
+      "v2_delta_COMET_95CI_points": [
+        -0.7259857371449471,
+        1.2592323854565615
+      ],
+      "v2_harmed": 7,
+      "v2_overedited_protect_n": 1,
+      "v3_usable": 100,
+      "v3_fallbacks": 0,
+      "v3_text_edited": 32,
+      "v3_delta_COMET_points": 0.16114073991775513,
+      "v3_delta_COMET_95CI_points": [
+        -0.8069501414895057,
+        1.1455315843224516
+      ],
+      "v3_harmed": 7,
+      "v3_overedited_protect_n": 1
+    },
+    {
+      "model": "gpt4o-mini",
+      "direction": "tgl_Latn->eng_Latn",
+      "v2_usable": 96,
+      "v2_fallbacks": 4,
+      "v2_text_edited": 34,
+      "v2_delta_COMET_points": 0.6173344254493713,
+      "v2_delta_COMET_95CI_points": [
+        0.1536199450492859,
+        1.1685064941644667
+      ],
+      "v2_harmed": 5,
+      "v2_overedited_protect_n": 1,
+      "v3_usable": 100,
+      "v3_fallbacks": 0,
+      "v3_text_edited": 39,
+      "v3_delta_COMET_points": 0.7443498373031616,
+      "v3_delta_COMET_95CI_points": [
+        0.2094043329358101,
+        1.3776741698384283
+      ],
+      "v3_harmed": 7,
+      "v3_overedited_protect_n": 1
+    },
+    {
+      "model": "gpt4o-mini",
+      "direction": "eng_Latn->spa_Latn",
+      "v2_usable": 99,
+      "v2_fallbacks": 1,
+      "v2_text_edited": 15,
+      "v2_delta_COMET_points": 0.000854194164276123,
+      "v2_delta_COMET_95CI_points": [
+        -0.25056432783603666,
+        0.2979988723993298
+      ],
+      "v2_harmed": 4,
+      "v2_overedited_protect_n": 0,
+      "v3_usable": 100,
+      "v3_fallbacks": 0,
+      "v3_text_edited": 17,
+      "v3_delta_COMET_points": 0.09945464134216309,
+      "v3_delta_COMET_95CI_points": [
+        -0.11816730499267576,
+        0.3903818070888519
+      ],
+      "v3_harmed": 2,
+      "v3_overedited_protect_n": 0
+    },
+    {
+      "model": "gpt4o-mini",
+      "direction": "spa_Latn->eng_Latn",
+      "v2_usable": 100,
+      "v2_fallbacks": 0,
+      "v2_text_edited": 16,
+      "v2_delta_COMET_points": -0.2277952432632446,
+      "v2_delta_COMET_95CI_points": [
+        -0.5914248913526535,
+        0.08364241123199458
+      ],
+      "v2_harmed": 4,
+      "v2_overedited_protect_n": 1,
+      "v3_usable": 100,
+      "v3_fallbacks": 0,
+      "v3_text_edited": 17,
+      "v3_delta_COMET_points": -0.14249032735824585,
+      "v3_delta_COMET_95CI_points": [
+        -0.40251208543777467,
+        0.11530826836824384
+      ],
+      "v3_harmed": 5,
+      "v3_overedited_protect_n": 1
+    }
+  ],
+  "devtest_opened": false,
+  "freeze_declared": false,
+  "next_step": "Build the freeze package and send to PI; then Phase 4.",
+  "created_utc": "2026-10-23T09:12:06.087154+00:00"
+}

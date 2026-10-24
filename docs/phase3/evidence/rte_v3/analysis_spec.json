@@ -1,0 +1,34 @@
+{
+  "stage": "phase3_rte_v3_dev_analysis",
+  "jobs_manifest_sha256": "4cf40bde0b54a8bf511f6f86412583f8dc2d94a8dfe74ed436aaf532b927b2c3",
+  "v2_analysis_sha256": "9d6830a0b9c7cc97e2b372c78c2c700734fd5cf65ab30e6177e7ae8d531ddc90",
+  "COMET_model": "Unbabel/wmt22-comet-da",
+  "COMET_revision": "2760a223ac957f30acfb18c8aa649b01cf1d75f2",
+  "environment": {
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "unbabel-comet": "2.2.7",
+    "numpy": "1.26.4",
+    "sacrebleu": "2.6.0",
+    "langdetect": "1.0.9",
+    "huggingface-hub": "0.36.0"
+  },
+  "seed": 42,
+  "bootstrap_resamples": 10000,
+  "chrF": {
+    "char_order": 6,
+    "word_order": 2,
+    "beta": 2
+  },
+  "BLEU_tokenizer": "13a",
+  "definitions_source_sha256": "ee9d76967951516573733085c6bdd93609bc4ce8562a26690dcca82f5cf9e2e5",
+  "scorer_sha256": "6afe99fc232c143f5c6367a7037ac5c12a6772848930e1f73c3abefaa8f368a4",
+  "reliability_gate": {
+    "rule": "Operationally reliable iff, for EACH model, fallbacks <= 20/400 (5.0%) overall AND <= 10/100 in every direction. Declared before the rerun; operational only, never a quality criterion. COMET is not used to accept or reject the revised contract.",
+    "max_fallback_per_model": 20,
+    "max_fallback_per_direction": 10,
+    "n_per_model": 400,
+    "n_per_direction": 100,
+    "single_revision": "One contract revision only. No prompt iteration after observing the full rerun. If the gate fails, the PI decides: retain as explicit failure condition or remove."
+  }
+}

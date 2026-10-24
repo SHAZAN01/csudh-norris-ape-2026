@@ -442,3 +442,11 @@ Following the PI's 22 October acceptance message:
 * **Manuscript** restructured for 5 pages around the held-out experiment (`paper/README.md`); schedule in `docs/SCHEDULE_AND_REPORTS.md`; runbook in `docs/phase4/RUNBOOK.md`.
 
 No devtest output has been generated or scored at this commit.
+
+## Update — 24 October 2026: protocol frozen
+
+* Reason-then-edit v3 dev rerun: Llama 3 8B **0/400** fallbacks (v2: 227), GPT-4o Mini **0/400** (v2: 8); predeclared gate passed.
+* S0 dev audit: segmentation 2,991/2,991 exact; dev unsplit regeneration 3,988/3,988 exact; multi-sentence translations 412/421 exact (disclosed; `docs/phase3/Norris_Phase_Report_3_2.pdf`, Section 5).
+* Freeze declared 2026-10-24 06:58 UTC: `config/frozen/protocol_freeze.json` (SHA-256 `6e6259a9…f7462c`). Numeric evidence in `docs/phase3/evidence/rte_v3/`.
+* Next: Phase 4 devtest run with `notebooks/phase4/01_devtest_main_run.ipynb` (branch `phase4-main`).
+

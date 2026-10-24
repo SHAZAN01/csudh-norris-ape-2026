@@ -1,0 +1,90 @@
+{
+  "model": "gpt4o-mini",
+  "run_sha256": "55a41d001ca33ffda8f1410a3e389535fa6ac177e8ddb2e1a60828cb5c9ae2ad",
+  "partition": "dev",
+  "stage": "full",
+  "model_initialization_seconds_this_invocation": 0.0,
+  "conditions": {
+    "gpt4o-mini_reason-then-edit_eng-spa": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/phase3_post_editing/rte_v3_1b3d3273cdbf0c29/generations/gpt4o-mini_reason-then-edit_eng-spa.jsonl",
+      "sha256": "6feaebefbcccac4eb0f4ed3349a83d76d0996cce5547ebe7820801aac063b136",
+      "n": 100,
+      "json_parse_success": 100,
+      "schema_valid": 100,
+      "usable": 100,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 100
+      },
+      "prompt_tokens": 43971,
+      "completion_tokens": 5602,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0.009956850000000001,
+      "median_latency_ms": 1286.7527480000263,
+      "latency_definition": "HTTP request wall time"
+    },
+    "gpt4o-mini_reason-then-edit_eng-tag": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/phase3_post_editing/rte_v3_1b3d3273cdbf0c29/generations/gpt4o-mini_reason-then-edit_eng-tag.jsonl",
+      "sha256": "7fe9776a430c621403808cbe253eb6b6fe0be250f797107f4eb7a3deff4bf3d6",
+      "n": 100,
+      "json_parse_success": 100,
+      "schema_valid": 100,
+      "usable": 100,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 100
+      },
+      "prompt_tokens": 45072,
+      "completion_tokens": 6960,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0.010936799999999998,
+      "median_latency_ms": 1499.4217759999628,
+      "latency_definition": "HTTP request wall time"
+    },
+    "gpt4o-mini_reason-then-edit_spa-eng": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/phase3_post_editing/rte_v3_1b3d3273cdbf0c29/generations/gpt4o-mini_reason-then-edit_spa-eng.jsonl",
+      "sha256": "aceb9aed6bb290fc838a922dacb8f78856d502e942c058437af4f5e61ffcd6a5",
+      "n": 100,
+      "json_parse_success": 100,
+      "schema_valid": 100,
+      "usable": 100,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 100
+      },
+      "prompt_tokens": 44212,
+      "completion_tokens": 5185,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0.009742799999999998,
+      "median_latency_ms": 1243.6415380000199,
+      "latency_definition": "HTTP request wall time"
+    },
+    "gpt4o-mini_reason-then-edit_tag-eng": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/phase3_post_editing/rte_v3_1b3d3273cdbf0c29/generations/gpt4o-mini_reason-then-edit_tag-eng.jsonl",
+      "sha256": "c6ef6d22a4374c981893c22e45408f2c5bfa152ea36796176bcab364060c5acb",
+      "n": 100,
+      "json_parse_success": 100,
+      "schema_valid": 100,
+      "usable": 100,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 100
+      },
+      "prompt_tokens": 45341,
+      "completion_tokens": 5517,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0.010111349999999998,
+      "median_latency_ms": 1260.9410459999708,
+      "latency_definition": "HTTP request wall time"
+    }
+  },
+  "ledger_states": {
+    "complete": 400
+  },
+  "all_conditions_complete": true,
+  "created_utc": "2026-10-23T09:03:44.017685+00:00"
+}

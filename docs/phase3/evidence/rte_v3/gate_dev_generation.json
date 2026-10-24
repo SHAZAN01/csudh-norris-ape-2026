@@ -1,0 +1,234 @@
+{
+  "gate": "dev_generation_audit",
+  "passed": true,
+  "checks": {
+    "join_rule_exact": true,
+    "single_segment_reuse_exact": true,
+    "deterministic_within_environment": true,
+    "split_agreement_at_least_95pct": true
+  },
+  "frozen_variant": {
+    "name": "raw_len_chars_desc_b32",
+    "fragment_input": "raw",
+    "order": "len_chars_desc",
+    "batch": 32,
+    "join": "single_space_between_stripped_fragment_translations"
+  },
+  "measured_variants_dev": [
+    {
+      "name": "strip_fragments_sentence_b32",
+      "exact": 237
+    },
+    {
+      "name": "raw_sentence_order_b32",
+      "exact": 408
+    },
+    {
+      "name": "raw_len_chars_desc_b32",
+      "exact": 412
+    },
+    {
+      "name": "raw_len_tokens_desc_b32",
+      "exact": 412
+    },
+    {
+      "name": "raw_len_chars_asc_b32",
+      "exact": 411
+    },
+    {
+      "name": "raw_unbatched_b1",
+      "exact": 407
+    },
+    {
+      "name": "raw_per_item_batches",
+      "exact": 408
+    }
+  ],
+  "join_rule": {
+    "exact": 421,
+    "total": 421
+  },
+  "single_segment_reuse": {
+    "exact": 3567,
+    "total": 3567
+  },
+  "multi_items": {
+    "exact": 412,
+    "total": 421,
+    "agreement": 0.9786223277909739
+  },
+  "fragments": {
+    "exact": 844,
+    "total": 854
+  },
+  "differing_fragments": {
+    "count": 10,
+    "char_edit_distance_median": 13,
+    "char_edit_distance_max": 25,
+    "items": [
+      {
+        "direction": "eng_Latn->tgl_Latn",
+        "sentence_id": 97,
+        "fragment": 1,
+        "n_fragments": 2,
+        "saved_chars": 55,
+        "regenerated_chars": 65,
+        "char_edit_distance": 13,
+        "word_count_change": 2
+      },
+      {
+        "direction": "eng_Latn->tgl_Latn",
+        "sentence_id": 488,
+        "fragment": 1,
+        "n_fragments": 2,
+        "saved_chars": 32,
+        "regenerated_chars": 29,
+        "char_edit_distance": 5,
+        "word_count_change": -1
+      },
+      {
+        "direction": "eng_Latn->tgl_Latn",
+        "sentence_id": 599,
+        "fragment": 0,
+        "n_fragments": 2,
+        "saved_chars": 22,
+        "regenerated_chars": 29,
+        "char_edit_distance": 13,
+        "word_count_change": 2
+      },
+      {
+        "direction": "eng_Latn->tgl_Latn",
+        "sentence_id": 631,
+        "fragment": 1,
+        "n_fragments": 2,
+        "saved_chars": 92,
+        "regenerated_chars": 96,
+        "char_edit_distance": 4,
+        "word_count_change": 1
+      },
+      {
+        "direction": "tgl_Latn->eng_Latn",
+        "sentence_id": 215,
+        "fragment": 1,
+        "n_fragments": 2,
+        "saved_chars": 127,
+        "regenerated_chars": 128,
+        "char_edit_distance": 12,
+        "word_count_change": 0
+      },
+      {
+        "direction": "tgl_Latn->eng_Latn",
+        "sentence_id": 473,
+        "fragment": 0,
+        "n_fragments": 2,
+        "saved_chars": 109,
+        "regenerated_chars": 114,
+        "char_edit_distance": 15,
+        "word_count_change": 2
+      },
+      {
+        "direction": "tgl_Latn->eng_Latn",
+        "sentence_id": 821,
+        "fragment": 1,
+        "n_fragments": 2,
+        "saved_chars": 154,
+        "regenerated_chars": 144,
+        "char_edit_distance": 13,
+        "word_count_change": -1
+      },
+      {
+        "direction": "eng_Latn->spa_Latn",
+        "sentence_id": 907,
+        "fragment": 0,
+        "n_fragments": 2,
+        "saved_chars": 77,
+        "regenerated_chars": 76,
+        "char_edit_distance": 1,
+        "word_count_change": 0
+      },
+      {
+        "direction": "spa_Latn->eng_Latn",
+        "sentence_id": 462,
+        "fragment": 1,
+        "n_fragments": 2,
+        "saved_chars": 32,
+        "regenerated_chars": 31,
+        "char_edit_distance": 1,
+        "word_count_change": 0
+      },
+      {
+        "direction": "spa_Latn->eng_Latn",
+        "sentence_id": 801,
+        "fragment": 0,
+        "n_fragments": 2,
+        "saved_chars": 29,
+        "regenerated_chars": 33,
+        "char_edit_distance": 25,
+        "word_count_change": 1
+      }
+    ]
+  },
+  "per_direction": {
+    "eng_Latn->tgl_Latn": {
+      "fragments": 211,
+      "seconds": 7.115769087999979,
+      "multi_items_exact": 100
+    },
+    "tgl_Latn->eng_Latn": {
+      "fragments": 211,
+      "seconds": 5.56547144899946,
+      "multi_items_exact": 101
+    },
+    "eng_Latn->spa_Latn": {
+      "fragments": 211,
+      "seconds": 6.002486873999487,
+      "multi_items_exact": 104
+    },
+    "spa_Latn->eng_Latn": {
+      "fragments": 221,
+      "seconds": 6.211119123000344,
+      "multi_items_exact": 107
+    }
+  },
+  "unsplit_regeneration": {
+    "eng_Latn->tgl_Latn": {
+      "exact": 997,
+      "n": 997,
+      "seconds": 68.95454466500087
+    },
+    "tgl_Latn->eng_Latn": {
+      "exact": 997,
+      "n": 997,
+      "seconds": 56.15094874999977
+    },
+    "eng_Latn->spa_Latn": {
+      "exact": 997,
+      "n": 997,
+      "seconds": 60.3531391959998
+    },
+    "spa_Latn->eng_Latn": {
+      "exact": 997,
+      "n": 997,
+      "seconds": 57.518332600999884
+    }
+  },
+  "criterion_note": "Exact translation equality was the initial gate; it is unattainable here (unbatched decoding also differs), so the recorded criterion is: exact segmentation, exact join rule, deterministic re-run, and >=95% exact agreement on dev multi-segment items, with all residual differences reported. Decision recorded 23 Oct 2026 for PI review.",
+  "environment": {
+    "python": "3.13.16",
+    "torch": "2.11.0+cu130",
+    "transformers": "5.18.0",
+    "gpu": "NVIDIA A100-SXM4-80GB"
+  },
+  "decode": {
+    "num_beams": 4,
+    "max_length": 512,
+    "length_penalty": 1.0,
+    "early_stopping": true,
+    "do_sample": false
+  },
+  "code_sha256": {
+    "norris_splitter.py": "c7d532aeb95d80598df2c9adf56a7364d1551c64ded78ee3b68e642cbd7fad1e",
+    "generate_devtest_baseline.py": "938320981d75410be6a79b5a41a6fd4c9cf183ac0360defda2ac4f942fd50383"
+  },
+  "created_utc": "2026-10-24T06:56:16.723543+00:00"
+}
