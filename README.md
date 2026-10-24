@@ -450,3 +450,7 @@ No devtest output has been generated or scored at this commit.
 * Freeze declared 2026-10-24 06:58 UTC: `config/frozen/protocol_freeze.json` (SHA-256 `6e6259a9…f7462c`). Numeric evidence in `docs/phase3/evidence/rte_v3/`.
 * Next: Phase 4 devtest run with `notebooks/phase4/01_devtest_main_run.ipynb` (branch `phase4-main`).
 
+## Update — 24 October 2026: Phase 4 complete (generated, not scored)
+
+24 conditions × 1,012 devtest items = 24,288 post-edited outputs plus the S0 baseline. Llama 3 8B and GPT-4o Mini: 12,144/12,144 accepted each, **0 fallbacks**; GPT 12,144 requests all HTTP 200, 0 retries (est. $1.10). Executed code identical to the frozen code. Report: `docs/phase4/Norris_Phase_Report_4.pdf`; numeric evidence: `docs/phase4/evidence/`. Next: Phase 5 (`notebooks/phase5/01_evaluate_main.ipynb`).
+

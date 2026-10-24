@@ -1,0 +1,242 @@
+{
+  "model": "gpt4o-mini",
+  "run_sha256": "eb319d52dbcbe4fe95b5d2acb76189994e93f780e6bde1f8a3de58ab771b0e27",
+  "partition": "devtest",
+  "stage": "full",
+  "model_initialization_seconds_this_invocation": 0.0,
+  "conditions": {
+    "gpt4o-mini_knn-oneshot_eng-spa": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/gpt4o-mini_knn-oneshot_eng-spa.jsonl",
+      "sha256": "8dc3530065cf002f2aced513ceee17e279d68807f29d01714f0df1a6c63e9da4",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 474970,
+      "completion_tokens": 38361,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0.09426209999999997,
+      "median_latency_ms": 888.072617999569,
+      "latency_definition": "HTTP request wall time"
+    },
+    "gpt4o-mini_knn-oneshot_eng-tag": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/gpt4o-mini_knn-oneshot_eng-tag.jsonl",
+      "sha256": "405d9e6a09d0e86230ea0055320eb669e526124a5ec4e235c46b993683548cd2",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 507223,
+      "completion_tokens": 48467,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0.10516365,
+      "median_latency_ms": 977.9533979999542,
+      "latency_definition": "HTTP request wall time"
+    },
+    "gpt4o-mini_knn-oneshot_spa-eng": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/gpt4o-mini_knn-oneshot_spa-eng.jsonl",
+      "sha256": "5f78bed3c86e69623cc4f31b258637722eb5467c49c151df4a9a11d78932af85",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 475653,
+      "completion_tokens": 33535,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0.09146895000000002,
+      "median_latency_ms": 839.8756020005749,
+      "latency_definition": "HTTP request wall time"
+    },
+    "gpt4o-mini_knn-oneshot_tag-eng": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/gpt4o-mini_knn-oneshot_tag-eng.jsonl",
+      "sha256": "9d5868365821afa8866bb2dd4476792f1b353ce994bf6e1a6204de2ee0e36b69",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 493114,
+      "completion_tokens": 32268,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0.09332790000000003,
+      "median_latency_ms": 823.5921300001792,
+      "latency_definition": "HTTP request wall time"
+    },
+    "gpt4o-mini_reason-then-edit_eng-spa": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/gpt4o-mini_reason-then-edit_eng-spa.jsonl",
+      "sha256": "4e010dee95328b475509f37e932fb600ea78d3bda43300dd8cfc1e265724e23b",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 447645,
+      "completion_tokens": 58114,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0.10201515000000005,
+      "median_latency_ms": 1091.8067330003396,
+      "latency_definition": "HTTP request wall time"
+    },
+    "gpt4o-mini_reason-then-edit_eng-tag": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/gpt4o-mini_reason-then-edit_eng-tag.jsonl",
+      "sha256": "d8d44f33bcd10270fa640fb07df234811cafbedb1f7dc02df23fb191aaeeb8da",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 458876,
+      "completion_tokens": 73286,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0.1128030000000001,
+      "median_latency_ms": 1216.090941999937,
+      "latency_definition": "HTTP request wall time"
+    },
+    "gpt4o-mini_reason-then-edit_spa-eng": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/gpt4o-mini_reason-then-edit_spa-eng.jsonl",
+      "sha256": "7a6ad82d96c6e42ab9931da115c26dc5ee82991b03d75e1eb6960ad588b574af",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 451277,
+      "completion_tokens": 53780,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0.09995955000000001,
+      "median_latency_ms": 1029.668803000277,
+      "latency_definition": "HTTP request wall time"
+    },
+    "gpt4o-mini_reason-then-edit_tag-eng": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/gpt4o-mini_reason-then-edit_tag-eng.jsonl",
+      "sha256": "c420b21939795955978b0ebc382a3c3f00fb4410040f77382783c18e3ae7e847",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 460796,
+      "completion_tokens": 55792,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0.10259459999999997,
+      "median_latency_ms": 1033.6283100004948,
+      "latency_definition": "HTTP request wall time"
+    },
+    "gpt4o-mini_zero-shot_eng-spa": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/gpt4o-mini_zero-shot_eng-spa.jsonl",
+      "sha256": "f02e55e0c9fc76be5b83c8fcbd42cfde87b6e4bc7438fd0201bfe0f19010f0b3",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 331265,
+      "completion_tokens": 38200,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0.07260975000000006,
+      "median_latency_ms": 871.4092430000164,
+      "latency_definition": "HTTP request wall time"
+    },
+    "gpt4o-mini_zero-shot_eng-tag": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/gpt4o-mini_zero-shot_eng-tag.jsonl",
+      "sha256": "c8433476b9d432eeeb5221b71902c642fa811a7200df7ecbf113fae2dddeeecb",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 342496,
+      "completion_tokens": 48495,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0.08047140000000005,
+      "median_latency_ms": 975.9793399998671,
+      "latency_definition": "HTTP request wall time"
+    },
+    "gpt4o-mini_zero-shot_spa-eng": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/gpt4o-mini_zero-shot_spa-eng.jsonl",
+      "sha256": "4659f6c39ed00b694e10034745636409089a372bd08b7b9d396334c81eaee59e",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 334897,
+      "completion_tokens": 33310,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0.07022055000000005,
+      "median_latency_ms": 837.638670999695,
+      "latency_definition": "HTTP request wall time"
+    },
+    "gpt4o-mini_zero-shot_tag-eng": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/gpt4o-mini_zero-shot_tag-eng.jsonl",
+      "sha256": "8d3baa40ccddc32273557d4a15d345c05042a2eb9cb8c1aff73beee05d3b13c7",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 344416,
+      "completion_tokens": 32055,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0.07089539999999998,
+      "median_latency_ms": 816.3231899998209,
+      "latency_definition": "HTTP request wall time"
+    }
+  },
+  "ledger_states": {
+    "complete": 12144
+  },
+  "all_conditions_complete": true,
+  "created_utc": "2026-10-24T09:21:40.214312+00:00"
+}

@@ -1,0 +1,242 @@
+{
+  "model": "llama3-8b",
+  "run_sha256": "1c9083d0022e90d1ff6868313cf221013b3c8fc91e9fc3e0959ecdd9906b3468",
+  "partition": "devtest",
+  "stage": "full",
+  "model_initialization_seconds_this_invocation": 19.797959501999912,
+  "conditions": {
+    "llama3-8b_knn-oneshot_eng-spa": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/llama3-8b_knn-oneshot_eng-spa.jsonl",
+      "sha256": "79efb1fd74df6aa47f3e36690085b8ea21fc94352ccf0c3551342d9573ace56a",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 444175,
+      "completion_tokens": 46406,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0,
+      "median_latency_ms": 107.80145424999432,
+      "latency_definition": "batch-amortized generation time; model initialization excluded"
+    },
+    "llama3-8b_knn-oneshot_eng-tag": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/llama3-8b_knn-oneshot_eng-tag.jsonl",
+      "sha256": "e31ec0f30f25b8019d51643d9dc5f57fc55f8e78add979ef7ebae8b29a9f539d",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 486348,
+      "completion_tokens": 59861,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0,
+      "median_latency_ms": 143.11683899998684,
+      "latency_definition": "batch-amortized generation time; model initialization excluded"
+    },
+    "llama3-8b_knn-oneshot_spa-eng": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/llama3-8b_knn-oneshot_spa-eng.jsonl",
+      "sha256": "70adbd2a7fb87a1b63b49563c965ae827d95b66ca34242c58834710219b675f0",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 439215,
+      "completion_tokens": 35635,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0,
+      "median_latency_ms": 86.58517137502031,
+      "latency_definition": "batch-amortized generation time; model initialization excluded"
+    },
+    "llama3-8b_knn-oneshot_tag-eng": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/llama3-8b_knn-oneshot_tag-eng.jsonl",
+      "sha256": "de27997011240c93de6c6176c4e682e69da02ea32e9d2bac0da003c780df6dfc",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 463237,
+      "completion_tokens": 34369,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0,
+      "median_latency_ms": 82.91373631249144,
+      "latency_definition": "batch-amortized generation time; model initialization excluded"
+    },
+    "llama3-8b_reason-then-edit_eng-spa": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/llama3-8b_reason-then-edit_eng-spa.jsonl",
+      "sha256": "5d95bdd6ec476aa47d08e629974bd734493eba4132d63783af9870550da1b5e8",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 399437,
+      "completion_tokens": 80045,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0,
+      "median_latency_ms": 176.79689943750532,
+      "latency_definition": "batch-amortized generation time; model initialization excluded"
+    },
+    "llama3-8b_reason-then-edit_eng-tag": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/llama3-8b_reason-then-edit_eng-tag.jsonl",
+      "sha256": "4b0e312cb22e5b9614df04a20ea28f8c617d171efbcc7e3c8d345e4b45b707cf",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 414170,
+      "completion_tokens": 103616,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0,
+      "median_latency_ms": 239.14996737499905,
+      "latency_definition": "batch-amortized generation time; model initialization excluded"
+    },
+    "llama3-8b_reason-then-edit_spa-eng": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/llama3-8b_reason-then-edit_spa-eng.jsonl",
+      "sha256": "04132c23124cd137cd6dfb29c668a7c75196442be3dd939637bbc5084308a3d7",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 403412,
+      "completion_tokens": 72368,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0,
+      "median_latency_ms": 159.45054874998732,
+      "latency_definition": "batch-amortized generation time; model initialization excluded"
+    },
+    "llama3-8b_reason-then-edit_tag-eng": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/llama3-8b_reason-then-edit_tag-eng.jsonl",
+      "sha256": "4bf13ca4ceada1b649cf3f524b52b2d8f00c9f0e2e143255da27aa26cb7563a1",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 416211,
+      "completion_tokens": 76254,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0,
+      "median_latency_ms": 172.21639318751158,
+      "latency_definition": "batch-amortized generation time; model initialization excluded"
+    },
+    "llama3-8b_zero-shot_eng-spa": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/llama3-8b_zero-shot_eng-spa.jsonl",
+      "sha256": "1695081402cbf72ea3f1165aa38ea5a4da789af07d35646f7878f1380914be77",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 297225,
+      "completion_tokens": 47162,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0,
+      "median_latency_ms": 101.1805851874783,
+      "latency_definition": "batch-amortized generation time; model initialization excluded"
+    },
+    "llama3-8b_zero-shot_eng-tag": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/llama3-8b_zero-shot_eng-tag.jsonl",
+      "sha256": "2baf5ffceed77a71a9d4b94778ba9ad0674151cd53e2573e05e96d33553c5065",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 311958,
+      "completion_tokens": 60013,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0,
+      "median_latency_ms": 139.55659500000195,
+      "latency_definition": "batch-amortized generation time; model initialization excluded"
+    },
+    "llama3-8b_zero-shot_spa-eng": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/llama3-8b_zero-shot_spa-eng.jsonl",
+      "sha256": "7d76ba3919472ffc17a1545ae0e19e0a8dcbd8c11f243aab3a3618459cabacc4",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 301200,
+      "completion_tokens": 36750,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0,
+      "median_latency_ms": 84.1270918749899,
+      "latency_definition": "batch-amortized generation time; model initialization excluded"
+    },
+    "llama3-8b_zero-shot_tag-eng": {
+      "state": "complete",
+      "file": "/content/drive/MyDrive/norris/outputs/generations/main/llama3-8b_zero-shot_tag-eng.jsonl",
+      "sha256": "dbfa10fddf33009ddf8131a487eaf255c8c42671d2eda48f2f1d367838317954",
+      "n": 1012,
+      "json_parse_success": 1012,
+      "schema_valid": 1012,
+      "usable": 1012,
+      "fallback": 0,
+      "failure_classes": {
+        "usable": 1012
+      },
+      "prompt_tokens": 313999,
+      "completion_tokens": 35408,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0,
+      "median_latency_ms": 80.45814987499966,
+      "latency_definition": "batch-amortized generation time; model initialization excluded"
+    }
+  },
+  "ledger_states": {
+    "complete": 12144
+  },
+  "all_conditions_complete": true,
+  "created_utc": "2026-10-24T08:21:27.235978+00:00"
+}

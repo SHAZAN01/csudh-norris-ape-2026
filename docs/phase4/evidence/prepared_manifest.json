@@ -1,0 +1,51 @@
+{
+  "stage": "phase4_main_prepared",
+  "partition": "devtest",
+  "protocol_id": "norris_frozen_v1",
+  "protocol_fingerprint": "7547a429e81ae64bd8a5834903eb3492bfcb901f64c47e1ed9c1559f4375185d",
+  "freeze_sha256": "6e6259a9cf1c7e2aca978a770fa85d86596f31b0e8b3c55f42635203e4f7462c",
+  "s0_run_spec_sha256": "ac593778a8509b9a7a0c6fa3923ae685671bdfe35a3f515050219d8b7fa60106",
+  "s0_dir": "/content/drive/MyDrive/norris/outputs/generations/baselines/phase4_devtest_ac593778a8509b9a",
+  "planned_jobs": 12144,
+  "items_per_condition": 1012,
+  "directions": 4,
+  "strategies": 3,
+  "planned_outputs_both_models": 24288,
+  "smoke_ids": [
+    0,
+    23
+  ],
+  "retrieval": {
+    "model": "sentence-transformers/LaBSE",
+    "revision": "836121a0533e5664b21c7aacc5d22951f2b8b25b",
+    "pool": "all 997 dev IDs per source language",
+    "exclusion": "exact stripped-source duplicates",
+    "tie_break": "smallest dev sentence_id",
+    "index": "faiss.IndexFlatIP over normalized float32",
+    "dev_embedding_max_abs_diff_vs_pilot": {
+      "eng_Latn": 0.0,
+      "tgl_Latn": 0.0,
+      "spa_Latn": 0.0
+    },
+    "queries_with_excluded_duplicates": 0
+  },
+  "reference_leak_check": {
+    "prompts_checked": 12144,
+    "leaks": 0
+  },
+  "environment": {
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "sentence-transformers": "3.4.1",
+    "faiss-cpu": "1.9.0",
+    "numpy": "1.26.4",
+    "pydantic": "2.12.3"
+  },
+  "preparer_sha256": "8cf61c83aa1b357402a874ea0442e4c08a84a238020a9268ac94f64701f9ae3b",
+  "file_sha256": {
+    "jobs.jsonl": "dfa5771135048df17b13d6e728a4111e6114f4a5485749924e53c815128e6a86",
+    "gold_devtest.jsonl": "a20b5c2d3a94ff35a29a68ab1eee7b30f0f28ca52b22a596aa5b4aa47c0a8c24",
+    "retrieval_links.jsonl": "5afe8d67eee17a28fdd5a3cfe485ce00159fa40e8e8a531b2ab13d6fa8e72108"
+  },
+  "created_utc": "2026-10-24T07:41:41.787680+00:00"
+}

@@ -17,13 +17,11 @@
   "empirical_pilot_work_complete": true,
   "pilot_quality_failure_analysis": "complete_24_conditions_independently_audited",
   "pending": [
-    "Phase 4 devtest run (notebooks/phase4/01_devtest_main_run.ipynb)",
-    "Report 4",
-    "Phase 5 evaluation",
+    "Phase 5 evaluation (notebooks/phase5/01_evaluate_main.ipynb)",
     "Report 5",
     "Manuscript results from held-out evidence; full draft by 2026-11-24"
   ],
-  "main_devtest_execution_started": false,
+  "main_devtest_execution_started": true,
   "manuscript": "IEEEtran_development_draft_in_paper;_Overleaf_sync_requires_authenticated_access",
   "pilot_analysis_sha256": "9d6830a0b9c7cc97e2b372c78c2c700734fd5cf65ab30e6177e7ae8d531ddc90",
   "pi_acceptance_received": "2026-10-22",
@@ -36,5 +34,6 @@
   "pi_acknowledgement_requested": [
     "S0 reconstruction disposition",
     "Llama reason-then-edit dev over-editing observation"
-  ]
+  ],
+  "phase4": "complete 2026-10-24 (07:33-09:21 UTC): 24 conditions x 1,012 = 24,288 outputs; 0 fallbacks; 0 retries; S0 unsplit regeneration 4,048/4,048; not scored"
 }

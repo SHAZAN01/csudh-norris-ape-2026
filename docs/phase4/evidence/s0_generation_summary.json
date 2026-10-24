@@ -1,0 +1,71 @@
+{
+  "run_spec_sha256": "ac593778a8509b9a7a0c6fa3923ae685671bdfe35a3f515050219d8b7fa60106",
+  "directions": {
+    "eng_Latn->tgl_Latn": {
+      "rows": 1012,
+      "multi_segment_items": 113,
+      "fragments_translated": 230,
+      "fragment_inference_seconds": 8.226441630999943,
+      "split_differs_from_unsplit": 105,
+      "unsplit_regeneration": {
+        "exact_vs_archive": 1012,
+        "n": 1012,
+        "seconds": 76.97294261899992
+      },
+      "file_sha256": {
+        "nllb3.3b_eng_Latn_tgl_Latn_devtest_unsplit_control.jsonl": "b13f579bddd7667b16602ff7fd69c834ae819b2b4a031f4764ad3fc30c98b9b7",
+        "nllb3.3b_eng_Latn_tgl_Latn_devtest_sentence_split.jsonl": "c7eadc7984dec898f013d32cf8e86a28a9f648f50cea12834fcd2ab39078a75f"
+      }
+    },
+    "tgl_Latn->eng_Latn": {
+      "rows": 1012,
+      "multi_segment_items": 118,
+      "fragments_translated": 240,
+      "fragment_inference_seconds": 6.612931552000077,
+      "split_differs_from_unsplit": 104,
+      "unsplit_regeneration": {
+        "exact_vs_archive": 1012,
+        "n": 1012,
+        "seconds": 62.67093799100007
+      },
+      "file_sha256": {
+        "nllb3.3b_tgl_Latn_eng_Latn_devtest_unsplit_control.jsonl": "c837b5cb8683145f556ae974c31e8254b21ff97563d0a648f70d90508151a68e",
+        "nllb3.3b_tgl_Latn_eng_Latn_devtest_sentence_split.jsonl": "8b9fb3cef7256591a9f4e4e0b6a27b0b75a4abd5d39e4fb38a3fb9e90c8eb5b1"
+      }
+    },
+    "eng_Latn->spa_Latn": {
+      "rows": 1012,
+      "multi_segment_items": 113,
+      "fragments_translated": 230,
+      "fragment_inference_seconds": 6.505858927000304,
+      "split_differs_from_unsplit": 98,
+      "unsplit_regeneration": {
+        "exact_vs_archive": 1012,
+        "n": 1012,
+        "seconds": 68.38960407899958
+      },
+      "file_sha256": {
+        "nllb3.3b_eng_Latn_spa_Latn_devtest_unsplit_control.jsonl": "33da0126556574addf18619cd746dc693a469d4da56d9381cb5047da808acd85",
+        "nllb3.3b_eng_Latn_spa_Latn_devtest_sentence_split.jsonl": "8ae65d3c9e0efa197f4e97f65fa87ba918c10978171c3e2b9f792c577c0aa391"
+      }
+    },
+    "spa_Latn->eng_Latn": {
+      "rows": 1012,
+      "multi_segment_items": 122,
+      "fragments_translated": 252,
+      "fragment_inference_seconds": 7.173566697000069,
+      "split_differs_from_unsplit": 114,
+      "unsplit_regeneration": {
+        "exact_vs_archive": 1012,
+        "n": 1012,
+        "seconds": 64.8612234360005
+      },
+      "file_sha256": {
+        "nllb3.3b_spa_Latn_eng_Latn_devtest_unsplit_control.jsonl": "8df70b0ca23b703419ea71efa55c24edd037c5adcc09698b36e520d0ce6e09f8",
+        "nllb3.3b_spa_Latn_eng_Latn_devtest_sentence_split.jsonl": "957b77c01d644a1e713d599ef8647e5931009cb49467d5d15ce510b4206c4750"
+      }
+    }
+  },
+  "scored": false,
+  "created_utc": "2026-10-24T07:39:42.813598+00:00"
+}
