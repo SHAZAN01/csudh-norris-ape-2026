@@ -454,3 +454,7 @@ No devtest output has been generated or scored at this commit.
 
 24 conditions × 1,012 devtest items = 24,288 post-edited outputs plus the S0 baseline. Llama 3 8B and GPT-4o Mini: 12,144/12,144 accepted each, **0 fallbacks**; GPT 12,144 requests all HTTP 200, 0 retries (est. $1.10). Executed code identical to the frozen code. Report: `docs/phase4/Norris_Phase_Report_4.pdf`; numeric evidence: `docs/phase4/evidence/`. Next: Phase 5 (`notebooks/phase5/01_evaluate_main.ipynb`).
 
+## Update — 25 October 2026: Phase 5 complete (held-out results)
+
+GPT-4o Mini improved COMET-22 over the split NLLB baseline in all 12 direction × strategy conditions (+0.26 to +1.00 points, all Holm-significant); Llama 3 8B Instruct improved none and was significantly worse in 6 (all reason-then-edit directions; zero/one-shot En→Tl). Protect-pool over-editing: GPT-4o Mini 0.8–4.3% of 1,179 strong drafts, Llama 11.2–20.9%. All numbers independently recomputed from the 24,288 segment scores. Report: `docs/phase5/Norris_Phase_Report_5.pdf`; numeric evidence: `docs/phase5/evidence/`. Manuscript audit: `python scripts/audit_manuscript.py` (61 held-out claims + generated tables).
+

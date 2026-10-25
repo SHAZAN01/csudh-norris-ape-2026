@@ -6,8 +6,10 @@ Usage: python generate_main_figures.py --eval-dir <outputs/phase5/eval_xxx> --ou
 """
 import argparse
 import json
+import os
 from pathlib import Path
 
+os.environ['MPLBACKEND'] = 'Agg'  # Colab exports an inline backend that a separate venv cannot load
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt  # noqa: E402

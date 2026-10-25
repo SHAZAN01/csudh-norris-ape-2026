@@ -41,6 +41,28 @@ def main():
         for loc in claim['locations']:
             require(claim['rendered'] in (PAPER / loc).read_text(), f'claim {claim["id"]} not in {loc}')
 
+    # Held-out claims: every registered number recomputed from the committed Phase 5 results
+    res_path = Path(a.phase5_results) if a.phase5_results else ROOT / 'docs/phase5/evidence/main_results.json'
+    n5 = 0
+    if res_path.exists():
+        sys.path.insert(0, str(ROOT / 'src' / 'analysis'))
+        import phase5_facts as PF
+        facts = PF.facts(json.loads(res_path.read_text()), ROOT)
+        for cl in json.loads((PAPER / 'claims_manifest.json').read_text()).get('phase5_claims', []):
+            v = facts[cl['fact']]
+            got = str(v) if cl['format'] in ('s', 'bool') else format(v, cl['format'])
+            require(got == cl['rendered'], f"held-out fact {cl['fact']}: evidence gives {got}, manifest says {cl['rendered']}")
+            needle = cl.get('tex', cl['rendered'])
+            pattern = r'(?<![\d.,])' + re.escape(needle) + r'(?![\d])'  # number boundaries: '51' must not match '-0.51' or '512'
+            for loc in cl['locations']:
+                require(re.search(pattern, (PAPER / loc).read_text()) is not None, f"{cl['fact']} ({needle}) not in {loc}")
+            n5 += 1
+        import evaluate_main_experiments as EV
+        with tempfile.TemporaryDirectory() as d:
+            EV.write_tables(json.loads(res_path.read_text()), d)
+            for f in Path(d).iterdir():
+                g = PAPER / 'generated' / f.name
+                require(g.exists() and g.read_text() == f.read_text(), 'generated file differs from Phase 5 results: ' + f.name)
     tex = {p: strip_comments(p.read_text()) for p in PAPER.rglob('*.tex') if 'legacy_dev' not in p.parts}
     allsrc = '\n'.join(tex.values())
     bib = (PAPER / 'references.bib').read_text()
@@ -70,15 +92,9 @@ def main():
     if a.final:
         require(pend == 0, f'{pend} \\pending markers remain')
         require('\\finaltrue' in main_tex.split('\\begin{document}')[0], 'set \\finaltrue for submission')
-        require(a.phase5_results, '--phase5-results is required in final mode')
-        import evaluate_main_experiments as EV
-        res = json.loads(Path(a.phase5_results).read_text())
-        with tempfile.TemporaryDirectory() as d:
-            EV.write_tables(res, d)
-            for f in Path(d).iterdir():
-                require((PAPER / 'generated' / f.name).read_text() == f.read_text(), 'generated file differs: ' + f.name)
+        require(n5 > 0, 'held-out claims were not checked')
     print(f'PASS ({"final" if a.final else "draft"}): {len(cited)} citations, RQs match freeze, ICAI boundary, '
-          f'no novelty claims, dev claims verified; {max(pend, 0)} pending markers')
+          f'no novelty claims, dev claims verified; {n5} held-out claims and 4 generated files verified; {max(pend, 0)} pending markers')
 
 
 if __name__ == '__main__':

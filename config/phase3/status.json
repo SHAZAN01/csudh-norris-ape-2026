@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-24",
+  "as_of": "2026-10-25",
   "phase3_complete": false,
   "baseline_generation": "verified_complete_dev_only",
   "baseline_evaluation": "verified_complete_dev_only",
@@ -17,9 +17,9 @@
   "empirical_pilot_work_complete": true,
   "pilot_quality_failure_analysis": "complete_24_conditions_independently_audited",
   "pending": [
-    "Phase 5 evaluation (notebooks/phase5/01_evaluate_main.ipynb)",
-    "Report 5",
-    "Manuscript results from held-out evidence; full draft by 2026-11-24"
+    "Source review of rule-selected held-out cases (notebook phase5 cell 6) -> Report 5 Section 10 and manuscript Discussion",
+    "PI: S0 disposition acknowledgement; byline; venue AI-assistance/funding statements; ICAI metadata",
+    "7.txt final audit (--final) and 8.txt reproducibility packaging; full draft to PI by 2026-11-24"
   ],
   "main_devtest_execution_started": true,
   "manuscript": "IEEEtran_development_draft_in_paper;_Overleaf_sync_requires_authenticated_access",
@@ -35,5 +35,6 @@
     "S0 reconstruction disposition",
     "Llama reason-then-edit dev over-editing observation"
   ],
-  "phase4": "complete 2026-10-24 (07:33-09:21 UTC): 24 conditions x 1,012 = 24,288 outputs; 0 fallbacks; 0 retries; S0 unsplit regeneration 4,048/4,048; not scored"
+  "phase4": "complete 2026-10-24 (07:33-09:21 UTC): 24 conditions x 1,012 = 24,288 outputs; 0 fallbacks; 0 retries; S0 unsplit regeneration 4,048/4,048; not scored",
+  "phase5": "complete 2026-10-25: 16,973 unique COMET segments; F1 18/24 and F2 15/24 Holm-significant; independently recomputed (max diff 0)"
 }
