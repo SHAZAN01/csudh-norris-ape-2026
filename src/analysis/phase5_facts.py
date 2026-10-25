@@ -84,6 +84,16 @@ def facts(res, repo):
     p4 = json.loads((repo / 'docs/phase4/evidence/phase4_summary.json').read_text())['models']['gpt4o-mini']['estimated_cost_usd_uncached']
     rte = json.loads((repo / 'docs/phase3/evidence/rte_v3/gpt4o-mini_run_summary.json').read_text())
     pilot = json.loads((repo / 'docs/phase3/evidence/pilot/independent_numeric_audit.json').read_text())
+    rv = repo / 'docs/phase5/evidence/source_review_summary.json'
+    if rv.exists():
+        R2 = json.loads(rv.read_text())
+        A = R2['rule_A_summary']
+        F['review_cases'] = R2['cases_reviewed']
+        F['review_llama_genuine'] = A['llama3-8b'].get('genuine_error', 0)
+        F['review_gpt_not_error'] = A['gpt4o-mini'].get('acceptable_penalized', 0) + A['gpt4o-mini'].get('source_supported_correction_penalized', 0)
+        F['review_luxury_delta'] = next(c['delta_comet_points'] for c in R2['rule_A_classification']
+                                        if c['model'] == 'gpt4o-mini' and c['sentence_id'] == 489)
+        F['review_llama_reason_srclang'] = R2['source_language_outputs_langdetect']['llama3-8b/reason-then-edit']
     F['gpt_cost_total'] = p4 + sum(v.get('estimated_cost_usd_uncached', 0) for v in rte['conditions'].values()) + \
         next(v for k, v in _walk(pilot) if k == 'gpt_token_cost_estimate_usd')
     return F

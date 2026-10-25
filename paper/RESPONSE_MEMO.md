@@ -43,8 +43,13 @@ accepted through a predeclared operational gate (0/400 fallbacks for both editor
 data all 24,288 outputs were valid, so the condition was not handicapped by format. Even so,
 reason-then-edit was never significantly better than zero-shot or one-shot (all 16 point estimates
 lower), and for Llama it was the most harmful strategy in every direction (−0.51 to −1.44 vs. S0;
-247 of 1,179 strong drafts over-edited). The rule-based source review (pending) will show whether
-confident diagnoses accompany unsupported edits.
+247 of 1,179 strong drafts over-edited). The rule-based source review confirms that confident
+diagnoses accompany unsupported edits: Llama reason-then-edit rendered a plane's *secuestro* as
+"kidnapping" with a diagnosis asserting that this was more accurate, called a correct Tagalog
+word a non-word, and returned the untranslated source while claiming a one-word fix (language ID
+places 20 of its 4,048 outputs in the source language). All 12 of Llama's largest strong-draft
+over-edits were genuine errors, against 2 of 12 for GPT-4o Mini, whose others were acceptable or
+source-supported changes that COMET penalized.
 
 ## Further likely questions
 

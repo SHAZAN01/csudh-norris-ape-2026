@@ -1,0 +1,270 @@
+{
+ "status": "source_review_complete",
+ "date": "2026-10-25",
+ "cases_reviewed": 96,
+ "selection": "Fixed rules (extract_review_cases.py) applied before any held-out text was read: per condition A largest protect-pool over-edit, B largest improvement, C first digit-loss flag, D first language-ID flag.",
+ "reviewer_note": "Source-based reading by the project team with AI assistance; illustrative, not independent bilingual ratings. Tagalog judgments to be confirmed by a Tagalog speaker before submission.",
+ "rule_A_classification": [
+  {
+   "model": "gpt4o-mini",
+   "strategy": "knn-oneshot",
+   "direction": "eng_Latn->spa_Latn",
+   "sentence_id": 208,
+   "delta_comet_points": -23.35,
+   "baseline_comet_points": 92.5,
+   "category": "acceptable_penalized",
+   "note": "synonym: peacekeepers rendered as \"cascos azules\" (blue helmets)"
+  },
+  {
+   "model": "gpt4o-mini",
+   "strategy": "knn-oneshot",
+   "direction": "eng_Latn->tgl_Latn",
+   "sentence_id": 22,
+   "delta_comet_points": -19.01,
+   "baseline_comet_points": 94.91,
+   "category": "acceptable_penalized",
+   "note": "award category names localized into Tagalog; reference keeps English"
+  },
+  {
+   "model": "gpt4o-mini",
+   "strategy": "knn-oneshot",
+   "direction": "spa_Latn->eng_Latn",
+   "sentence_id": 314,
+   "delta_comet_points": -5.82,
+   "baseline_comet_points": 93.84,
+   "category": "acceptable_penalized",
+   "note": "literal paraphrase, meaning preserved"
+  },
+  {
+   "model": "gpt4o-mini",
+   "strategy": "knn-oneshot",
+   "direction": "tgl_Latn->eng_Latn",
+   "sentence_id": 710,
+   "delta_comet_points": -10.64,
+   "baseline_comet_points": 96.25,
+   "category": "acceptable_penalized",
+   "note": "more literal paraphrase, meaning preserved"
+  },
+  {
+   "model": "gpt4o-mini",
+   "strategy": "reason-then-edit",
+   "direction": "eng_Latn->spa_Latn",
+   "sentence_id": 525,
+   "delta_comet_points": -2.88,
+   "baseline_comet_points": 90.69,
+   "category": "acceptable_penalized",
+   "note": "lexical choice for \"pools\" (reservorios); defensible"
+  },
+  {
+   "model": "gpt4o-mini",
+   "strategy": "reason-then-edit",
+   "direction": "eng_Latn->tgl_Latn",
+   "sentence_id": 938,
+   "delta_comet_points": -7.66,
+   "baseline_comet_points": 91.95,
+   "category": "source_supported_correction_penalized",
+   "note": "tense corrected to past; matches reference"
+  },
+  {
+   "model": "gpt4o-mini",
+   "strategy": "reason-then-edit",
+   "direction": "spa_Latn->eng_Latn",
+   "sentence_id": 895,
+   "delta_comet_points": -9.51,
+   "baseline_comet_points": 91.55,
+   "category": "genuine_error",
+   "note": "generic \"you\" changed to \"he/she\"; diagnosis overconfident"
+  },
+  {
+   "model": "gpt4o-mini",
+   "strategy": "reason-then-edit",
+   "direction": "tgl_Latn->eng_Latn",
+   "sentence_id": 23,
+   "delta_comet_points": -13.24,
+   "baseline_comet_points": 90.91,
+   "category": "genuine_error",
+   "note": "film title left untranslated in English output; diagnosis wrong"
+  },
+  {
+   "model": "gpt4o-mini",
+   "strategy": "zero-shot",
+   "direction": "eng_Latn->spa_Latn",
+   "sentence_id": 208,
+   "delta_comet_points": -23.35,
+   "baseline_comet_points": 92.5,
+   "category": "acceptable_penalized",
+   "note": "same synonym as one-shot"
+  },
+  {
+   "model": "gpt4o-mini",
+   "strategy": "zero-shot",
+   "direction": "eng_Latn->tgl_Latn",
+   "sentence_id": 489,
+   "delta_comet_points": -9.13,
+   "baseline_comet_points": 90.91,
+   "category": "source_supported_correction_penalized",
+   "note": "\"glory\" corrected to \"luxury\" as in the source"
+  },
+  {
+   "model": "gpt4o-mini",
+   "strategy": "zero-shot",
+   "direction": "spa_Latn->eng_Latn",
+   "sentence_id": 625,
+   "delta_comet_points": -5.32,
+   "baseline_comet_points": 91.43,
+   "category": "acceptable_penalized",
+   "note": "more literal rendering (\"most voluminous\")"
+  },
+  {
+   "model": "gpt4o-mini",
+   "strategy": "zero-shot",
+   "direction": "tgl_Latn->eng_Latn",
+   "sentence_id": 710,
+   "delta_comet_points": -10.64,
+   "baseline_comet_points": 96.25,
+   "category": "acceptable_penalized",
+   "note": "more literal paraphrase, meaning preserved"
+  },
+  {
+   "model": "llama3-8b",
+   "strategy": "knn-oneshot",
+   "direction": "eng_Latn->spa_Latn",
+   "sentence_id": 525,
+   "delta_comet_points": -10.74,
+   "baseline_comet_points": 90.69,
+   "category": "genuine_error",
+   "note": "\"pools\" mistranslated as swimming pools (piscinas)"
+  },
+  {
+   "model": "llama3-8b",
+   "strategy": "knn-oneshot",
+   "direction": "eng_Latn->tgl_Latn",
+   "sentence_id": 437,
+   "delta_comet_points": -16.33,
+   "baseline_comet_points": 91.47,
+   "category": "genuine_error",
+   "note": "ungrammatical rewrite; meaning of \"came under scrutiny\" lost"
+  },
+  {
+   "model": "llama3-8b",
+   "strategy": "knn-oneshot",
+   "direction": "spa_Latn->eng_Latn",
+   "sentence_id": 216,
+   "delta_comet_points": -18.36,
+   "baseline_comet_points": 90.56,
+   "category": "genuine_error",
+   "note": "plane \"hijacking\" changed to \"kidnapping\""
+  },
+  {
+   "model": "llama3-8b",
+   "strategy": "knn-oneshot",
+   "direction": "tgl_Latn->eng_Latn",
+   "sentence_id": 710,
+   "delta_comet_points": -25.84,
+   "baseline_comet_points": 96.25,
+   "category": "genuine_error",
+   "note": "\"least interesting\" turned into \"not unwilling\""
+  },
+  {
+   "model": "llama3-8b",
+   "strategy": "reason-then-edit",
+   "direction": "eng_Latn->spa_Latn",
+   "sentence_id": 620,
+   "delta_comet_points": -21.8,
+   "baseline_comet_points": 91.23,
+   "category": "genuine_error",
+   "note": "omits \"lugares\"; diagnosis calls draft accurate yet edits"
+  },
+  {
+   "model": "llama3-8b",
+   "strategy": "reason-then-edit",
+   "direction": "eng_Latn->tgl_Latn",
+   "sentence_id": 39,
+   "delta_comet_points": -18.75,
+   "baseline_comet_points": 90.13,
+   "category": "genuine_error",
+   "note": "corrupts \"beses\"; diagnosis falsely calls it a non-word"
+  },
+  {
+   "model": "llama3-8b",
+   "strategy": "reason-then-edit",
+   "direction": "spa_Latn->eng_Latn",
+   "sentence_id": 216,
+   "delta_comet_points": -14.78,
+   "baseline_comet_points": 90.56,
+   "category": "genuine_error",
+   "note": "\"hijacking\" to \"kidnapping\"; diagnosis confidently wrong"
+  },
+  {
+   "model": "llama3-8b",
+   "strategy": "reason-then-edit",
+   "direction": "tgl_Latn->eng_Latn",
+   "sentence_id": 867,
+   "delta_comet_points": -28.56,
+   "baseline_comet_points": 91.03,
+   "category": "genuine_error",
+   "note": "returns the untranslated Tagalog source; diagnosis claims a one-word fix"
+  },
+  {
+   "model": "llama3-8b",
+   "strategy": "zero-shot",
+   "direction": "eng_Latn->spa_Latn",
+   "sentence_id": 885,
+   "delta_comet_points": -12.81,
+   "baseline_comet_points": 91.52,
+   "category": "genuine_error",
+   "note": "meaningless rewrite (\"tan variable como lo es\")"
+  },
+  {
+   "model": "llama3-8b",
+   "strategy": "zero-shot",
+   "direction": "eng_Latn->tgl_Latn",
+   "sentence_id": 87,
+   "delta_comet_points": -9.88,
+   "baseline_comet_points": 90.49,
+   "category": "genuine_error",
+   "note": "\"draft (a policy)\" becomes \"travel\" (maglakbay)"
+  },
+  {
+   "model": "llama3-8b",
+   "strategy": "zero-shot",
+   "direction": "spa_Latn->eng_Latn",
+   "sentence_id": 216,
+   "delta_comet_points": -14.78,
+   "baseline_comet_points": 90.56,
+   "category": "genuine_error",
+   "note": "\"hijacking\" to \"kidnapping\""
+  },
+  {
+   "model": "llama3-8b",
+   "strategy": "zero-shot",
+   "direction": "tgl_Latn->eng_Latn",
+   "sentence_id": 710,
+   "delta_comet_points": -25.84,
+   "baseline_comet_points": 96.25,
+   "category": "genuine_error",
+   "note": "\"least interesting\" turned into \"not unwilling\""
+  }
+ ],
+ "rule_A_summary": {
+  "gpt4o-mini": {
+   "acceptable_penalized": 8,
+   "source_supported_correction_penalized": 2,
+   "genuine_error": 2
+  },
+  "llama3-8b": {
+   "genuine_error": 12
+  }
+ },
+ "rule_B_summary": "All 24 largest gains repair clear S0 errors, most of them severe (repetition loops, mistranslated nouns such as feathers for skirts, garbled clauses); some repairs remain partly wrong (e.g., one fix of a repetition loop still names the wrong period) yet gain more than 20 points.",
+ "rule_C_summary": "Digit-loss flags are mostly formatting (GHz spacing, thousands separators, 1960s, numerals as words, 12:00); genuine changes found: Llama reason-then-edit drops a lower bound (\"from 10 to 15\" to \"up to 15\") and drops \"GMT\"; GPT-4o Mini reason-then-edit restores the source unit (500 feet) from a converted S0 value.",
+ "rule_D_summary": "Language-ID flags are mostly name-heavy sentences; genuine drift: Llama reason-then-edit returns the untranslated source with a diagnosis claiming a one-word fix.",
+ "source_language_outputs_langdetect": {
+  "gpt4o-mini/knn-oneshot": 1,
+  "gpt4o-mini/reason-then-edit": 2,
+  "gpt4o-mini/zero-shot": 2,
+  "llama3-8b/knn-oneshot": 1,
+  "llama3-8b/reason-then-edit": 20,
+  "llama3-8b/zero-shot": 8
+ }
+}

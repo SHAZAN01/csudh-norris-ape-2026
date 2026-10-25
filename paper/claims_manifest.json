@@ -536,18 +536,14 @@
    "fact": "max_digit_change",
    "format": "d",
    "rendered": "23",
-   "locations": [
-    "sections/06_discussion.tex"
-   ],
+   "locations": [],
    "tex": "at most 23 outputs"
   },
   {
    "fact": "llama_reason_tlen_lang",
    "format": "d",
    "rendered": "10",
-   "locations": [
-    "sections/06_discussion.tex"
-   ],
+   "locations": [],
    "tex": "10 vs.\\ 1"
   },
   {
@@ -558,6 +554,51 @@
     "sections/08_limitations.tex"
    ],
    "tex": "US\\$1.26"
+  },
+  {
+   "fact": "review_cases",
+   "format": "d",
+   "rendered": "96",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "We read 96 held-out cases"
+  },
+  {
+   "fact": "review_llama_genuine",
+   "format": "d",
+   "rendered": "12",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "All 12 of the largest Llama over-edits"
+  },
+  {
+   "fact": "review_gpt_not_error",
+   "format": "d",
+   "rendered": "10",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "10 of the 12 largest GPT-4o Mini"
+  },
+  {
+   "fact": "review_luxury_delta",
+   "format": ".1f",
+   "rendered": "-9.1",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "$-9.1$ points"
+  },
+  {
+   "fact": "review_llama_reason_srclang",
+   "format": "d",
+   "rendered": "20",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "places 20 of its 4{,}048"
   }
  ],
  "phase5_scope": "Held-out numbers in prose. Values are recomputed from docs/phase5/evidence/main_results.json by src/analysis/phase5_facts.py; tables and macros are checked byte-for-byte against regeneration."
