@@ -562,7 +562,7 @@
    "locations": [
     "sections/06_discussion.tex"
    ],
-   "tex": "We read 96 held-out cases"
+   "tex": "covered 96 held-out cases"
   },
   {
    "fact": "review_llama_genuine",
@@ -718,6 +718,51 @@
     "sections/08_limitations.tex"
    ],
    "tex": "412/421 "
+  },
+  {
+   "fact": "ext_weak_items_pct_min",
+   "format": ".0f",
+   "rendered": "6",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "only 6"
+  },
+  {
+   "fact": "ext_weak_items_pct_max",
+   "format": ".0f",
+   "rendered": "18",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "18\\% of items per direction"
+  },
+  {
+   "fact": "ext_gpt_weak_share_min",
+   "format": ".0f",
+   "rendered": "41",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "supply 41"
+  },
+  {
+   "fact": "ext_gpt_weak_share_max",
+   "format": ".0f",
+   "rendered": "77",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "77\\% of each GPT-4o Mini gain"
+  },
+  {
+   "fact": "ext_gpt_one_cost_per1000_max",
+   "format": ".2f",
+   "rendered": "0.10",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "US\\$0.10 per 1{,}000 sentences"
   }
  ],
  "phase5_scope": "Held-out numbers in prose. Values are recomputed from docs/phase5/evidence/main_results.json by src/analysis/phase5_facts.py; tables and macros are checked byte-for-byte against regeneration."

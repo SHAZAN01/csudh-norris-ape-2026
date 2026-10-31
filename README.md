@@ -66,8 +66,8 @@ PI decisions are recorded in `docs/PI_DECISIONS_2026-10-31.md`; the schedule is 
 ## Environments
 
 Each stage ran in its own Python 3.11 virtual environment on a Colab A100 (NLLB: Python 3.13), created with `uv`.
-Top-level pins are in `config/environments/{nllb,retrieval,llama_gpt,evaluation}.txt`; the fully resolved set for the
-held-out editors is `docs/phase4/evidence/llama_gpt_env_requirements_resolved.txt`. Key versions: vLLM 0.11.2,
+Top-level pins are in `config/environments/{nllb,retrieval,llama_gpt,evaluation}.txt`; resolved lock files are in
+`config/environments/*.lock.txt` (coverage per environment in `config/environments/README.md`). Key versions: vLLM 0.11.2,
 openai 1.109.1, unbabel-comet 2.2.7 (`Unbabel/wmt22-comet-da` @ 2760a223), sacrebleu 2.6.0, transformers 4.49.0
 (evaluation).
 
@@ -85,7 +85,7 @@ Notebooks clone the branch named in their first cell and verify the frozen code 
 
 ```
 pip install pydantic==2.12.3            # for the protocol module
-python scripts/audit_manuscript.py        # RQs, anonymity, 79 held-out claims, generated tables
+python scripts/audit_manuscript.py        # RQs, anonymity, 84 held-out claims, generated tables
 python scripts/audit_public_files.py      # no secrets, benchmark text or generations
 python tests/frozen/test_protocol.py
 python tests/phase5/test_stats.py
@@ -100,6 +100,7 @@ committed. Numeric evidence (scores, counts, hashes, statistics) is public and s
 
 ## Changelog
 
+* **2026-10-31** Manuscript restructured (problem, gap, results by RQ, implications, Fig. 2); environment lock files added (`config/environments/*.lock.txt`).
 * **2026-10-31** PI decisions applied: anonymous manuscript, S0 disposition documented, case review strictly
   source/reference-based, Conclusions and Future Work; README rewritten; anonymity check added to the audit.
 * **2026-10-30** Report 5.1: exploratory robustness analyses; RQ1 wording corrected.

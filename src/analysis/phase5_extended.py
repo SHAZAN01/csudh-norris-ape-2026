@@ -489,6 +489,46 @@ def figures(out, res, fdir):
     plt.close(fig)
 
 
+def paper_figure(out, path):
+    """Manuscript Fig. 2 (column width): exact pool decomposition, mean over the four directions per editor x strategy."""
+    import os
+    os.environ['MPLBACKEND'] = 'Agg'
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    plt.rcParams.update({'font.size': 7, 'pdf.fonttype': 42, 'ps.fonttype': 42})
+    rows = [(m, s) for m in M for s in S]
+    mean = lambda m, s, f: sum(f(r) for r in out['X3_pool_decomposition'] if r['model'] == m and r['strategy'] == s) / len(D)
+    pc = {'improve': '#2e8b57', 'middle': '#b8b8b8', 'protect': '#7b3fa0'}
+    pl = {'improve': 'weak S0 (<0.80)', 'middle': 'middle', 'protect': 'strong S0 (\u22650.90)'}
+    fig, ax = plt.subplots(figsize=(3.45, 1.55))
+    pos, neg = [0.0] * len(rows), [0.0] * len(rows)
+    for p in POOLS:
+        v = [mean(m, s, lambda r, p=p: r['contribution'][p]) for m, s in rows]
+        ax.bar(range(len(rows)), v, bottom=[pos[i] if v[i] >= 0 else neg[i] for i in range(len(rows))], color=pc[p], width=.7, label=pl[p])
+        for i, x in enumerate(v):
+            if x >= 0:
+                pos[i] += x
+            else:
+                neg[i] += x
+    ax.plot(range(len(rows)), [mean(m, s, lambda r: r['F1_delta']) for m, s in rows], 'k_', ms=11, mew=1.6, label='total')
+    ax.axhline(0, color='0.3', lw=.6)
+    ax.axvline(2.5, color='0.6', lw=.6, ls=':')
+    ax.set_xticks(range(len(rows)))
+    ax.set_xticklabels([{'zero-shot': 'Zero', 'knn-oneshot': 'One', 'reason-then-edit': 'Reason'}[s] for m, s in rows])
+    lo, hi = ax.get_ylim()
+    ax.set_ylim(lo, hi + 0.32 * (hi - lo))
+    top = ax.get_ylim()[1]
+    ax.text(1, top * .97, 'GPT-4o Mini', ha='center', va='top', fontsize=7)
+    ax.text(4, top * .97, 'Llama 3 8B', ha='center', va='top', fontsize=7)
+    ax.set_ylabel('\u0394COMET (points)')
+    ax.grid(axis='y', alpha=.3, lw=.4)
+    ax.legend(fontsize=5.8, frameon=False, loc='lower left', ncol=2)
+    fig.tight_layout(pad=.3)
+    fig.savefig(path)
+    plt.close(fig)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--results', default=str(ROOT / 'docs/phase5/evidence/main_results.json'))
@@ -496,6 +536,7 @@ def main():
     ap.add_argument('--out', default=str(ROOT / 'docs/phase5/evidence/extended'))
     ap.add_argument('--figures', default=str(ROOT / 'docs/phase5/figures_extended'))
     ap.add_argument('--no-figures', action='store_true')
+    ap.add_argument('--paper-figure', default=str(ROOT / 'paper/figures/fig_pool_decomposition.pdf'))
     a = ap.parse_args()
     res = json.loads(Path(a.results).read_text())
     out = analyse(res, json.loads(Path(a.gpt_summary).read_text()))
@@ -506,6 +547,7 @@ def main():
     write_csvs(out, od)
     if not a.no_figures:
         figures(out, res, Path(a.figures))
+        paper_figure(out, Path(a.paper_figure))
     print('PASS: extended analyses written; consistency checks:', json.dumps(out['checks']))
 
 

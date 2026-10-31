@@ -19,11 +19,10 @@
   "pending": [
     "AI-use disclosure only if the ICNLP submission instructions require it (one \\pending marker)",
     "ICAI proceedings metadata when published (reference stays 'to appear')",
-    "Reproducibility: resolved environment lock files from Drive run folders (notebooks/phase5/02)",
     "Manuscript: complete draft 2026-11-20; submission-ready 2026-11-24; handoff to PI 2026-11-26"
   ],
   "main_devtest_execution_started": true,
-  "manuscript": "IEEEtran_development_draft_in_paper;_Overleaf_sync_requires_authenticated_access",
+  "manuscript": "anonymous 5-page draft restructured 2026-10-31; 84 audited held-out claims; one \\\\pending (AI-use disclosure)",
   "pilot_analysis_sha256": "9d6830a0b9c7cc97e2b372c78c2c700734fd5cf65ab30e6177e7ae8d531ddc90",
   "pi_acceptance_received": "2026-10-22",
   "icai_boundary": "approved_by_PI_2026-10-22",
@@ -45,5 +44,6 @@
     "case_review": "source/reference-based qualitative inspection only; no external raters, no human-participant evaluation, no IRB process",
     "manuscript": "anonymous submission: author block blank",
     "merge": "phase4-main may be merged into main; frozen protocol and result history preserved; no benchmark text or model outputs in the public repository"
-  }
+  },
+  "environment_locks": "collected 2026-10-31: llama_gpt (exact Phase 4), retrieval (exact pilot run), evaluation (pilot run + Phase 5 additions documented); NLLB resolved set not saved (versions in s0_run_spec.json)"
 }

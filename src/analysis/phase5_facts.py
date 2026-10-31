@@ -122,6 +122,11 @@ def extended_facts(res, repo):
     F['ext_gap_reduction_min'] = o['X4_summary']['gpt_gap_reduction_min']
     F['ext_gap_reduction_max'] = o['X4_summary']['gpt_gap_reduction_max']
     F['ext_gap_middle_share_min'] = 100 * o['X4_summary']['gpt_std_gap_middle_share_min']
+    F['ext_gpt_weak_share_min'] = 100 * o['X3_summary']['gpt_weak_share_min']
+    F['ext_gpt_weak_share_max'] = 100 * o['X3_summary']['gpt_weak_share_max']
+    wi = [res['baseline_pools'][d]['improve'] / res['baseline_pools'][d]['n'] for d in res['baseline_pools']]
+    F['ext_weak_items_pct_min'], F['ext_weak_items_pct_max'] = 100 * min(wi), 100 * max(wi)
+    F['ext_gpt_one_cost_per1000_max'] = max(r['cost_per_1000_items'] for r in o['X9_cost']['per_condition'] if r['strategy'] == 'knn-oneshot')
     lw = [r for r in o['X3_pool_decomposition'] if r['model'] == 'llama3-8b']
     neg = [r for r in lw if r['oracle_skip_strong'] < 0]
     F['ext_llama_skip_strong_negative'] = len(neg) if all(r['contribution']['middle'] < 0 for r in neg) else None

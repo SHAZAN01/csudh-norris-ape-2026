@@ -4,7 +4,8 @@ ICNLP 2027 deadline: 30 November 2026. Page budget: 5 pages including references
 
 | Dates | Work | Output |
 |---|---|---|
-| 31 Oct – 6 Nov | Merge `phase4-main` into `main`; README reproduction guide; environment lock files from Drive (`notebooks/phase5/02_collect_environment_locks.ipynb`); repository sanitisation | `main` is the public record |
+| 31 Oct | **Done:** merge into `main` (PR #3, merge commit); README reproduction guide; environment lock files; manuscript restructured (`paper/REVISION_NOTES.md`) | `main` is the public record |
+| 1 – 6 Nov | Reference verification against ACL Anthology/DOIs; repository sanitisation | |
 | 7 – 13 Nov | Manuscript prose pass (held-out results drive Abstract, Results, Discussion, Conclusions and Future Work); hostile-reviewer pass; reference verification | Draft v1 |
 | 14 – 19 Nov | Figure polish if space allows; anonymity and venue-compliance checklist (`paper/SUBMISSION_CHECKLIST.md`) | Draft v2 |
 | **20 Nov** | **Complete manuscript draft to the PI** | Overleaf + PDF |
