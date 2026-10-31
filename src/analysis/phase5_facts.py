@@ -96,6 +96,8 @@ def facts(res, repo):
         F['review_llama_reason_srclang'] = R2['source_language_outputs_langdetect']['llama3-8b/reason-then-edit']
     F['gpt_cost_total'] = p4 + sum(v.get('estimated_cost_usd_uncached', 0) for v in rte['conditions'].values()) + \
         next(v for k, v in _walk(pilot) if k == 'gpt_token_cost_estimate_usd')
+    g = json.loads((repo / 'docs/phase3/evidence/rte_v3/gate_dev_generation.json').read_text())['multi_items']
+    F['s0_dev_multi_exact'], F['s0_dev_multi_total'] = g['exact'], g['total']  # PI-approved S0 disposition (Report 3.2 §5)
     F.update(extended_facts(res, repo))
     return F
 

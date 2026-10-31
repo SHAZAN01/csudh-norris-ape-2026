@@ -11,3 +11,7 @@ Updated 23 October 2026 after the PI's Phase 3 acceptance message (22 October 20
 | 5 | Statistics | F1: 24 PE-vs-S0 tests; F2: 24 strategy tests (one−zero, reason−zero, reason−one); two-sided centered paired bootstrap, B=10,000, seed 42; percentile CIs; Holm per family α=.05; ±0.5-point practical band flag; nonsignificant = inconclusive. Validated on synthetic fixtures. | `src/evaluation/norris_stats.py`, `tests/phase5/test_stats.py`, freeze `evaluation` |
 | 6 | Roadmap discrepancies | langdetect 1.0.9 (not fastText); chrF++ word order 2; native thresholds ±0.02; protect ≥.90 / improve <.80 on devtest S0; harm and protect-pool over-editing reported separately; sensitivity .01/.05. | freeze `evaluation`, `deviations_from_roadmap` |
 | 7 | Freeze artifact | `config/frozen/protocol_freeze.json` built by `src/freeze/build_freeze_manifest.py` only after the gates; records RQs verbatim, prompts, schemas, code hashes and git commit. | `config/frozen/` |
+
+## Update — 31 October 2026
+
+All items above are approved by the PI, including the S0 reconstruction disposition (segmentation and unsplit baseline reproduced exactly; fragment generation 412/421 dev multi-sentence items; limitation documented; dev baseline not regenerated). See `docs/PI_DECISIONS_2026-10-31.md`.

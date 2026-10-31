@@ -35,7 +35,8 @@ whose COMET change is not significant; (b) paired intervals with Holm correction
 Bonferroni, Benjamini–Hochberg or a joint Holm family of 48; all 18 significant F1 effects have the same sign in
 COMET, BLEU and chrF++ (rank correlation of condition deltas: chrF++ 0.97, BLEU 0.94); the only metric
 disagreements are three non-significant Llama conditions where COMET is flat and lexical metrics fall.
-No bilingual human evaluation was run (PI decision, 24 September 2026); this is a stated limitation.
+No human evaluation was run (PI decisions of 24 September and 31 October 2026); the 96-case review is a
+source- and reference-based qualitative inspection, and the absence of human evaluation is a stated limitation.
 
 ## 3. "Does reason-then-edit (CoT) introduce hallucinated diagnoses, and was the condition handicapped?"
 

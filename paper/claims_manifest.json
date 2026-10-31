@@ -698,6 +698,26 @@
     "sections/06_discussion.tex"
    ],
    "tex": "below S0 in 6 of 12 conditions"
+  },
+  {
+   "fact": "s0_dev_multi_exact",
+   "format": "d",
+   "rendered": "412",
+   "locations": [
+    "sections/04_experimental_setup.tex",
+    "sections/08_limitations.tex"
+   ],
+   "tex": "412/421 "
+  },
+  {
+   "fact": "s0_dev_multi_total",
+   "format": "d",
+   "rendered": "421",
+   "locations": [
+    "sections/04_experimental_setup.tex",
+    "sections/08_limitations.tex"
+   ],
+   "tex": "412/421 "
   }
  ],
  "phase5_scope": "Held-out numbers in prose. Values are recomputed from docs/phase5/evidence/main_results.json by src/analysis/phase5_facts.py; tables and macros are checked byte-for-byte against regeneration."

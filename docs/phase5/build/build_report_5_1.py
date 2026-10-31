@@ -134,8 +134,8 @@ story += [P('Norris Phase Report 5.1', 'title'),
           P('Phase 5 final: held-out evaluation consolidated, with exploratory robustness analyses', 'sub'),
           P('Principal Investigator&nbsp;&nbsp;Dr Benyamin Ahmadnia', 'meta'),
           P('Graduate Research Assistant&nbsp;&nbsp;Shazan Ansar Mohammed', 'meta'),
-          P('Reporting date&nbsp;&nbsp;30 October 2026 (supplements Report 5 of 25 October 2026)', 'meta'),
-          P('Repository&nbsp;&nbsp;github.com/SHAZAN01/csudh-norris-ape-2026 (phase4-main, to be merged into main)', 'meta'),
+          P('Reporting date&nbsp;&nbsp;31 October 2026 (supplements Report 5 of 25 October 2026)', 'meta'),
+          P('Repository&nbsp;&nbsp;github.com/SHAZAN01/csudh-norris-ape-2026 (main, after merging phase4-main)', 'meta'),
           Spacer(1, 8),
           P('Phase 5 complete. The confirmatory results of Report 5 stand unchanged; ten exploratory analyses, run '
             'from committed evidence only, confirm them and sharpen two interpretations. One wording in Report 5 (RQ1) '
@@ -182,7 +182,7 @@ ver = [['Check', 'Result'],
        ['Practical-band flag', 'Recomputed ±0.5 flags equal the frozen evaluator’s flags for all 48 contrasts'],
        ['Token accounting', 'Phase 5 token counts equal the Phase 4 run summary for all 12 GPT-4o Mini conditions'],
        ['Statistics code', 'Wilson, Spearman, BH and Holm equal SciPy to 1e−12; Newcombe interval reproduces the published 0.0524–0.3339'],
-       ['Manuscript audit', '77 held-out claims (66 + 11 new) verified against evidence; planted errors in new claims detected; 5 pages']]
+       ['Manuscript audit', '79 held-out claims (66 + 11 exploratory + 2 S0-disposition facts) verified; anonymity enforced; planted errors detected; 5 pages']]
 story += [Spacer(1, 3), KeepTogether(table(ver, [1.55 * inch, 5.45 * inch]))]
 
 # ------------------------------------------------------------------ 1 scope
@@ -374,8 +374,8 @@ cp = [['Deliverable (Plan of 17 Oct, §4–6)', 'Status', 'Where'],
       ['Cross-artifact numerical checks', 'Done', 'Report 5 (max difference 0); this report (decomposition 2e−16)'],
       ['Source-based review of flagged cases', 'Done', '96 cases; source_review_summary.json'],
       ['Robustness and sensitivity (exploratory)', 'Done', 'This report; extended/extended_analyses.json'],
-      ['Transfer of verified results into Overleaf', 'Done', '5 pages; 77 audited held-out claims'],
-      ['Review by the PI', 'With you', 'Reports 3.2, 4, 5 and 5.1']]
+      ['Transfer of verified results into Overleaf', 'Done', '5 pages; 79 audited held-out claims; anonymous'],
+      ['Review by the PI', 'Approved 31 Oct', 'Phase 3 freeze, Phase 4 and Phase 5 approved; Report 5.1 new']]
 story += [table(cp, [3.0 * inch, 0.95 * inch, 3.05 * inch], zebra=True)]
 
 # ------------------------------------------------------------------ 10 manuscript changes
@@ -409,12 +409,20 @@ story += bullets([
     'Oracle gates use the reference and bound headroom only; a deployable gate would need reference-free quality estimation, chosen on dev.',
     'Costs use list token rates recorded at run time, not invoices; local Llama compute is not priced.',
 ])
-story += [P('12. Decisions requested', 'h1')]
+story += [P('12. PI decisions of 31 October 2026 and how they are applied', 'h1')]
 story += bullets([
-    '<b>Author byline and order</b> (the manuscript still shows a working-draft byline).',
-    '<b>S0 baseline-reproduction disposition</b> (Report 3.2 §5: 412/421 dev multi-sentence items identical; disclosed in the paper). Please acknowledge or advise.',
-    '<b>Tagalog verification</b> of the 48 Tagalog-direction review cases (blind, three labels, about two hours), or keep it as a stated limitation.',
-    '<b>The exploratory paragraphs and the RQ1 wording correction</b> in Results and Discussion: keep as written, shorten, or move to a footnote.',
+    '<b>Approved:</b> the revised reason-then-edit contract, the Phase 3 protocol freeze, and the completed Phase 4 and Phase 5 work.',
+    '<b>S0 reconstruction disposition approved.</b> The limitation stays documented in the manuscript (Protocol and Limitations): segmentation and the '
+    'unsplit baseline were reproduced exactly; the reconstructed fragment generation reproduced 412/421 multi-sentence development translations. The '
+    'earlier development baseline is not regenerated. Both numbers are now audited facts.',
+    '<b>No human evaluation.</b> No external raters, no human-participant evaluation and no IRB process. The 96-case review remains a source- and '
+    'reference-based qualitative inspection; the proposed Tagalog verification is withdrawn. This supersedes the notes in Report 5 §10 and §11.',
+    '<b>Anonymous submission.</b> The author block is blank; first-person references to the ICAI paper, location hints and internal notes were removed, '
+    'and the manuscript audit now fails on any identifying text.',
+    '<b>Held-out results drive the paper.</b> Pilot numbers were removed from the Discussion and remain only where they explain protocol development; '
+    'the last section is now Conclusions and Future Work.',
+    '<b>Schedule:</b> complete draft 20 November; submission-ready 24 November; handoff 26 November; PI review and submission 26–30 November.',
+    '<b>Merge:</b> phase4-main is merged into main by fast-forward, preserving the frozen protocol and result history; no benchmark text or model outputs are public.',
 ])
 story += [Spacer(1, 6), P('Evidence', 'h2'),
           P('Extended analyses ' + sha('docs/phase5/evidence/extended/extended_analyses.json') + '<br/>'
@@ -432,7 +440,7 @@ def deco(canvas, doc):
     canvas.setStrokeColor(BLUE)
     canvas.setLineWidth(0.8)
     canvas.line(0.75 * inch, 10.53 * inch, 7.75 * inch, 10.53 * inch)
-    canvas.drawRightString(7.75 * inch, 0.5 * inch, f'30 October 2026  |  Phase 5 final, extended analyses  |  {doc.page}')
+    canvas.drawRightString(7.75 * inch, 0.5 * inch, f'31 October 2026  |  Phase 5 final, extended analyses  |  {doc.page}')
     canvas.restoreState()
 
 

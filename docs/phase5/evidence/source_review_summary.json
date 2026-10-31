@@ -3,7 +3,7 @@
  "date": "2026-10-25",
  "cases_reviewed": 96,
  "selection": "Fixed rules (extract_review_cases.py) applied before any held-out text was read: per condition A largest protect-pool over-edit, B largest improvement, C first digit-loss flag, D first language-ID flag.",
- "reviewer_note": "Source-based reading by the project team with AI assistance; illustrative, not independent bilingual ratings. Tagalog judgments to be confirmed by a Tagalog speaker before submission.",
+ "reviewer_note": "Source- and reference-based qualitative inspection by the project team with AI assistance; illustrative, not a human evaluation. Per the PI decision of 31 October 2026, no external raters or human-participant evaluation are used.",
  "rule_A_classification": [
   {
    "model": "gpt4o-mini",

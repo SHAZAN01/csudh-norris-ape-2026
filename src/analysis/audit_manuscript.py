@@ -87,6 +87,14 @@ def main():
     require(not bad, f'novelty language found: {bad}')
     require('development evidence' in (PAPER / 'sections/04_experimental_setup.tex').read_text(),
             'pilot material must be labelled as development evidence')
+    # Anonymous submission (PI instruction, 31 Oct 2026): empty author block, no identifying text in the PDF sources.
+    main_src = strip_comments((PAPER / 'conference_101719.tex').read_text())
+    require(re.search(r'\\author\{\s*\}', main_src) is not None and 'IEEEauthorblock' not in main_src, 'author block must be empty (anonymous submission)')
+    ident = re.compile(r'(?i)(shazan|mohammed|csudh|dominguez|california state|norris|los angeles|github\.com|SHAZAN01|our (earlier|previous|prior) (icai )?(study|work|paper)|principal investigator|research assistant)')
+    for p, t in tex.items():
+        hit = ident.search(t)
+        require(hit is None, f'identifying text {hit.group(0) if hit else ""!r} in {p.name} (anonymous submission)')
+    require(re.search(r'\bPI\b', bib) is None, 'internal note ("PI") in references.bib would appear in the PDF')
     pend = sum(t.count('\\pending{') for t in tex.values()) - 1  # minus the macro definition
     main_tex = (PAPER / 'conference_101719.tex').read_text()
     if a.final:
@@ -94,7 +102,7 @@ def main():
         require('\\finaltrue' in main_tex.split('\\begin{document}')[0], 'set \\finaltrue for submission')
         require(n5 > 0, 'held-out claims were not checked')
     print(f'PASS ({"final" if a.final else "draft"}): {len(cited)} citations, RQs match freeze, ICAI boundary, '
-          f'no novelty claims, dev claims verified; {n5} held-out claims and 4 generated files verified; {max(pend, 0)} pending markers')
+          f'no novelty claims, anonymous, dev claims verified; {n5} held-out claims and 4 generated files verified; {max(pend, 0)} pending markers')
 
 
 if __name__ == '__main__':
