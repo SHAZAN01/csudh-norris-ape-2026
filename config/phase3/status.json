@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-19",
+  "as_of": "2026-10-31",
   "phase3_complete": false,
   "baseline_generation": "verified_complete_dev_only",
   "baseline_evaluation": "verified_complete_dev_only",
@@ -8,7 +8,7 @@
   "llama_smoke": "complete_24_outcomes",
   "llama_full_pilot": "complete_1200_outcomes",
   "gpt_pilot": "complete_1200_outcomes_gpt-4o-mini-2024-07-18",
-  "protocol_freeze": false,
+  "protocol_freeze": true,
   "devtest_scored_in_phase3": false,
   "github_remote_publication": "unpublished_at_package_creation; verify remote commit after push",
   "source_note": "Current status supersedes historical preparation manifests. Original provenance bytes remain unchanged.",
@@ -17,11 +17,33 @@
   "empirical_pilot_work_complete": true,
   "pilot_quality_failure_analysis": "complete_24_conditions_independently_audited",
   "pending": [
-    "PI review of substantial ICAI overlap and contribution boundary",
-    "PI disposition of diagnostic-contract failures",
-    "Final protocol and code freeze after decisions"
+    "AI-use disclosure only if the ICNLP submission instructions require it (one \\pending marker)",
+    "ICAI proceedings metadata when published (reference stays 'to appear')",
+    "Reproducibility: resolved environment lock files from Drive run folders (notebooks/phase5/02)",
+    "Manuscript: complete draft 2026-11-20; submission-ready 2026-11-24; handoff to PI 2026-11-26"
   ],
-  "main_devtest_execution_started": false,
+  "main_devtest_execution_started": true,
   "manuscript": "IEEEtran_development_draft_in_paper;_Overleaf_sync_requires_authenticated_access",
-  "pilot_analysis_sha256": "9d6830a0b9c7cc97e2b372c78c2c700734fd5cf65ab30e6177e7ae8d531ddc90"
+  "pilot_analysis_sha256": "9d6830a0b9c7cc97e2b372c78c2c700734fd5cf65ab30e6177e7ae8d531ddc90",
+  "pi_acceptance_received": "2026-10-22",
+  "icai_boundary": "approved_by_PI_2026-10-22",
+  "rte_contract": "rte_v3_minimal_diagnosis: dev rerun complete; Llama 0/400, GPT 0/400 fallbacks; gate PASSED",
+  "freeze_procedure": "src/freeze/build_freeze_manifest.py after RTE gate and splitter dev gates",
+  "protocol_freeze_declared_utc": "2026-10-24T06:58:38Z",
+  "protocol_freeze_sha256": "6e6259a9cf1c7e2aca978a770fa85d86596f31b0e8b3c55f42635203e4f7462c",
+  "s0_dev_audit": "segmentation 2,991/2,991; join 421/421; multi-sentence translations 412/421 exact (disclosed); unsplit regeneration 3,988/3,988",
+  "phase4": "complete 2026-10-24 (07:33-09:21 UTC): 24 conditions x 1,012 = 24,288 outputs; 0 fallbacks; 0 retries; S0 unsplit regeneration 4,048/4,048; not scored",
+  "phase5": "complete 2026-10-25: 16,973 unique COMET segments; F1 18/24 and F2 15/24 Holm-significant; independently recomputed (max diff 0)",
+  "source_review": "complete: 96 rule-selected held-out cases; rule A: Llama 12/12 genuine errors, GPT-4o Mini 2/12",
+  "pi_decisions_2026_10_31": {
+    "approved": [
+      "revised reason-then-edit contract (rte_v3)",
+      "Phase 3 protocol freeze",
+      "Phase 4 and Phase 5 work",
+      "S0 reconstruction disposition: segmentation and unsplit baseline reproduced exactly; fragment generation 412/421 dev multi-sentence items; limitation documented; dev baseline not regenerated"
+    ],
+    "case_review": "source/reference-based qualitative inspection only; no external raters, no human-participant evaluation, no IRB process",
+    "manuscript": "anonymous submission: author block blank",
+    "merge": "phase4-main may be merged into main; frozen protocol and result history preserved; no benchmark text or model outputs in the public repository"
+  }
 }

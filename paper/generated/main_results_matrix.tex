@@ -1,0 +1,24 @@
+\begin{table*}[t]
+\centering\footnotesize
+\caption{Held-out FLORES+ devtest results (1{,}012 items per direction; all planned outputs, including baseline fallback). C: COMET-22$\times$100; $\Delta$: post-edit minus sentence-split NLLB (S0) with paired 95\% bootstrap interval; markers use Holm-adjusted $p$ over the 24-test primary family ($^\dagger p<.05$, $^\ddagger p<.01$). FB: baseline fallbacks. BLEU/chrF++ are descriptive.}
+\label{tab:main}
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrrrrrrrrrrr}
+\toprule
+ & & \multicolumn{3}{c}{En$\to$Tl} & \multicolumn{3}{c}{Tl$\to$En} & \multicolumn{3}{c}{En$\to$Es} & \multicolumn{3}{c}{Es$\to$En} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-8}\cmidrule(lr){9-11}\cmidrule(lr){12-14}
+Editor & Strategy & C & $\Delta$ [95\% CI] & FB & C & $\Delta$ [95\% CI] & FB & C & $\Delta$ [95\% CI] & FB & C & $\Delta$ [95\% CI] & FB \\
+\midrule
+\multicolumn{2}{l}{S0 split NLLB} & 85.20 & -- & -- & 87.57 & -- & -- & 86.67 & -- & -- & 87.37 & -- & -- \\
+\midrule
+GPT-4o Mini & Zero & 85.84 & +0.64$^\ddagger$ [+0.50, +0.77] & 0 & 88.39 & +0.83$^\ddagger$ [+0.69, +0.97] & 0 & 86.95 & +0.28$^\ddagger$ [+0.17, +0.39] & 0 & 87.71 & +0.34$^\ddagger$ [+0.24, +0.46] & 0 \\
+ & One & 86.15 & +0.95$^\ddagger$ [+0.78, +1.12] & 0 & 88.57 & +1.00$^\ddagger$ [+0.83, +1.18] & 0 & 87.20 & +0.53$^\ddagger$ [+0.37, +0.69] & 0 & 87.73 & +0.36$^\ddagger$ [+0.24, +0.50] & 0 \\
+ & Reason & 85.71 & +0.51$^\ddagger$ [+0.38, +0.64] & 0 & 88.22 & +0.65$^\ddagger$ [+0.50, +0.81] & 0 & 86.93 & +0.26$^\ddagger$ [+0.14, +0.38] & 0 & 87.64 & +0.27$^\ddagger$ [+0.17, +0.39] & 0 \\
+\midrule
+Llama 3 8B & Zero & 84.72 & -0.48$^\ddagger$ [-0.65, -0.32] & 0 & 87.47 & -0.10 [-0.26, +0.05] & 0 & 86.68 & +0.00 [-0.18, +0.19] & 0 & 87.36 & -0.01 [-0.13, +0.12] & 0 \\
+ & One & 84.81 & -0.39$^\ddagger$ [-0.57, -0.21] & 0 & 87.60 & +0.03 [-0.12, +0.18] & 0 & 86.85 & +0.18 [-0.05, +0.40] & 0 & 87.33 & -0.04 [-0.24, +0.16] & 0 \\
+ & Reason & 83.76 & -1.44$^\ddagger$ [-1.70, -1.21] & 0 & 86.25 & -1.32$^\ddagger$ [-1.57, -1.07] & 0 & 86.16 & -0.51$^\ddagger$ [-0.71, -0.31] & 0 & 86.63 & -0.74$^\ddagger$ [-0.93, -0.55] & 0 \\
+\bottomrule
+\end{tabular}}
+\end{table*}

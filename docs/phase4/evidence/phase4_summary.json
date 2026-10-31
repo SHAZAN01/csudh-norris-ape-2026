@@ -1,0 +1,169 @@
+{
+  "status": "phase4_complete",
+  "freeze_sha256": "6e6259a9cf1c7e2aca978a770fa85d86596f31b0e8b3c55f42635203e4f7462c",
+  "prepared_manifest_sha256": "c5d7a062334cba62bccec617e722a685e5bbb5e68e6d1c1d8240b10217dcfa7a",
+  "s0": {
+    "run_spec_sha256": "ac593778a8509b9a7a0c6fa3923ae685671bdfe35a3f515050219d8b7fa60106",
+    "directions": {
+      "eng_Latn->tgl_Latn": {
+        "rows": 1012,
+        "multi_segment_items": 113,
+        "fragments_translated": 230,
+        "fragment_inference_seconds": 8.226441630999943,
+        "split_differs_from_unsplit": 105,
+        "unsplit_regeneration": {
+          "exact_vs_archive": 1012,
+          "n": 1012,
+          "seconds": 76.97294261899992
+        },
+        "file_sha256": {
+          "nllb3.3b_eng_Latn_tgl_Latn_devtest_unsplit_control.jsonl": "b13f579bddd7667b16602ff7fd69c834ae819b2b4a031f4764ad3fc30c98b9b7",
+          "nllb3.3b_eng_Latn_tgl_Latn_devtest_sentence_split.jsonl": "c7eadc7984dec898f013d32cf8e86a28a9f648f50cea12834fcd2ab39078a75f"
+        }
+      },
+      "tgl_Latn->eng_Latn": {
+        "rows": 1012,
+        "multi_segment_items": 118,
+        "fragments_translated": 240,
+        "fragment_inference_seconds": 6.612931552000077,
+        "split_differs_from_unsplit": 104,
+        "unsplit_regeneration": {
+          "exact_vs_archive": 1012,
+          "n": 1012,
+          "seconds": 62.67093799100007
+        },
+        "file_sha256": {
+          "nllb3.3b_tgl_Latn_eng_Latn_devtest_unsplit_control.jsonl": "c837b5cb8683145f556ae974c31e8254b21ff97563d0a648f70d90508151a68e",
+          "nllb3.3b_tgl_Latn_eng_Latn_devtest_sentence_split.jsonl": "8b9fb3cef7256591a9f4e4e0b6a27b0b75a4abd5d39e4fb38a3fb9e90c8eb5b1"
+        }
+      },
+      "eng_Latn->spa_Latn": {
+        "rows": 1012,
+        "multi_segment_items": 113,
+        "fragments_translated": 230,
+        "fragment_inference_seconds": 6.505858927000304,
+        "split_differs_from_unsplit": 98,
+        "unsplit_regeneration": {
+          "exact_vs_archive": 1012,
+          "n": 1012,
+          "seconds": 68.38960407899958
+        },
+        "file_sha256": {
+          "nllb3.3b_eng_Latn_spa_Latn_devtest_unsplit_control.jsonl": "33da0126556574addf18619cd746dc693a469d4da56d9381cb5047da808acd85",
+          "nllb3.3b_eng_Latn_spa_Latn_devtest_sentence_split.jsonl": "8ae65d3c9e0efa197f4e97f65fa87ba918c10978171c3e2b9f792c577c0aa391"
+        }
+      },
+      "spa_Latn->eng_Latn": {
+        "rows": 1012,
+        "multi_segment_items": 122,
+        "fragments_translated": 252,
+        "fragment_inference_seconds": 7.173566697000069,
+        "split_differs_from_unsplit": 114,
+        "unsplit_regeneration": {
+          "exact_vs_archive": 1012,
+          "n": 1012,
+          "seconds": 64.8612234360005
+        },
+        "file_sha256": {
+          "nllb3.3b_spa_Latn_eng_Latn_devtest_unsplit_control.jsonl": "8df70b0ca23b703419ea71efa55c24edd037c5adcc09698b36e520d0ce6e09f8",
+          "nllb3.3b_spa_Latn_eng_Latn_devtest_sentence_split.jsonl": "957b77c01d644a1e713d599ef8647e5931009cb49467d5d15ce510b4206c4750"
+        }
+      }
+    },
+    "scored": false,
+    "created_utc": "2026-10-24T07:39:42.813598+00:00"
+  },
+  "retrieval": {
+    "model": "sentence-transformers/LaBSE",
+    "revision": "836121a0533e5664b21c7aacc5d22951f2b8b25b",
+    "pool": "all 997 dev IDs per source language",
+    "exclusion": "exact stripped-source duplicates",
+    "tie_break": "smallest dev sentence_id",
+    "index": "faiss.IndexFlatIP over normalized float32",
+    "dev_embedding_max_abs_diff_vs_pilot": {
+      "eng_Latn": 0.0,
+      "tgl_Latn": 0.0,
+      "spa_Latn": 0.0
+    },
+    "queries_with_excluded_duplicates": 0
+  },
+  "models": {
+    "llama3-8b": {
+      "run_sha256": "1c9083d0022e90d1ff6868313cf221013b3c8fc91e9fc3e0959ecdd9906b3468",
+      "records": 12144,
+      "usable": 12144,
+      "fallback": 0,
+      "prompt_tokens": 4690587,
+      "completion_tokens": 687887,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 0,
+      "system_fingerprints": [],
+      "unresolved_attempt_markers": [],
+      "median_request_latency_ms": null,
+      "unique_batches": 762,
+      "summed_batch_wall_s": 1634.8319911549993,
+      "environment": {
+        "vllm": "0.11.2",
+        "torch": "2.9.0",
+        "transformers": "4.57.1",
+        "pydantic": "2.12.3"
+      }
+    },
+    "gpt4o-mini": {
+      "run_sha256": "eb319d52dbcbe4fe95b5d2acb76189994e93f780e6bde1f8a3de58ab771b0e27",
+      "records": 12144,
+      "usable": 12144,
+      "fallback": 0,
+      "prompt_tokens": 5122628,
+      "completion_tokens": 545663,
+      "retries": 0,
+      "estimated_cost_usd_uncached": 1.0957919999999994,
+      "system_fingerprints": [
+        "fp_0d55417811",
+        "fp_109d01f5b1",
+        "fp_80c9d72b86",
+        "fp_a71b930f7c",
+        "fp_e9e83bb9dc",
+        "fp_ef1bdd1915",
+        "fp_fbfbfe4157",
+        "fp_fd3020c6f0"
+      ],
+      "unresolved_attempt_markers": [],
+      "median_request_latency_ms": 938.0503900001713,
+      "unique_batches": 0,
+      "summed_batch_wall_s": null,
+      "environment": {
+        "openai": "1.109.1",
+        "pydantic": "2.12.3"
+      }
+    }
+  },
+  "checks": [
+    {
+      "check": "llama3-8b: no unresolved transport/attempt states",
+      "passed": true
+    },
+    {
+      "check": "gpt4o-mini: no unresolved transport/attempt states",
+      "passed": true
+    },
+    {
+      "check": "exactly 24 conditions",
+      "passed": true
+    },
+    {
+      "check": "24,288 post-editing outputs",
+      "passed": true
+    },
+    {
+      "check": "all records match frozen protocol and run hashes",
+      "passed": true
+    },
+    {
+      "check": "fallback outputs equal S0 drafts and are labelled",
+      "passed": true
+    }
+  ],
+  "scored": false,
+  "created_utc": "2026-10-24T09:23:28.166701+00:00"
+}

@@ -1,14 +1,16 @@
 \section{Introduction}
-An automatic post-editor must decide both what to correct and what to preserve. A fluent rewrite can repair an omission, but it can also alter a name, number, or source relationship that the original translation expressed correctly. For strong machine translation drafts, mean quality gains alone consequently give an incomplete account of editing behavior. Prior work demonstrates that large language models (LLMs) can improve neural machine translation (NMT), while also documenting hallucinated edits~\cite{raunak2023}.
+An automatic post-editor must decide both what to correct and what to leave alone. A fluent rewrite can repair an omission, but it can also alter a name, number, or source relation that the machine translation (MT) draft already expressed correctly. When drafts are strong, mean quality changes therefore give an incomplete account of editing behaviour. LLMs can improve neural MT output, yet they also produce hallucinated edits~\cite{raunak2023}.
 
-We investigate this tension using English--Tagalog and English--Spanish in both directions. A fixed NLLB-200 model~\cite{nllb2022} supplies the draft, and two instruction-following editors receive the source and draft. Comparing source-conditioned zero-shot editing, retrieved one-shot editing, and structured reason-then-edit separates practical prompting conditions without assuming that a diagnostic explanation is correct. The two language pairs provide a limited resource contrast; language, direction, domain, and starting quality remain intertwined.
+We study this tension for English--Tagalog and English--Spanish in both directions. A fixed NLLB-200 3.3B system~\cite{nllb2022} produces sentence-split drafts, and two instruction-following editors, open-weight Llama 3 8B Instruct and commercial GPT-4o Mini, receive the source and the draft. The two language pairs provide a limited resource contrast; language, direction, domain, and baseline quality remain intertwined, so we report pair and direction differences descriptively rather than as causal resource effects. We ask:
+\textbf{RQ1:} How do editing gains and harms differ between the Tagalog and Spanish pairs, conditional on baseline quality?
+\textbf{RQ2:} How do the three prompting strategies compare within each model and direction?
+\textbf{RQ3:} When do editors change already strong drafts and degrade their measured quality or source fidelity?
+\textbf{RQ4:} How do effects differ between the two directions of a language pair?
 
-The study asks four questions. \textbf{RQ1:} How do editing gains and harms differ between the Tagalog and Spanish pairs, conditional on baseline quality? \textbf{RQ2:} How do the three prompting strategies compare within each model and direction? \textbf{RQ3:} When do editors change already strong drafts and degrade their measured quality or source fidelity? \textbf{RQ4:} How do effects differ between the two directions of a language pair?
-
-This manuscript develops an empirical evaluation, rather than a new post-editing architecture. Its current contributions are:
+This is an empirical evaluation, not a new post-editing architecture. Anchoring an LLM editor on a frozen NMT draft and selecting in-context exemplars by semantic similarity follow established prior work~\cite{ahmadnia2026icai,vilar2023}, and we do not claim either as a contribution. Our contributions are:
 \begin{itemize}
-\item a controlled four-direction pilot with two editors and three strategies, using the same aligned development sample;
-\item explicit accounting for schema validity, baseline fallback, textual editing, and quality change, with failed jobs retained;
-\item a preservation analysis that distinguishes metric-defined harm from source-supported factual errors and from heuristic flags.
+\item a held-out evaluation in a new empirical setting (four Tagalog/Spanish directions) against a stronger, sentence-split NLLB-200 baseline, with the protocol frozen on development data before the test partition was opened;
+\item a two-editor comparison (open-weight and commercial) across three prompting strategies, with paired confirmatory tests and Holm multiplicity control;
+\item explicit failure accounting: every planned output is retained, and output-contract failures are reported as outcomes rather than discarded;
+\item an over-editing and preservation analysis of strong drafts that separates metric-defined harm from heuristic preservation screens.
 \end{itemize}
-The present evidence covers development only. A planned held-out experiment will address the research questions at the main-evaluation scale after the protocol is finalized. No devtest result is inferred from the pilot.

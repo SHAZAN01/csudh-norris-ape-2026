@@ -1,0 +1,51 @@
+{
+  "stage": "phase3_rte_v3_dev_revalidation",
+  "partition": "dev",
+  "protocol_id": "norris_frozen_v1",
+  "protocol_fingerprint": "7547a429e81ae64bd8a5834903eb3492bfcb901f64c47e1ed9c1559f4375185d",
+  "rte_version": "rte_v3_minimal_diagnosis",
+  "planned_jobs": 400,
+  "items_per_condition": 100,
+  "models": [
+    "llama3-8b",
+    "gpt4o-mini"
+  ],
+  "smoke_ids": [
+    6,
+    159
+  ],
+  "pilot_ids_sha256": "3012c0619fc11368b12a9e29c704ddc669e5f53b32f0685beec72a3fa25dd742",
+  "v2_prepared_manifest_sha256": "04aa95488697750f62bc8d03831c1b08f49f6cdb6e8bb512112a827f4d41ed6a",
+  "v2_prepared_dir": "/content/drive/MyDrive/norris/outputs/phase3_post_editing/candidate_906a8b8123bb3a54",
+  "v2_jobs_reproduced_byte_for_byte": 1200,
+  "reliability_gate": {
+    "rule": "Operationally reliable iff, for EACH model, fallbacks <= 20/400 (5.0%) overall AND <= 10/100 in every direction. Declared before the rerun; operational only, never a quality criterion. COMET is not used to accept or reject the revised contract.",
+    "max_fallback_per_model": 20,
+    "max_fallback_per_direction": 10,
+    "n_per_model": 400,
+    "n_per_direction": 100,
+    "single_revision": "One contract revision only. No prompt iteration after observing the full rerun. If the gate fails, the PI decides: retain as explicit failure condition or remove."
+  },
+  "unchanged": [
+    "task",
+    "dev partition",
+    "100 pilot IDs",
+    "queries and NLLB drafts",
+    "system instruction bytes",
+    "user payload bytes",
+    "model snapshots/revisions",
+    "decoding and engine settings",
+    "fallback policy (no repair, no selective retry)"
+  ],
+  "changed": [
+    "reason-then-edit suffix",
+    "reason-then-edit schema (diagnosis:str, edited_translation:str)",
+    "reason-then-edit validators reduced to JSON/no-duplicate-keys/schema/key order/non-empty fields/normal stop"
+  ],
+  "devtest_opened": false,
+  "created_utc": "2026-10-23T09:00:58.964033+00:00",
+  "file_sha256": {
+    "jobs.jsonl": "422abaf8488410b5445417106667732255153a8f5aeed2aac2efc163b0dccae3",
+    "evaluation_gold.jsonl": "9c98ac3cbeece0d46351a7ee44d2c916c5d96337bace5c32b77b55f121053127"
+  }
+}

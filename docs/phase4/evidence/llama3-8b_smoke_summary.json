@@ -1,0 +1,16 @@
+{
+  "n": 24,
+  "json_parse_success": 24,
+  "schema_valid": 24,
+  "usable": 24,
+  "fallback": 0,
+  "failure_classes": {
+    "usable": 24
+  },
+  "prompt_tokens": 9443,
+  "completion_tokens": 1385,
+  "retries": 0,
+  "estimated_cost_usd_uncached": 0,
+  "median_latency_ms": 335.2538193749979,
+  "latency_definition": "batch-amortized generation time; model initialization excluded"
+}

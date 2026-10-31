@@ -1,0 +1,47 @@
+{
+  "stage": "phase5_main_evaluation",
+  "freeze_sha256": "6e6259a9cf1c7e2aca978a770fa85d86596f31b0e8b3c55f42635203e4f7462c",
+  "prepared_manifest_sha256": "c5d7a062334cba62bccec617e722a685e5bbb5e68e6d1c1d8240b10217dcfa7a",
+  "run_specs": {
+    "llama3-8b": "1c9083d0022e90d1ff6868313cf221013b3c8fc91e9fc3e0959ecdd9906b3468",
+    "gpt4o-mini": "eb319d52dbcbe4fe95b5d2acb76189994e93f780e6bde1f8a3de58ab771b0e27"
+  },
+  "COMET": {
+    "model": "Unbabel/wmt22-comet-da",
+    "revision": "2760a223ac957f30acfb18c8aa649b01cf1d75f2"
+  },
+  "environment": {
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "unbabel-comet": "2.2.7",
+    "numpy": "1.26.4",
+    "sacrebleu": "2.6.0",
+    "langdetect": "1.0.9",
+    "huggingface-hub": "0.36.0",
+    "rapidfuzz": "3.10.1",
+    "pysbd": "0.3.4"
+  },
+  "stats": {
+    "B": 10000,
+    "seed": 42,
+    "alpha": 0.05,
+    "practical_band_points": 0.5,
+    "families": [
+      "F1_primary_vs_S0_24",
+      "F2_strategy_24"
+    ],
+    "test": "two-sided centered paired bootstrap"
+  },
+  "thresholds": {
+    "band": 0.02,
+    "protect": 0.9,
+    "improve": 0.8,
+    "sensitivity": [
+      0.01,
+      0.02,
+      0.05
+    ]
+  },
+  "evaluator_sha256": "1f89fb2cafe8d30e70156a521a0902c2e409125e128b597ffd11678ec359f4ea",
+  "stats_sha256": "37c1654adf208aaae11d0112f56921bbad84eabe43e960314c06455cd485dab5"
+}

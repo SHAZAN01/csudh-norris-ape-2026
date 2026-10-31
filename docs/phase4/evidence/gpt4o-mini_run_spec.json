@@ -1,0 +1,34 @@
+{
+  "prepared_manifest_sha256": "c5d7a062334cba62bccec617e722a685e5bbb5e68e6d1c1d8240b10217dcfa7a",
+  "partition": "devtest",
+  "protocol_fingerprint": "7547a429e81ae64bd8a5834903eb3492bfcb901f64c47e1ed9c1559f4375185d",
+  "protocol_id": "norris_frozen_v1",
+  "engine_sha256": "eec6dab29d9b4bc5f4c2b3e5787f19389a59e27affef16bf27b1b1ef0c1014e4",
+  "protocol_module_sha256": "e564e480cb74a94ed60b98f636ae1736549b98995cf48ba03390355ae90fe9d4",
+  "invalid_output_policy": "Retain raw output; unchanged baseline draft; no repair or selective retry.",
+  "translation_normalization": "Trim outer whitespace only after schema validation.",
+  "model": "gpt-4o-mini-2024-07-18",
+  "endpoint": "chat.completions (AsyncOpenAI)",
+  "payload": {
+    "temperature": 0,
+    "top_p": 1,
+    "seed": 42,
+    "max_tokens": 1024,
+    "store": false
+  },
+  "structured_output": "json_schema strict",
+  "client": {
+    "openai": "1.109.1",
+    "max_retries": 0,
+    "timeout_s": 180
+  },
+  "retry_policy": "Transient HTTP 408/409/429/5xx only, 5 retries, bounded exponential backoff; timeouts/connection errors halt as transport-uncertain.",
+  "rate": {
+    "requests_per_second": 4.0,
+    "concurrency": 4
+  },
+  "environment": {
+    "openai": "1.109.1",
+    "pydantic": "2.12.3"
+  }
+}

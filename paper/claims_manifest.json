@@ -1,151 +1,724 @@
 {
-  "scope": "Specified inline claims plus generated tables; does not certify all numeric prose.",
-  "claims": [
-    {
-      "id": "gpt_en_tl_one_delta",
-      "condition": {
-        "model": "gpt4o-mini",
-        "strategy": "knn-oneshot",
-        "direction": "eng_Latn->tgl_Latn"
-      },
-      "metric": "delta_COMET_points",
-      "format": ".3f",
-      "rendered": "1.463",
-      "locations": [
-        "sections/00_abstract.tex",
-        "sections/05_results.tex"
-      ]
-    },
-    {
-      "id": "gpt_en_tl_one_ci_low",
-      "condition": {
-        "model": "gpt4o-mini",
-        "strategy": "knn-oneshot",
-        "direction": "eng_Latn->tgl_Latn"
-      },
-      "metric": "delta_COMET_95CI_points",
-      "format": ".3f",
-      "rendered": "0.710",
-      "locations": [
-        "sections/00_abstract.tex",
-        "sections/05_results.tex"
-      ],
-      "index": 0
-    },
-    {
-      "id": "gpt_en_tl_one_ci_high",
-      "condition": {
-        "model": "gpt4o-mini",
-        "strategy": "knn-oneshot",
-        "direction": "eng_Latn->tgl_Latn"
-      },
-      "metric": "delta_COMET_95CI_points",
-      "format": ".3f",
-      "rendered": "2.396",
-      "locations": [
-        "sections/00_abstract.tex",
-        "sections/05_results.tex"
-      ],
-      "index": 1
-    },
-    {
-      "id": "llama3-8b_reason_fallbacks",
-      "condition": {
-        "model": "llama3-8b",
-        "strategy": "reason-then-edit"
-      },
-      "metric": "fallbacks",
-      "aggregation": "sum",
-      "format": ".0f",
-      "rendered": "227",
-      "locations": [
-        "sections/05_results.tex"
-      ]
-    },
-    {
-      "id": "gpt4o-mini_reason_fallbacks",
-      "condition": {
-        "model": "gpt4o-mini",
-        "strategy": "reason-then-edit"
-      },
-      "metric": "fallbacks",
-      "aggregation": "sum",
-      "format": ".0f",
-      "rendered": "8",
-      "locations": [
-        "sections/05_results.tex"
-      ]
-    },
-    {
-      "id": "llama_reason_fallback_percent",
-      "condition": {
-        "model": "llama3-8b",
-        "strategy": "reason-then-edit"
-      },
-      "metric": "fallbacks",
-      "aggregation": "sum",
-      "scale": 0.25,
-      "format": ".2f",
-      "rendered": "56.75",
-      "locations": [
-        "sections/05_results.tex"
-      ]
-    },
-    {
-      "id": "llama_one_eng_Latn->tgl_Latn",
-      "condition": {
-        "model": "llama3-8b",
-        "strategy": "knn-oneshot",
-        "direction": "eng_Latn->tgl_Latn"
-      },
-      "metric": "delta_COMET_points",
-      "format": "+.3f",
-      "rendered": "+0.087",
-      "locations": [
-        "sections/05_results.tex"
-      ]
-    },
-    {
-      "id": "llama_one_tgl_Latn->eng_Latn",
-      "condition": {
-        "model": "llama3-8b",
-        "strategy": "knn-oneshot",
-        "direction": "tgl_Latn->eng_Latn"
-      },
-      "metric": "delta_COMET_points",
-      "format": "+.3f",
-      "rendered": "+0.352",
-      "locations": [
-        "sections/05_results.tex"
-      ]
-    },
-    {
-      "id": "llama_one_eng_Latn->spa_Latn",
-      "condition": {
-        "model": "llama3-8b",
-        "strategy": "knn-oneshot",
-        "direction": "eng_Latn->spa_Latn"
-      },
-      "metric": "delta_COMET_points",
-      "format": "+.3f",
-      "rendered": "+0.450",
-      "locations": [
-        "sections/05_results.tex"
-      ]
-    },
-    {
-      "id": "llama_one_spa_Latn->eng_Latn",
-      "condition": {
-        "model": "llama3-8b",
-        "strategy": "knn-oneshot",
-        "direction": "spa_Latn->eng_Latn"
-      },
-      "metric": "delta_COMET_points",
-      "format": "+.3f",
-      "rendered": "-0.046",
-      "locations": [
-        "sections/05_results.tex"
-      ]
-    }
-  ]
+ "scope": "Development-evidence claims in prose plus generated held-out tables/macros (checked in --final mode against Phase 5 results).",
+ "claims": [
+  {
+   "id": "llama_rte_v2_fallbacks",
+   "condition": {
+    "model": "llama3-8b",
+    "strategy": "reason-then-edit"
+   },
+   "metric": "fallbacks",
+   "aggregation": "sum",
+   "format": ".0f",
+   "rendered": "227",
+   "locations": [
+    "sections/04_experimental_setup.tex"
+   ]
+  },
+  {
+   "id": "gpt_rte_v2_fallbacks",
+   "condition": {
+    "model": "gpt4o-mini",
+    "strategy": "reason-then-edit"
+   },
+   "metric": "fallbacks",
+   "aggregation": "sum",
+   "format": ".0f",
+   "rendered": "8",
+   "locations": [
+    "sections/04_experimental_setup.tex"
+   ]
+  },
+  {
+   "id": "llama_rte_v2_parsed",
+   "condition": {
+    "model": "llama3-8b",
+    "strategy": "reason-then-edit"
+   },
+   "metric": "json_parse_success",
+   "aggregation": "sum",
+   "format": ".0f",
+   "rendered": "399",
+   "locations": [
+    "sections/04_experimental_setup.tex"
+   ]
+  }
+ ],
+ "phase5_claims": [
+  {
+   "fact": "outputs_total",
+   "format": ",.0f",
+   "rendered": "24,288",
+   "locations": [
+    "sections/00_abstract.tex"
+   ],
+   "tex": "24{,}288"
+  },
+  {
+   "fact": "gpt_f1_min",
+   "format": "+.2f",
+   "rendered": "+0.26",
+   "locations": [
+    "sections/00_abstract.tex",
+    "sections/05_results.tex"
+   ]
+  },
+  {
+   "fact": "gpt_f1_max",
+   "format": "+.2f",
+   "rendered": "+1.00",
+   "locations": [
+    "sections/00_abstract.tex",
+    "sections/05_results.tex"
+   ]
+  },
+  {
+   "fact": "gpt_f1_all_sig_positive",
+   "format": "s",
+   "rendered": "twelve",
+   "locations": [
+    "sections/00_abstract.tex"
+   ],
+   "tex": "in all twelve conditions"
+  },
+  {
+   "fact": "llama_sig_negative",
+   "format": "s",
+   "rendered": "six",
+   "locations": [
+    "sections/00_abstract.tex"
+   ],
+   "tex": "significantly worse in six conditions"
+  },
+  {
+   "fact": "llama_sig_positive",
+   "format": "d",
+   "rendered": "0",
+   "locations": []
+  },
+  {
+   "fact": "llama_reason_oe",
+   "format": "d",
+   "rendered": "247",
+   "locations": [
+    "sections/00_abstract.tex"
+   ],
+   "tex": "degrade 247 of 1{,}179"
+  },
+  {
+   "fact": "protect_total",
+   "format": ",d",
+   "rendered": "1,179",
+   "locations": [
+    "sections/00_abstract.tex",
+    "sections/05_results.tex"
+   ],
+   "tex": "1{,}179"
+  },
+  {
+   "fact": "llama_reason_oe_pct",
+   "format": ".1f",
+   "rendered": "20.9",
+   "locations": [
+    "sections/00_abstract.tex",
+    "sections/05_results.tex"
+   ]
+  },
+  {
+   "fact": "gpt_max_oe_pct",
+   "format": ".1f",
+   "rendered": "4.3",
+   "locations": [
+    "sections/00_abstract.tex",
+    "sections/05_results.tex"
+   ]
+  },
+  {
+   "fact": "improve_positive_all",
+   "format": "d",
+   "rendered": "23",
+   "locations": []
+  },
+  {
+   "fact": "gpt_f1_in_band",
+   "format": "s",
+   "rendered": "five",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "five of these intervals"
+  },
+  {
+   "fact": "gpt_band_all_spanish",
+   "format": "bool",
+   "rendered": "True",
+   "locations": []
+  },
+  {
+   "fact": "llama_nonsig_in_band",
+   "format": "bool",
+   "rendered": "True",
+   "locations": []
+  },
+  {
+   "fact": "segdiag_EnTl",
+   "format": "+.2f",
+   "rendered": "+0.39",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "$+0.39$ (En"
+  },
+  {
+   "fact": "segdiag_EnEs",
+   "format": "+.2f",
+   "rendered": "+0.21",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "$+0.21$ (En"
+  },
+  {
+   "fact": "segdiag_TlEn",
+   "format": "+.2f",
+   "rendered": "+0.08",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "$+0.08$ points"
+  },
+  {
+   "fact": "segdiag_EsEn_inconclusive",
+   "format": "bool",
+   "rendered": "True",
+   "locations": []
+  },
+  {
+   "fact": "gpt_bleu_above",
+   "format": "s",
+   "rendered": "twelve",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "above S0 for all twelve GPT-4o Mini"
+  },
+  {
+   "fact": "llama_bleu_below",
+   "format": "s",
+   "rendered": "twelve",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "below it for all twelve Llama"
+  },
+  {
+   "fact": "gpt_tl_min",
+   "format": "+.2f",
+   "rendered": "+0.51",
+   "locations": [
+    "sections/05_results.tex"
+   ]
+  },
+  {
+   "fact": "gpt_tl_max",
+   "format": "+.2f",
+   "rendered": "+1.00",
+   "locations": [
+    "sections/05_results.tex"
+   ]
+  },
+  {
+   "fact": "gpt_es_min",
+   "format": "+.2f",
+   "rendered": "+0.26",
+   "locations": [
+    "sections/05_results.tex"
+   ]
+  },
+  {
+   "fact": "gpt_es_max",
+   "format": "+.2f",
+   "rendered": "+0.53",
+   "locations": [
+    "sections/05_results.tex"
+   ]
+  },
+  {
+   "fact": "improve_pool_EnTl",
+   "format": "d",
+   "rendered": "183",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "183 and 82 items"
+  },
+  {
+   "fact": "improve_pool_TlEn",
+   "format": "d",
+   "rendered": "82",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "183 and 82 items"
+  },
+  {
+   "fact": "improve_pool_EnEs",
+   "format": "d",
+   "rendered": "104",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "against 104 and 60)"
+  },
+  {
+   "fact": "improve_pool_EsEn",
+   "format": "d",
+   "rendered": "60",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "against 104 and 60)"
+  },
+  {
+   "fact": "gpt_one_improve_min",
+   "format": "+.2f",
+   "rendered": "+3.11",
+   "locations": [
+    "sections/05_results.tex"
+   ]
+  },
+  {
+   "fact": "gpt_one_improve_max",
+   "format": "+.2f",
+   "rendered": "+5.29",
+   "locations": [
+    "sections/05_results.tex"
+   ]
+  },
+  {
+   "fact": "gpt_protect_min",
+   "format": ".2f",
+   "rendered": "-0.16",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "$-0.16$"
+  },
+  {
+   "fact": "gpt_protect_max",
+   "format": "+.2f",
+   "rendered": "+0.15",
+   "locations": [
+    "sections/05_results.tex"
+   ]
+  },
+  {
+   "fact": "gpt_one_zero_min",
+   "format": "+.2f",
+   "rendered": "+0.17",
+   "locations": [
+    "sections/05_results.tex"
+   ]
+  },
+  {
+   "fact": "gpt_one_zero_max",
+   "format": "+.2f",
+   "rendered": "+0.31",
+   "locations": [
+    "sections/05_results.tex"
+   ]
+  },
+  {
+   "fact": "gpt_reason_one_hi",
+   "format": ".2f",
+   "rendered": "-0.27",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "$-0.27$"
+  },
+  {
+   "fact": "gpt_reason_one_lo",
+   "format": ".2f",
+   "rendered": "-0.44",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "$-0.44$"
+  },
+  {
+   "fact": "gpt_reason_one_same_dirs",
+   "format": "bool",
+   "rendered": "True",
+   "locations": []
+  },
+  {
+   "fact": "gpt_reason_zero_only",
+   "format": ".2f",
+   "rendered": "-0.18",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "$-0.18$"
+  },
+  {
+   "fact": "llama_one_zero_nsig",
+   "format": "d",
+   "rendered": "0",
+   "locations": []
+  },
+  {
+   "fact": "llama_reason_contrast_hi",
+   "format": ".2f",
+   "rendered": "-0.51",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "$-0.51$"
+  },
+  {
+   "fact": "llama_reason_contrast_lo",
+   "format": ".2f",
+   "rendered": "-1.35",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "$-1.35$"
+  },
+  {
+   "fact": "llama_reason_all_sig",
+   "format": "bool",
+   "rendered": "True",
+   "locations": []
+  },
+  {
+   "fact": "gpt_one_edited",
+   "format": ",d",
+   "rendered": "3,249",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "3{,}249"
+  },
+  {
+   "fact": "gpt_one_edited_pct",
+   "format": ".0f",
+   "rendered": "80",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "drafts (80\\%)"
+  },
+  {
+   "fact": "gpt_one_oe",
+   "format": "d",
+   "rendered": "51",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "over-edits only 51 of 1{,}179"
+  },
+  {
+   "fact": "gpt_zero_oe_pct",
+   "format": ".1f",
+   "rendered": "0.8",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "0.8\\% and 2.1\\%"
+  },
+  {
+   "fact": "gpt_reason_oe_pct",
+   "format": ".1f",
+   "rendered": "2.1",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "0.8\\% and 2.1\\%"
+  },
+  {
+   "fact": "llama_zero_oe_pct",
+   "format": ".1f",
+   "rendered": "11.2",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "11.2\\% (zero-shot)"
+  },
+  {
+   "fact": "llama_one_oe_pct",
+   "format": ".1f",
+   "rendered": "11.3",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "11.3\\% (one-shot)"
+  },
+  {
+   "fact": "llama_reason_tlen_oe",
+   "format": "d",
+   "rendered": "107",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "up to 107 of 377"
+  },
+  {
+   "fact": "tlen_protect",
+   "format": "d",
+   "rendered": "377",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "up to 107 of 377"
+  },
+  {
+   "fact": "llama_harm_gt_improve",
+   "format": "d",
+   "rendered": "9",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "in 9 of 12 conditions"
+  },
+  {
+   "fact": "gpt_improve_gt_harm",
+   "format": "d",
+   "rendered": "12",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "than it harms in all 12"
+  },
+  {
+   "fact": "oe_order_all_thresholds",
+   "format": "bool",
+   "rendered": "True",
+   "locations": []
+  },
+  {
+   "fact": "llama_protect_max",
+   "format": ".2f",
+   "rendered": "-0.33",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "$-0.33$"
+  },
+  {
+   "fact": "llama_protect_min",
+   "format": ".2f",
+   "rendered": "-2.09",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "$-2.09$"
+  },
+  {
+   "fact": "llama_improve_positive",
+   "format": "d",
+   "rendered": "11",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "positive in 11 of 12"
+  },
+  {
+   "fact": "reason_contrasts_all_negative",
+   "format": "d",
+   "rendered": "16",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "in all 16 such contrasts"
+  },
+  {
+   "fact": "max_digit_change",
+   "format": "d",
+   "rendered": "23",
+   "locations": [],
+   "tex": "at most 23 outputs"
+  },
+  {
+   "fact": "llama_reason_tlen_lang",
+   "format": "d",
+   "rendered": "10",
+   "locations": [],
+   "tex": "10 vs.\\ 1"
+  },
+  {
+   "fact": "gpt_cost_total",
+   "format": ".2f",
+   "rendered": "1.26",
+   "locations": [
+    "sections/08_limitations.tex"
+   ],
+   "tex": "US\\$1.26"
+  },
+  {
+   "fact": "review_cases",
+   "format": "d",
+   "rendered": "96",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "We read 96 held-out cases"
+  },
+  {
+   "fact": "review_llama_genuine",
+   "format": "d",
+   "rendered": "12",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "All 12 of the largest Llama over-edits"
+  },
+  {
+   "fact": "review_gpt_not_error",
+   "format": "d",
+   "rendered": "10",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "10 of the 12 largest GPT-4o Mini"
+  },
+  {
+   "fact": "review_luxury_delta",
+   "format": ".1f",
+   "rendered": "-9.1",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "$-9.1$ points"
+  },
+  {
+   "fact": "review_llama_reason_srclang",
+   "format": "d",
+   "rendered": "20",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "places 20 of its 4{,}048"
+  },
+  {
+   "fact": "ext_gap_reduction_min",
+   "format": ".0f",
+   "rendered": "16",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "gap by 16"
+  },
+  {
+   "fact": "ext_gap_reduction_max",
+   "format": ".0f",
+   "rendered": "23",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "23\\%, and"
+  },
+  {
+   "fact": "ext_gap_middle_share_min",
+   "format": ".0f",
+   "rendered": "73",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "at least 73\\%"
+  },
+  {
+   "fact": "ext_f1_unchanged_all_corrections",
+   "format": "bool",
+   "rendered": "True",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "No F1 decision changes under Bonferroni or Benjamini--Hochberg correction, or under Holm over both families jointly"
+  },
+  {
+   "fact": "ext_f1_sig_n",
+   "format": "d",
+   "rendered": "18",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "all 18 significant F1 effects"
+  },
+  {
+   "fact": "ext_sig_sign_agree_all",
+   "format": "bool",
+   "rendered": "True",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "have the same sign in COMET, BLEU, and chrF++"
+  },
+  {
+   "fact": "ext_gpt_oe_upper_max",
+   "format": ".1f",
+   "rendered": "5.6",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "at most 5.6\\%"
+  },
+  {
+   "fact": "ext_llama_oe_lower_min",
+   "format": ".1f",
+   "rendered": "9.5",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "at least 9.5\\%"
+  },
+  {
+   "fact": "ext_gpt_edit_harm_max",
+   "format": ".1f",
+   "rendered": "8.9",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "at most 8.9\\%"
+  },
+  {
+   "fact": "ext_llama_edit_harm_min",
+   "format": ".1f",
+   "rendered": "9.9",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "9.9\\% minimum"
+  },
+  {
+   "fact": "ext_llama_skip_strong_negative",
+   "format": "d",
+   "rendered": "6",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "below S0 in 6 of 12 conditions"
+  },
+  {
+   "fact": "s0_dev_multi_exact",
+   "format": "d",
+   "rendered": "412",
+   "locations": [
+    "sections/04_experimental_setup.tex",
+    "sections/08_limitations.tex"
+   ],
+   "tex": "412/421 "
+  },
+  {
+   "fact": "s0_dev_multi_total",
+   "format": "d",
+   "rendered": "421",
+   "locations": [
+    "sections/04_experimental_setup.tex",
+    "sections/08_limitations.tex"
+   ],
+   "tex": "412/421 "
+  }
+ ],
+ "phase5_scope": "Held-out numbers in prose. Values are recomputed from docs/phase5/evidence/main_results.json by src/analysis/phase5_facts.py; tables and macros are checked byte-for-byte against regeneration."
 }

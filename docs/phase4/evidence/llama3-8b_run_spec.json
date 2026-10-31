@@ -1,0 +1,45 @@
+{
+  "prepared_manifest_sha256": "c5d7a062334cba62bccec617e722a685e5bbb5e68e6d1c1d8240b10217dcfa7a",
+  "partition": "devtest",
+  "protocol_fingerprint": "7547a429e81ae64bd8a5834903eb3492bfcb901f64c47e1ed9c1559f4375185d",
+  "protocol_id": "norris_frozen_v1",
+  "engine_sha256": "eec6dab29d9b4bc5f4c2b3e5787f19389a59e27affef16bf27b1b1ef0c1014e4",
+  "protocol_module_sha256": "e564e480cb74a94ed60b98f636ae1736549b98995cf48ba03390355ae90fe9d4",
+  "invalid_output_policy": "Retain raw output; unchanged baseline draft; no repair or selective retry.",
+  "translation_normalization": "Trim outer whitespace only after schema validation.",
+  "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+  "revision": "8afb486c1db24fe5011ec46dfbe5b5dccdb575c2",
+  "tokenizer_revision": "8afb486c1db24fe5011ec46dfbe5b5dccdb575c2",
+  "sampling": {
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "top_k": -1,
+    "max_tokens": 1024,
+    "seed": 42,
+    "repetition_penalty": 1.0,
+    "presence_penalty": 0.0,
+    "frequency_penalty": 0.0,
+    "ignore_eos": false,
+    "stop_token_ids": [
+      128009
+    ]
+  },
+  "engine_settings": {
+    "dtype": "bfloat16",
+    "tensor_parallel_size": 1,
+    "max_model_len": 8192,
+    "gpu_memory_utilization": 0.7,
+    "max_num_seqs": 16,
+    "enforce_eager": true,
+    "enable_prefix_caching": true,
+    "seed": 42,
+    "generation_config": "vllm"
+  },
+  "batch_size": 16,
+  "environment": {
+    "vllm": "0.11.2",
+    "torch": "2.9.0",
+    "transformers": "4.57.1",
+    "pydantic": "2.12.3"
+  }
+}

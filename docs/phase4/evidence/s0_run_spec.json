@@ -1,0 +1,57 @@
+{
+  "stage": "phase4_devtest_baseline",
+  "split": "devtest",
+  "model": "facebook/nllb-200-3.3B",
+  "revision": "1a07f7d195896b2114afcb79b7b57ab512e7b43e",
+  "precision": "float16",
+  "seed": 42,
+  "decode": {
+    "num_beams": 4,
+    "max_length": 512,
+    "length_penalty": 1.0,
+    "early_stopping": true,
+    "do_sample": false
+  },
+  "truncation": false,
+  "fragment_variant": {
+    "name": "raw_len_chars_desc_b32",
+    "fragment_input": "raw",
+    "order": "len_chars_desc",
+    "batch": 32,
+    "join": "single_space_between_stripped_fragment_translations"
+  },
+  "single_segment_rule": "reuse checksum-locked Phase 2 unsplit devtest hypothesis",
+  "splitter": {
+    "version": "candidate_v3",
+    "pysbd": "0.3.4",
+    "rule_language": {
+      "eng_Latn": "en",
+      "tgl_Latn": "en",
+      "spa_Latn": "es"
+    },
+    "patterns": {
+      "title_pattern": "(?:^|\\W)(?:Mr|Mrs|Ms|Dr|Dra|Sr|Sra|Srta|Jr|Prof|Profa|Ing|Lic|G|Gng|Bb|Kgg|Atty|Engr)\\.$",
+      "clock_pattern": "\\b[ap]\\s*\\.\\s*m\\s*\\.\\s*$",
+      "weekday_pattern": "^(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|lunes|martes|miércoles|jueves|viernes|sábado|domingo|Lunes|Martes|Miyerkules|Huwebes|Biyernes|Sabado|Linggo)\\b",
+      "atbp_pattern": "(?:^|\\W)atbp\\s*\\.\\s*$",
+      "parenthetical_pattern": "\\s*\\([^()]*\\)\\s*"
+    }
+  },
+  "phase2_devtest_unsplit_sha256": {
+    "nllb3.3b_eng_Latn_tgl_Latn_devtest.jsonl": "3cb6bee5a029b69e925af0cd26bc844813a204d21ffb69cf74301fc41ef30668",
+    "nllb3.3b_tgl_Latn_eng_Latn_devtest.jsonl": "0fd70653519f6adec1c349eaccb4ce27461394f3ce80e5cd0696bc7d7ac1c494",
+    "nllb3.3b_eng_Latn_spa_Latn_devtest.jsonl": "91ebb7b0dc2f2085af454d5748be1350ccac11aa8aa27b63a5a2ba3d390638b4",
+    "nllb3.3b_spa_Latn_eng_Latn_devtest.jsonl": "0a74dbed301dc42325214d79d0bedbd4608a08a0795b35c613f4fa329969e03a"
+  },
+  "code_sha256": {
+    "norris_splitter.py": "c7d532aeb95d80598df2c9adf56a7364d1551c64ded78ee3b68e642cbd7fad1e",
+    "generate_devtest_baseline.py": "938320981d75410be6a79b5a41a6fd4c9cf183ac0360defda2ac4f942fd50383"
+  },
+  "freeze_sha256": "6e6259a9cf1c7e2aca978a770fa85d86596f31b0e8b3c55f42635203e4f7462c",
+  "environment": {
+    "python": "3.13.16",
+    "torch": "2.11.0+cu130",
+    "transformers": "5.18.0",
+    "gpu": "NVIDIA A100-SXM4-80GB"
+  }
+}

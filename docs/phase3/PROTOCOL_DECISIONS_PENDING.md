@@ -1,14 +1,17 @@
-# Decisions required before the final protocol record
+# Protocol decisions before the freeze — disposition record
 
-19 October 2026. The development pilots are complete; this file does not freeze the protocol or authorize devtest execution.
+Updated 23 October 2026 after the PI's Phase 3 acceptance message (22 October 2026).
 
-1. **ICAI contribution boundary:** bring the disclosed anchoring/retrieval overlap to the PI and record the disposition. See `ORIGINALITY_OVERLAP_AUDIT.md`.
-2. **Diagnostic output contract:** retain measured candidate v2 and report its 227/400 Llama fallbacks, or document a redesign and revalidate affected dev conditions. No condition is silently removed or repaired.
-3. **Held-out retrieval eligibility:** specify whether the final dev pool includes all 997 IDs or retains pilot-ID exclusions, and retain duplicate-source exclusion/tie handling. The pilot excludes 100 aligned IDs; that fact alone does not determine the main pool.
-4. **Statistics:** record the exact baseline and strategy contrasts, multiplicity families/correction, two-sided testing procedure, paired sampling unit, seeds, metric signatures, subgroup definitions and denominators before main scoring. The pilot's descriptive intervals are not confirmatory tests.
-5. **Roadmap discrepancies:** the pilot uses langdetect 1.0.9 rather than the original fastText suggestion; record the final screening method. chrF++ uses word order 2 (the old `nw:1` role-file signature was inconsistent with that label). Metric-defined harm and protect-pool over-editing are distinct outcomes; report both. Recorded environments use FAISS CPU for retrieval and separate generation/evaluation installations.
-6. **Freeze artifact:** after resolving these items, commit the exact configuration, prompts/schemas, code and model/tokenizer revisions, retrieval/data manifests, analysis rules and freeze date. Verify the final report matches that commit. Record PI review/sign-off under the existing acceptance instructions.
+| # | Item | Disposition | Where recorded |
+|---|---|---|---|
+| 1 | ICAI contribution boundary | **Approved by PI.** Frozen-NMT anchoring and semantic exemplar retrieval are cited as established prior methodology (ICAI). Norris contributions: different empirical setting, four directions, stronger split baseline, two-editor comparison, explicit failure accounting, over-editing/preservation analysis. | `ORIGINALITY_OVERLAP_AUDIT.md`, manuscript §II-C, freeze `pi_instructions` |
+| 2 | Reason-then-edit contract | **Revised per PI:** minimal contract rte_v3 (`diagnosis` → `edited_translation`), affected dev conditions rerun for both models under a predeclared reliability gate. If the gate fails, the PI decides retain-as-failure vs remove. | `RTE_CONTRACT_REVISION.md`, notebook 03 |
+| 3 | Baseline | **Approved:** sentence-split NLLB primary (S0), unsplit diagnostic. Splitter reconstructed from the recorded run spec and accepted only by exact dev reproduction (segmentation and translation gates). | `src/baselines/`, freeze `baseline` |
+| 4 | Held-out retrieval pool | All 997 dev IDs, exact stripped-source duplicates of the query excluded, smallest-ID tie break (as declared in the approved Phase 4/5 plan). | `prepare_main_jobs.py`, freeze `retrieval_main` |
+| 5 | Statistics | F1: 24 PE-vs-S0 tests; F2: 24 strategy tests (one−zero, reason−zero, reason−one); two-sided centered paired bootstrap, B=10,000, seed 42; percentile CIs; Holm per family α=.05; ±0.5-point practical band flag; nonsignificant = inconclusive. Validated on synthetic fixtures. | `src/evaluation/norris_stats.py`, `tests/phase5/test_stats.py`, freeze `evaluation` |
+| 6 | Roadmap discrepancies | langdetect 1.0.9 (not fastText); chrF++ word order 2; native thresholds ±0.02; protect ≥.90 / improve <.80 on devtest S0; harm and protect-pool over-editing reported separately; sensitivity .01/.05. | freeze `evaluation`, `deviations_from_roadmap` |
+| 7 | Freeze artifact | `config/frozen/protocol_freeze.json` built by `src/freeze/build_freeze_manifest.py` only after the gates; records RQs verbatim, prompts, schemas, code hashes and git commit. | `config/frozen/` |
 
-## Parallel manuscript work
+## Update — 31 October 2026
 
-Introduction, Related Work, Data, Baseline, Methods and evaluation-design prose can be reviewed now. Pilot results are clearly labelled. Main results, final conclusions, byline/order, acknowledgments/funding, ICAI proceedings metadata and final venue disclosures remain open. The original shared Overleaf project is the master; no new project is needed.
+All items above are approved by the PI, including the S0 reconstruction disposition (segmentation and unsplit baseline reproduced exactly; fragment generation 412/421 dev multi-sentence items; limitation documented; dev baseline not regenerated). See `docs/PI_DECISIONS_2026-10-31.md`.

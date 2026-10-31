@@ -1,0 +1,16 @@
+{
+  "n": 8,
+  "json_parse_success": 8,
+  "schema_valid": 8,
+  "usable": 8,
+  "fallback": 0,
+  "failure_classes": {
+    "usable": 8
+  },
+  "prompt_tokens": 3248,
+  "completion_tokens": 632,
+  "retries": 0,
+  "estimated_cost_usd_uncached": 0,
+  "median_latency_ms": 710.7772213749968,
+  "latency_definition": "batch-amortized generation time; model initialization excluded"
+}

@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering\footnotesize
+\caption{Protect-pool over-editing on devtest: over-edited items / protect-pool items per direction (protect: S0 COMET$\geq$0.90; over-edit: text changed and native COMET loss $>$0.02).}
+\label{tab:overedit}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llrrrr}
+\toprule
+Editor & Strategy & En$\to$Tl & Tl$\to$En & En$\to$Es & Es$\to$En \\
+\midrule
+GPT-4o Mini & Zero & 3/234 & 3/377 & 3/275 & 1/293 \\
+ & One & 6/234 & 26/377 & 7/275 & 12/293 \\
+ & Reason & 5/234 & 13/377 & 3/275 & 4/293 \\
+\midrule
+Llama 3 8B & Zero & 42/234 & 35/377 & 29/275 & 26/293 \\
+ & One & 35/234 & 37/377 & 28/275 & 33/293 \\
+ & Reason & 57/234 & 107/377 & 32/275 & 51/293 \\
+\bottomrule
+\end{tabular}
+\end{table}

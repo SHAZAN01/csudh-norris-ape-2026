@@ -1,0 +1,34 @@
+\section{Development Results}
+\subsection{Segmentation diagnostic}
+Over all 997 development items per direction, sentence splitting changes mean COMET by +0.351 for English-to-Tagalog, +0.053 for Tagalog-to-English, +0.292 for English-to-Spanish, and +0.142 for Spanish-to-English. The Tagalog-to-English interval, [-0.019, +0.130], includes zero. The approved split baseline remains primary; these baseline segmentation changes are separate from post-editing gains.
+
+\input{tables/pilot_baselines}
+Table~\ref{tab:pilotbase} gives the baseline on the actual 100-ID pilot. Table~\ref{tab:pilot} reports every post-editing condition, retaining all planned items and failures. The sample differs from the full 997-item baseline population.
+\input{tables/pilot_results}
+
+\subsection{Quality changes}
+GPT retrieved one-shot has the largest English-to-Tagalog point estimate: +1.463 COMET points, with descriptive interval [0.710, 2.396]. Both Tagalog directions have positive GPT zero-shot and one-shot point estimates. For Spanish-to-English, all three GPT intervals include zero. This evidence does not establish a general low-resource advantage: baseline quality, translation direction, and language pair are confounded.
+
+Llama one-shot estimates are +0.087, +0.352, +0.450, and -0.046 points in the four directions ordered as English-to-Tagalog, Tagalog-to-English, English-to-Spanish, and Spanish-to-English. All four intervals include zero. Reason-then-edit has negative Llama point estimates in every direction. Its intervals exclude zero for the two into-English directions, but remain exploratory. These effects describe the complete operational condition; they do not isolate reasoning from contract compliance.
+
+\subsection{Validity and failure behavior}
+All 800 zero-shot/one-shot responses from each model are usable. In reason-then-edit, only 173/400 Llama responses pass the contract, versus 392/400 GPT responses. Thus Llama uses baseline fallback on 227/400 outcomes (56.75\%) and GPT on 8/400 (2\%). Parsing alone is less informative: 399/400 Llama diagnostic responses parse as JSON.
+
+Llama failures include repeated categories (184), invalid note length or emptiness (45), \texttt{NONE} combined with another category (23), diagnostic-count violations (3), and one unparseable, abnormally finished response. These screens overlap and must not be summed. GPT's eight failures all repeat a category. A separate GPT \texttt{NONE} response changes only hyphen spacing; it is disclosed as an instruction-consistency flag and is not retroactively reclassified.
+
+\subsection{Editing and protected drafts}
+\input{tables/pilot_harm}
+Table~\ref{tab:harm} pools directions descriptively, with 400 outcomes per condition. Retrieved one-shot edits more often than zero-shot for both models. GPT one-shot yields more metric improvements but also more metric harms than GPT zero-shot. Low Llama reason-then-edit activity cannot be called successful restraint because most outputs use fallback. The protect denominator is 116 observations per strategy, with direction-specific counts 22, 45, 21, and 28. Only three Spanish-to-English items fall in the improve pool, limiting subgroup interpretation.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/pilot_delta_ecdf.pdf}
+\caption{Empirical distributions of development COMET changes, including every planned outcome. Each curve contains 100 items. The shared point scale retains all observations. Jumps at zero include unchanged translations and baseline fallback; especially for Llama reason-then-edit, that mass must not be interpreted as successful restraint.}
+\label{fig:pilotcdf}
+\end{figure*}
+Figure~\ref{fig:pilotcdf} complements mean differences by retaining the discrete mass at zero and the distribution tails. The curves are descriptive; no pooled independence assumption or stochastic-dominance test is implied.
+
+\subsection{Audit and resource accounting}
+The review independently reproduced all BLEU/chrF++ values from raw text, COMET means and paired intervals from aligned numeric caches, raw-record hashes, fallback decisions, and retrieval selections. Neural COMET inference was not rerun during this review. The supplied evaluator rechecked all 400 pilot baselines; the maximum difference was $5.96\times10^{-7}$ native, below the $10^{-5}$ tolerance.
+
+GPT used 643,126 input and 53,095 output tokens with no recorded retries. Applying the recorded uncached token rates gives an estimated charge of approximately \$0.13, not an invoice. Six server fingerprint values occurred within the dated snapshot. Llama's 78 unique generation batches sum to 249.83 seconds of logged wall time, including reused smoke records; initialization is separate. GPT request wall time and Llama batch-amortized time are not comparable per-item speed measurements.
