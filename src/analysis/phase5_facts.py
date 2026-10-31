@@ -96,6 +96,33 @@ def facts(res, repo):
         F['review_llama_reason_srclang'] = R2['source_language_outputs_langdetect']['llama3-8b/reason-then-edit']
     F['gpt_cost_total'] = p4 + sum(v.get('estimated_cost_usd_uncached', 0) for v in rte['conditions'].values()) + \
         next(v for k, v in _walk(pilot) if k == 'gpt_token_cost_estimate_usd')
+    F.update(extended_facts(res, repo))
+    return F
+
+
+def extended_facts(res, repo):
+    """Exploratory robustness facts (Report 5.1), computed by phase5_extended from the same committed evidence."""
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import phase5_extended as X
+    o = X.analyse(res, json.loads((repo / 'docs/phase4/evidence/gpt4o-mini_run_summary.json').read_text()))
+    X.check(o)
+    mu = o['X1_multiplicity']
+    F = {}
+    F['ext_f1_unchanged_all_corrections'] = (not mu['F1']['changed_vs_holm']['bonferroni'] and not mu['F1']['changed_vs_holm']['bh_fdr']
+                                             and not mu['pooled48_changed'])
+    F['ext_f1_sig_n'] = mu['F1']['holm_frozen']
+    F['ext_sig_sign_agree_all'] = o['X7_metric_concordance']['significant_sign_agree_all_three'] == mu['F1']['holm_frozen']
+    F['ext_gpt_oe_upper_max'] = 100 * o['X5_summary']['gpt_max_upper_0.02']
+    F['ext_llama_oe_lower_min'] = 100 * o['X5_summary']['llama_min_lower_0.02']
+    F['ext_gpt_edit_harm_max'] = 100 * o['X6_summary']['gpt_harm_rate_max']
+    F['ext_llama_edit_harm_min'] = 100 * o['X6_summary']['llama_harm_rate_min']
+    F['ext_gap_reduction_min'] = o['X4_summary']['gpt_gap_reduction_min']
+    F['ext_gap_reduction_max'] = o['X4_summary']['gpt_gap_reduction_max']
+    F['ext_gap_middle_share_min'] = 100 * o['X4_summary']['gpt_std_gap_middle_share_min']
+    lw = [r for r in o['X3_pool_decomposition'] if r['model'] == 'llama3-8b']
+    neg = [r for r in lw if r['oracle_skip_strong'] < 0]
+    F['ext_llama_skip_strong_negative'] = len(neg) if all(r['contribution']['middle'] < 0 for r in neg) else None
     return F
 
 

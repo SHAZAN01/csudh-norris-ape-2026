@@ -599,6 +599,105 @@
     "sections/06_discussion.tex"
    ],
    "tex": "places 20 of its 4{,}048"
+  },
+  {
+   "fact": "ext_gap_reduction_min",
+   "format": ".0f",
+   "rendered": "16",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "gap by 16"
+  },
+  {
+   "fact": "ext_gap_reduction_max",
+   "format": ".0f",
+   "rendered": "23",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "23\\%, and"
+  },
+  {
+   "fact": "ext_gap_middle_share_min",
+   "format": ".0f",
+   "rendered": "73",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "at least 73\\%"
+  },
+  {
+   "fact": "ext_f1_unchanged_all_corrections",
+   "format": "bool",
+   "rendered": "True",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "No F1 decision changes under Bonferroni or Benjamini--Hochberg correction, or under Holm over both families jointly"
+  },
+  {
+   "fact": "ext_f1_sig_n",
+   "format": "d",
+   "rendered": "18",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "all 18 significant F1 effects"
+  },
+  {
+   "fact": "ext_sig_sign_agree_all",
+   "format": "bool",
+   "rendered": "True",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "have the same sign in COMET, BLEU, and chrF++"
+  },
+  {
+   "fact": "ext_gpt_oe_upper_max",
+   "format": ".1f",
+   "rendered": "5.6",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "at most 5.6\\%"
+  },
+  {
+   "fact": "ext_llama_oe_lower_min",
+   "format": ".1f",
+   "rendered": "9.5",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "at least 9.5\\%"
+  },
+  {
+   "fact": "ext_gpt_edit_harm_max",
+   "format": ".1f",
+   "rendered": "8.9",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "at most 8.9\\%"
+  },
+  {
+   "fact": "ext_llama_edit_harm_min",
+   "format": ".1f",
+   "rendered": "9.9",
+   "locations": [
+    "sections/05_results.tex"
+   ],
+   "tex": "9.9\\% minimum"
+  },
+  {
+   "fact": "ext_llama_skip_strong_negative",
+   "format": "d",
+   "rendered": "6",
+   "locations": [
+    "sections/06_discussion.tex"
+   ],
+   "tex": "below S0 in 6 of 12 conditions"
   }
  ],
  "phase5_scope": "Held-out numbers in prose. Values are recomputed from docs/phase5/evidence/main_results.json by src/analysis/phase5_facts.py; tables and macros are checked byte-for-byte against regeneration."

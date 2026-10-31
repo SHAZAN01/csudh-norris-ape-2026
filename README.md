@@ -458,3 +458,16 @@ No devtest output has been generated or scored at this commit.
 
 GPT-4o Mini improved COMET-22 over the split NLLB baseline in all 12 direction × strategy conditions (+0.26 to +1.00 points, all Holm-significant); Llama 3 8B Instruct improved none and was significantly worse in 6 (all reason-then-edit directions; zero/one-shot En→Tl). Protect-pool over-editing: GPT-4o Mini 0.8–4.3% of 1,179 strong drafts, Llama 11.2–20.9%. All numbers independently recomputed from the 24,288 segment scores. Report: `docs/phase5/Norris_Phase_Report_5.pdf`; numeric evidence: `docs/phase5/evidence/`. Manuscript audit: `python scripts/audit_manuscript.py` (61 held-out claims + generated tables).
 
+## Update — 30 October 2026: Report 5.1 (Phase 5 final, exploratory robustness)
+
+* `docs/phase5/Norris_Phase_Report_5_1.pdf` supplements Report 5. The confirmatory results are unchanged.
+* `src/analysis/phase5_extended.py` (stdlib only; no GPU, text or generations) computes ten exploratory analyses from
+  committed evidence: multiplicity sensitivity, band sensitivity, exact pool decomposition of every F1 delta (with
+  oracle gates), quality-standardized pair comparison, Wilson/Newcombe intervals for over-editing, edit outcomes,
+  metric concordance, strategy-rank concordance and cost. Outputs: `docs/phase5/evidence/extended/`,
+  `docs/phase5/figures_extended/`. Tests: `python tests/phase5/test_extended.py`.
+* Correction: Report 5 §9 said the Tagalog–Spanish difference tracks weak-draft share more than language; quality
+  standardization explains only 16–23% of the GPT-4o Mini gap. The manuscript wording was revised; 11 new held-out
+  facts are registered and audited (77 in total). Paper: 5 pages.
+* Rebuild the report: `python docs/phase5/build/build_report_5_1.py . docs/phase5/Norris_Phase_Report_5_1.pdf`
+  (needs reportlab and Liberation Sans).

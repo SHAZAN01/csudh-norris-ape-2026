@@ -3,3 +3,6 @@
 # Preserve the upstream IEEE template files, including their inherited whitespace.
 paper/IEEEtran.cls -text -whitespace
 paper/IEEEtran.bst -text -whitespace
+# Reports and figures are binary (ReportLab PDFs are ASCII-like and must not be treated as text in patches).
+*.pdf binary
+*.png binary

@@ -1,7 +1,8 @@
 # Anticipated reviewer objections and responses (held-out evidence)
 
-Internal preparation memo (7.txt), updated 25 October 2026 from the frozen Phase 5 results
-(`docs/phase5/evidence/main_results.json`). It anticipates objections; it is not a response to an
+Internal preparation memo (7.txt), updated 30 October 2026 from the frozen Phase 5 results
+(`docs/phase5/evidence/main_results.json`) and the exploratory robustness analyses of Report 5.1
+(`docs/phase5/evidence/extended/extended_analyses.json`). It anticipates objections; it is not a response to an
 actual review. Every number below is in the audited manuscript or in Report 5.
 
 ## 1. "Why GPT-4o Mini and an 8B Llama rather than stronger models? Is the Llama result just a weak model?"
@@ -30,7 +31,10 @@ one metric we report: (a) BLEU and chrF++ with signatures, which lie above S0 fo
 GPT-4o Mini conditions and below it for all twelve Llama conditions, including Llama conditions
 whose COMET change is not significant; (b) paired intervals with Holm correction, flagging five GPT-4o Mini gains as within
 ±0.5 points; (c) gains by baseline quality, showing improvements come from weak drafts (positive in
-23 of 24 conditions) while strong drafts are at best preserved; (d) model-independent error screens.
+23 of 24 conditions) while strong drafts are at best preserved; (d) model-independent error screens; (e) exploratory robustness (Report 5.1): no F1 decision changes under
+Bonferroni, Benjamini–Hochberg or a joint Holm family of 48; all 18 significant F1 effects have the same sign in
+COMET, BLEU and chrF++ (rank correlation of condition deltas: chrF++ 0.97, BLEU 0.94); the only metric
+disagreements are three non-significant Llama conditions where COMET is flat and lexical metrics fall.
 No bilingual human evaluation was run (PI decision, 24 September 2026); this is a stated limitation.
 
 ## 3. "Does reason-then-edit (CoT) introduce hallucinated diagnoses, and was the condition handicapped?"
@@ -56,8 +60,15 @@ source-supported changes that COMET penalized.
 * **New method, or the ICAI system on new languages?** Anchoring and semantic exemplar retrieval are
   cited as established; contributions are the empirical setting, four directions, stronger split
   baseline, two-editor comparison, failure accounting and over-editing analysis (PI-approved boundary).
-* **Resource level?** Two pairs cannot isolate it; the Tagalog pair's larger GPT-4o Mini gains track
-  its larger share of weak drafts (183 and 82 vs. 104 and 60 items below 0.80).
+* **Resource level?** Two pairs cannot isolate it. The Tagalog pair has more weak drafts (183 and 82 vs.
+  104 and 60 items below 0.80), but reweighting to a common quality mix narrows GPT-4o Mini's pair gap by
+  only 16–23%; at least 73% of the remainder arises in mid-quality drafts (Report 5.1 §5). We therefore say
+  baseline quality explains part of the difference and make no causal resource claim.
+* **Is the over-editing gap just noise?** Wilson 95% intervals separate the pooled rates (GPT-4o Mini ≤ 5.6%,
+  Llama ≥ 9.5%); among edited drafts every GPT-4o Mini harm rate (≤ 8.9%) is below every Llama rate (≥ 9.9%).
+  Per direction, intervals overlap into English, which the paper does not claim otherwise.
+* **Would gating fix Llama?** An oracle that skipped strong drafts (reference-based, not deployable) would still
+  leave Llama below S0 in 6 of 12 conditions, because it also degrades mid-quality drafts.
 * **Baseline reproduction?** Segmentation reproduced 2,991/2,991 dev items; regenerated unsplit drafts
   matched 3,988/3,988 (dev) and 4,048/4,048 (devtest); fragment translations matched 412/421 dev items
   (disclosed). All editors edit the same frozen S0 drafts.
